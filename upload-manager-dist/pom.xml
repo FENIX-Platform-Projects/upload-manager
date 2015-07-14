@@ -1,0 +1,92 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.fao.ess</groupId>
+        <artifactId>upload-manager</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+	<artifactId>upload-manager-dist</artifactId>
+	<packaging>war</packaging>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<archive>
+						<addMavenDescriptor>false</addMavenDescriptor>
+					</archive>
+					<warName>uploader</warName>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+    <!-- PROFILES -->
+    <profiles>
+        <profile>
+            <id>jboss</id>
+        </profile>
+
+        <profile>
+            <id>tomcat</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <dependencies>
+                <dependency>
+                    <groupId>org.fao.fenix</groupId>
+                    <artifactId>tomcat-J2EE</artifactId>
+                    <version>1.0-SNAPSHOT</version>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>
+
+    <!-- Dependencies -->
+	<dependencies>
+
+		<!-- Core -->
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>upload-manager-core</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<!-- Jackson custom configuration support -->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-core</artifactId>
+		    <version>${jackson.version}</version>
+		</dependency>
+
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-annotations</artifactId>
+		    <version>${jackson.version}</version>
+		</dependency>
+
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>${jackson.version}</version>
+		</dependency>
+
+		<dependency>
+		    <groupId>com.fasterxml.jackson.jaxrs</groupId>
+		    <artifactId>jackson-jaxrs-json-provider</artifactId>
+		    <version>${jackson.version}</version>
+		</dependency>
+
+		<!-- Cross domain support -->
+		<dependency>
+		    <groupId>org.fao.fenix</groupId>
+		    <artifactId>fenix-cross-domain</artifactId>
+		    <version>1.1.2</version>
+		</dependency>
+
+    </dependencies>
+
+</project>

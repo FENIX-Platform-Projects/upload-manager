@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <script>
+        function success() {
+            //console.log(xmlhttp.responseText);
+            console.log("Ok 2...");
+        }
+        for (i=0; i<10; i++) {
+            xmlhttp=new XMLHttpRequest();
+            xmlhttp.open("GET","http://hqlprfenixapp1.hq.un.fao.org:2323/d3sp/service/msd/cl/system/Crops/1.0",true);
+            xmlhttp.onload = success;
+            xmlhttp.send();
+        }
+
+    </script>
+</body>
+</html>
