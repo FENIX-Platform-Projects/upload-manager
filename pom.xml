@@ -12,6 +12,9 @@
 
     <modules>
         <module>upload-manager-core</module>
+
+        <module>upload-manager-FTP-storage</module>
+
         <module>upload-manager-dist</module>
     </modules>
 
@@ -20,6 +23,7 @@
         <resteasy.version>3.0.6.Final</resteasy.version>
         <orient.version>2.0.5</orient.version>
         <jackson.version>2.3.2</jackson.version>
+        <apache.commons.version>3.3</apache.commons.version>
     </properties>
 
     <build>

@@ -7,24 +7,25 @@
         <artifactId>upload-manager</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <artifactId>upload-manager-core</artifactId>
+    <artifactId>upload-manager-FTP-storage</artifactId>
 
 
     <dependencies>
 
-        <!-- Orient -->
+        <!-- Core -->
         <dependency>
-            <groupId>com.orientechnologies</groupId>
-            <artifactId>orientdb-client</artifactId>
-            <version>${orient.version}</version>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>upload-manager-core</artifactId>
+            <version>${project.version}</version>
         </dependency>
 
-        <!-- Utils -->
+        <!-- FTP Client -->
         <dependency>
-            <groupId>org.fao.fenix</groupId>
-            <artifactId>fenix-commons-utils</artifactId>
-            <version>1.0.1-SNAPSHOT</version>
+            <groupId>commons-net</groupId>
+            <artifactId>commons-net</artifactId>
+            <version>${apache.commons.version}</version>
         </dependency>
+
 
     </dependencies>
 </project>
