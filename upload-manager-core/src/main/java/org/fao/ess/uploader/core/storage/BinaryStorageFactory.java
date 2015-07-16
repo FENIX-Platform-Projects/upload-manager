@@ -13,7 +13,7 @@ public class BinaryStorageFactory {
 
     private BinaryStorage instance;
 
-    public BinaryStorage getInstance() throws ClassNotFoundException, ClassCastException {
+    public BinaryStorage getInstance() throws Exception {
         if (instance==null) {
             String pluginClassName = config.get("storage.plugin");
             if (pluginClassName!=null)
