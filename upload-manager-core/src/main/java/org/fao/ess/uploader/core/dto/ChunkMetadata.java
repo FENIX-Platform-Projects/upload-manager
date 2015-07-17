@@ -2,10 +2,32 @@ package org.fao.ess.uploader.core.dto;
 
 public class ChunkMetadata {
 
-    private String id;
     private FileMetadata file;
     private int index;
     private Long size;
 
 
+    public FileMetadata getFile() {
+        return file;
+    }
+
+    public void setFile(FileMetadata file) {
+        this.file = file;
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
+    }
+
+    public Long getSize() {
+        return size;
+    }
+
+    public void setSize(Long size) {
+        this.size = size;
+    }
 }

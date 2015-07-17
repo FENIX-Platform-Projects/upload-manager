@@ -1,20 +1,24 @@
 package org.fao.ess.uploader.core.storage.impl;
 
 import org.apache.commons.net.ftp.FTPClient;
-import org.apache.commons.net.ftp.FTPClientConfig;
-import org.apache.commons.net.ftp.FTPSClient;
+import org.apache.commons.net.ftp.FTPFile;
+import org.apache.commons.net.ftp.FTPFileFilter;
 import org.fao.ess.uploader.core.dto.ChunkMetadata;
 import org.fao.ess.uploader.core.dto.FileMetadata;
-import org.fao.ess.uploader.core.dto.Status;
 import org.fao.ess.uploader.core.init.UploaderConfig;
 import org.fao.ess.uploader.core.storage.BinaryStorage;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.Inet4Address;
+import java.io.OutputStream;
 import java.net.InetAddress;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Map;
 
+@ApplicationScoped
 public class FTPBinaryStorage extends BinaryStorage {
     private @Inject UploaderConfig config;
     private FTPClient ftpClient;
@@ -68,19 +72,47 @@ public class FTPBinaryStorage extends BinaryStorage {
     }
 
     @Override
-    public Status writeChunk(ChunkMetadata chunkMetadata, InputStream input) throws Exception {
+    public void writeChunk(ChunkMetadata chunkMetadata, InputStream input) throws Exception {
         open();
-        return null;
+        try {
+            if (checkChunk(chunkMetadata))
+                ftpClient.deleteFile(getFileName(chunkMetadata));
+            ftpClient.appendFile(getFileName(chunkMetadata), input);
+        } finally {
+            input.close();
+        }
     }
 
     @Override
-    public Status closeFile(FileMetadata fileMetadata) throws Exception {
-        return null;
+    public InputStream readFile(FileMetadata fileMetadata, OutputStream outputStream) throws Exception {
+        open();
+        if (outputStream!=null)
+            try {
+                ftpClient.retrieveFile(getFileName(fileMetadata),outputStream);
+                return null;
+            } finally {
+                outputStream.close();
+            }
+        else
+            return ftpClient.retrieveFileStream(getFileName(fileMetadata));
     }
 
     @Override
-    public Status checkStatus(String fileName) throws Exception {
-        return null;
+    public void closeFile(FileMetadata fileMetadata) throws Exception {
+        open();
+        OutputStream output = ftpClient.appendFileStream(getFileName(fileMetadata));
+        try {
+            for (String chunkFileName : chunksFile(fileMetadata))
+                ftpClient.retrieveFile(chunkFileName,output);
+        } finally {
+            output.close();
+        }
+    }
+
+    @Override
+    public void removeFile(FileMetadata fileMetadata) throws Exception {
+        open();
+        ftpClient.deleteFile(getFileName(fileMetadata));
     }
 
     //INTERNAL LOGIC
@@ -101,8 +133,63 @@ public class FTPBinaryStorage extends BinaryStorage {
             ftpClient.disconnect();
     }
 
+    //Chunks read
+    private boolean checkChunk (ChunkMetadata chunkMetadata) throws Exception {
+        FTPFile[] files = ftpClient.listFiles(getFileName(chunkMetadata));
+        return files!=null && files.length==1;
+    }
+
+
+
 
     //UTILS
+
+    private String getFileName(FileMetadata fileMetadata) {
+        StringBuilder name = new StringBuilder("./");
+        if (fileMetadata!=null) {
+            if (fileMetadata.getContext()!=null)
+                name.append(fileMetadata.getContext()).append('/');
+            name.append(fileMetadata.getName()!=null ? fileMetadata.getName() : fileMetadata.getMd5());
+        }
+        return name.length()>2 ? name.toString() : null;
+    }
+
+    private String getFileName(ChunkMetadata chunkMetadata) {
+        if (chunkMetadata==null)
+            return null;
+        String baseFileName = getFileName(chunkMetadata.getFile());
+        return baseFileName!=null ? baseFileName+"___"+chunkMetadata.getIndex() : null;
+    }
+
+    private String[] chunksFile (FileMetadata fileMetadata) throws Exception {
+        String folder = fileMetadata!=null ? "./"+(fileMetadata.getContext()!=null ? fileMetadata.getContext() : "") : null;
+        String name = folder!=null ? (fileMetadata.getName()!=null ? fileMetadata.getName() : fileMetadata.getMd5()) : null;
+        final String prefix = name!=null ? name+"___" : null;
+
+        FTPFile[] chunksFile = prefix == null ? null :
+            ftpClient.listFiles(folder, new FTPFileFilter() {
+                @Override
+                public boolean accept(FTPFile ftpFile) {
+                    return ftpFile.getName().startsWith(prefix);
+                }
+            });
+        chunksFile = chunksFile==null ? new FTPFile[0] : chunksFile;
+        Arrays.sort(chunksFile, new Comparator<FTPFile>() {
+            @Override
+            public int compare(FTPFile o1, FTPFile o2) {
+                return o1.getName().compareTo(o2.getName());
+            }
+        });
+
+        if (!folder.endsWith("/"))
+            folder = folder + '/';
+        String[] chunksFileName = new String[chunksFile.length];
+        for (int i=0; i<chunksFile.length; i++)
+            chunksFileName[i] = folder+chunksFile[i].getName();
+
+        return chunksFileName;
+    }
+
 
 
 }
