@@ -12,13 +12,6 @@
 
     <dependencies>
 
-        <!-- Orient -->
-        <dependency>
-            <groupId>com.orientechnologies</groupId>
-            <artifactId>orientdb-client</artifactId>
-            <version>${orient.version}</version>
-        </dependency>
-
         <!-- Utils -->
         <dependency>
             <groupId>org.fao.fenix</groupId>

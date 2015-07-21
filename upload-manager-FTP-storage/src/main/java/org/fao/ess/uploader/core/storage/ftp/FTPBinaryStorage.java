@@ -1,4 +1,4 @@
-package org.fao.ess.uploader.core.storage.impl;
+package org.fao.ess.uploader.core.storage.ftp;
 
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
@@ -16,7 +16,6 @@ import java.io.OutputStream;
 import java.net.InetAddress;
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.Map;
 
 @ApplicationScoped
 public class FTPBinaryStorage extends BinaryStorage {

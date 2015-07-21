@@ -61,6 +61,11 @@
 			<artifactId>upload-manager-FTP-storage</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>upload-manager-orient-metadata</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 
 		<!-- Jackson custom configuration support -->
 		<dependency>
