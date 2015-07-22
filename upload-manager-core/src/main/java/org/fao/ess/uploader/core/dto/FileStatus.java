@@ -1,8 +1,11 @@
 package org.fao.ess.uploader.core.dto;
 
+import java.util.Set;
+import java.util.TreeSet;
+
 public class FileStatus {
     private Long currentSize;
-    private Integer[] chunksIndex;
+    private Set<Integer> chunksIndex;
     private Boolean complete;
 
 
@@ -13,14 +16,14 @@ public class FileStatus {
     public void setCurrentSize(Long currentSize) {
         this.currentSize = currentSize;
     }
-
-    public Integer[] getChunksIndex() {
+    public Set<Integer> getChunksIndex() {
         return chunksIndex;
     }
 
-    public void setChunksIndex(Integer[] chunksIndex) {
-        this.chunksIndex = chunksIndex;
+    public void setChunksIndex(Set<Integer> chunksIndex) {
+        this.chunksIndex = chunksIndex != null ? new TreeSet<>(chunksIndex) : null;
     }
+
 
     public Boolean isComplete() {
         return complete;

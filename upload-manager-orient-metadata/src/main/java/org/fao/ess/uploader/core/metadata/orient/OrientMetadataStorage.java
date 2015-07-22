@@ -1,11 +1,13 @@
 package org.fao.ess.uploader.core.metadata.orient;
 
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
+import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.OCommandSQL;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
 import org.fao.ess.uploader.core.dto.ChunkMetadata;
 import org.fao.ess.uploader.core.dto.FileMetadata;
+import org.fao.ess.uploader.core.dto.FileStatus;
 import org.fao.ess.uploader.core.init.UploaderConfig;
 import org.fao.ess.uploader.core.metadata.MetadataStorage;
 
@@ -13,9 +15,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.NoContentException;
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 @ApplicationScoped
 public class OrientMetadataStorage extends MetadataStorage {
@@ -125,7 +125,7 @@ public class OrientMetadataStorage extends MetadataStorage {
         try {
             int n = connection.command(new OCommandSQL("DELETE FROM ChunkMetadata WHERE file IN ( SELECT FROM FileMetadata WHERE context = ? AND md5 = ? ) and index = ?")).execute(context, md5, index);
             if (n == 0)
-                throw new NoContentException("context: " + context + " - md5: " + md5);
+                throw new NoContentException("context: " + context + " - md5: " + md5 + " - index: " + index);
         } finally {
             connection.close();
         }
@@ -151,21 +151,98 @@ public class OrientMetadataStorage extends MetadataStorage {
 
     //Utils
     private FileMetadata toFileMetadata(ODocument document) throws Exception {
-        return null;
+        if (document!=null) {
+            FileMetadata metadata = new FileMetadata();
+            metadata.setContext((String) document.field("context"));
+            metadata.setMd5((String) document.field("md5"));
+            metadata.setName((String) document.field("name"));
+            metadata.setDate((Date) document.field("date"));
+            metadata.setSize((Long) document.field("size"));
+            metadata.setZip((Boolean) document.field("zip"));
+            metadata.setChunksNumber((Integer) document.field("chunksNumber"));
+            metadata.setProperties((Map<String, Object>) document.field("properties"));
+            metadata.setStatus(toFileStatus((ODocument) document.field("status")));
+            return metadata;
+        } else
+            return null;
     }
-    private Collection<FileMetadata> toFileMetadata(Collection<ODocument> document) throws Exception {
-        return null;
+    private Collection<FileMetadata> toFileMetadata(Collection<ODocument> documents) throws Exception {
+        if (documents!=null) {
+            Collection<FileMetadata> metadataList = new LinkedList<>();
+            for (ODocument document : documents)
+                metadataList.add(toFileMetadata(document));
+            return metadataList;
+        } else
+            return null;
     }
+    private FileStatus toFileStatus (ODocument document) throws Exception {
+        if (document!=null) {
+            FileStatus status = new FileStatus();
+            status.setChunksIndex((Set<Integer>) document.field("chunksIndex"));
+            status.setCurrentSize((Long) document.field("currentSize"));
+            status.setComplete((Boolean) document.field("complete"));
+            return status;
+        } else
+            return null;
+    }
+
     private ChunkMetadata toChunkMetadata(ODocument document) throws Exception {
-        return null;
+        if (document!=null) {
+            ChunkMetadata metadata = new ChunkMetadata();
+            metadata.setFile(toFileMetadata((ODocument) document.field("file")));
+            metadata.setSize((Long) document.field("size"));
+            metadata.setIndex((Integer) document.field("index"));
+            return metadata;
+        } else
+            return null;
     }
-    private Collection<ChunkMetadata> toChunkMetadata(Collection<ODocument> document) throws Exception {
-        return null;
+    private Collection<ChunkMetadata> toChunkMetadata(Collection<ODocument> documents) throws Exception {
+        if (documents!=null) {
+            Collection<ChunkMetadata> metadataList = new LinkedList<>();
+            for (ODocument document : documents)
+                metadataList.add(toChunkMetadata(document));
+            return metadataList;
+        } else
+            return null;
     }
+
     private ODocument toDocument (FileMetadata metadata, ODocument document, boolean overwrite) throws Exception {
-        return null;
+        ODocument statusDoc = toDocument(metadata.getStatus(), document!=null ? (ODocument) document.field("status") : null, overwrite);
+        return toDocument(
+                FileMetadata.class.getName(),
+                new String[]{"context","md5","name","date","size","zip","chunksNumber","properties","status"},
+                new Object[]{metadata.getContext(), metadata.getMd5(), metadata.getName(), metadata.getDate(), metadata.getSize(), metadata.isZip(), metadata.getChunksNumber(), metadata.getProperties(), statusDoc },
+                new OType[][]{{OType.STRING},{OType.STRING},{OType.STRING},{OType.DATETIME},{OType.LONG},{OType.BOOLEAN},{OType.INTEGER},{OType.EMBEDDEDMAP},{OType.EMBEDDED}},
+                document, overwrite
+        );
+    }
+    private ODocument toDocument (FileStatus status, ODocument document, boolean overwrite) throws Exception {
+        return toDocument(
+                FileStatus.class.getName(),
+                new String[]{"currentSize","chunksIndex","complete"},
+                new Object[]{status.getCurrentSize(), status.getChunksIndex(), status.isComplete() },
+                new OType[][]{{OType.LONG},{OType.EMBEDDEDSET, OType.INTEGER},{OType.BOOLEAN}},
+                document, overwrite
+        );
     }
     private ODocument toDocument (ChunkMetadata metadata, ODocument fileMetadataDoc, ODocument document, boolean overwrite) throws Exception {
-        return null;
+        return toDocument(
+                FileStatus.class.getName(),
+                new String[]{"file","index","size"},
+                new Object[]{fileMetadataDoc, metadata.getIndex(), metadata.getSize()},
+                new OType[][]{{OType.LINK},{OType.INTEGER},{OType.LONG}},
+                document, overwrite
+        );
+    }
+
+    private ODocument toDocument(String className, String[] names, Object[] values, OType[][] types, ODocument document, boolean overwrite) throws Exception {
+        if (document==null)
+            document = new ODocument(className);
+
+        for (int i=0; i<names.length; i++)
+            if (values[i]!=null || overwrite)
+                document.field(names[i],values[i],types[i]);
+
+        return document;
     }
 }

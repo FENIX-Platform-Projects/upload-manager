@@ -57,24 +57,12 @@ public class FileMetadata {
         this.zip = zip;
     }
 
-    public Collection<Integer> getChunksIndex() {
-        return chunksIndex;
-    }
-
-    public void setChunksIndex(Collection<Integer> chunksIndex) {
-        this.chunksIndex = chunksIndex!=null ? new LinkedHashSet<>(chunksIndex) : null;
-    }
-
     public Integer getChunksNumber() {
         return chunksNumber;
     }
 
     public void setChunksNumber(Integer chunksNumber) {
         this.chunksNumber = chunksNumber;
-    }
-
-    public void setChunksIndex(Set<Integer> chunksIndex) {
-        this.chunksIndex = chunksIndex;
     }
 
     public Date getDate() {
@@ -105,7 +93,7 @@ public class FileMetadata {
     public void addChunkIndex(Integer index) {
         if (index!=null) {
             if (chunksIndex==null)
-                chunksIndex = new LinkedHashSet<>();
+                chunksIndex = new TreeSet<>();
             chunksIndex.add(index);
         }
     }
