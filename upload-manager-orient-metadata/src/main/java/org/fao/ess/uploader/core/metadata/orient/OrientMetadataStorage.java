@@ -102,15 +102,14 @@ public class OrientMetadataStorage extends MetadataStorage {
     }
 
     @Override
-    public void remove(String context,String md5) throws Exception {
+    public boolean remove(String context,String md5) throws Exception {
         ODatabaseDocumentTx connection = ds.getConnection();
         try {
             connection.begin();
             connection.command(new OCommandSQL("DELETE FROM ChunkMetadata WHERE file IN ( SELECT FROM FileMetadata WHERE context = ? AND md5 = ? )")).execute(context, md5);
             int n = connection.command(new OCommandSQL("DELETE FROM FileMetadata WHERE context = ? AND md5 = ? ")).execute(context, md5);
-            if (n == 0)
-                throw new NoContentException("context: " + context + " - md5: " + md5);
             connection.commit();
+            return n>0;
         } catch (Exception ex) {
             connection.rollback();
             throw ex;
@@ -120,25 +119,25 @@ public class OrientMetadataStorage extends MetadataStorage {
     }
 
     @Override
-    public void remove(String context, String md5, int index) throws Exception {
+    public boolean remove(String context, String md5, int index) throws Exception {
         ODatabaseDocumentTx connection = ds.getConnection();
         try {
             int n = connection.command(new OCommandSQL("DELETE FROM ChunkMetadata WHERE file IN ( SELECT FROM FileMetadata WHERE context = ? AND md5 = ? ) and index = ?")).execute(context, md5, index);
-            if (n == 0)
-                throw new NoContentException("context: " + context + " - md5: " + md5 + " - index: " + index);
+            return n>0;
         } finally {
             connection.close();
         }
     }
 
     @Override
-    public void removeAll(String context) throws Exception {
+    public boolean removeAll(String context) throws Exception {
         ODatabaseDocumentTx connection = ds.getConnection();
         try {
             connection.begin();
             connection.command(new OCommandSQL("DELETE FROM ChunkMetadata WHERE file IN ( SELECT FROM FileMetadata WHERE context = ? )")).execute(context);
-            connection.command(new OCommandSQL("DELETE FROM FileMetadata WHERE context = ?")).execute(context);
+            int n = connection.command(new OCommandSQL("DELETE FROM FileMetadata WHERE context = ?")).execute(context);
             connection.commit();
+            return n>0;
         } catch (Exception ex) {
             connection.rollback();
             throw ex;

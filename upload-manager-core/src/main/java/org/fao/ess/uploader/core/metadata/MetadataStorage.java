@@ -20,8 +20,8 @@ public abstract class MetadataStorage {
     public abstract void save(FileMetadata metadata) throws Exception;
     public abstract void save(ChunkMetadata metadata) throws Exception;
 
-    public abstract void remove(String context, String md5) throws Exception;
-    public abstract void remove(String context, String md5, int index) throws Exception;
-    public abstract void removeAll(String context) throws Exception;
+    public abstract boolean remove(String context, String md5) throws Exception;
+    public abstract boolean remove(String context, String md5, int index) throws Exception;
+    public abstract boolean removeAll(String context) throws Exception;
 
 }
