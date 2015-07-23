@@ -9,11 +9,11 @@ public class FileMetadata {
     private String md5;
     private Long size;
     private boolean zip;
-    private Set<Integer> chunksIndex;
     private Integer chunksNumber;
     private Date date;
     private FileStatus status;
     private Map<String,Object> properties;
+    private boolean autoClose;
 
 
 
@@ -89,12 +89,11 @@ public class FileMetadata {
         this.properties = properties;
     }
 
-    //Utils
-    public void addChunkIndex(Integer index) {
-        if (index!=null) {
-            if (chunksIndex==null)
-                chunksIndex = new TreeSet<>();
-            chunksIndex.add(index);
-        }
+    public boolean isAutoClose() {
+        return autoClose;
+    }
+
+    public void setAutoClose(boolean autoClose) {
+        this.autoClose = autoClose;
     }
 }

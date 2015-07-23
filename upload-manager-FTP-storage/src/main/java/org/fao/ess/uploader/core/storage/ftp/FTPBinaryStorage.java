@@ -114,6 +114,12 @@ public class FTPBinaryStorage extends BinaryStorage {
         ftpClient.deleteFile(getFileName(fileMetadata));
     }
 
+    @Override
+    public void removeChunk(ChunkMetadata chunkMetadata) throws Exception {
+        open();
+        ftpClient.deleteFile(getFileName(chunkMetadata));
+    }
+
     //INTERNAL LOGIC
 
     //Connection management

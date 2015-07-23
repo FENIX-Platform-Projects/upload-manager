@@ -42,13 +42,26 @@ public class OrientMetadataStorage extends MetadataStorage {
     }
 
     @Override
+    public ChunkMetadata load(String context, String md5, Integer index) throws Exception {
+        return toChunkMetadata(loadDoc(context, md5, index));
+    }
+    public ODocument loadDoc(String context, String md5, Integer index) throws Exception {
+        ODatabaseDocumentTx connection = ds.getConnection();
+        try {
+            ODocument fileMetadataDoc = loadDoc(context, md5);
+            return fileMetadataDoc!=null ? loadChunkDoc(fileMetadataDoc, index) : null;
+        } finally {
+            connection.close();
+        }
+    }
+    @Override
     public Collection<ChunkMetadata> loadChunks(String context, String md5) throws Exception {
         return toChunkMetadata(loadChunksDoc(context,md5));
     }
     public Collection<ODocument> loadChunksDoc(String context, String md5) throws Exception {
         ODatabaseDocumentTx connection = ds.getConnection();
         try {
-            return connection.query(new OSQLSynchQuery<ODocument>("SELECT FROM ChunkMetadata WHERE file IN ( SELECT FROM FileMetadata WHERE context = ? AND md5 = ? )"), context, md5);
+            return (List<ODocument>)connection.query(new OSQLSynchQuery<ODocument>("SELECT FROM ChunkMetadata WHERE file IN ( SELECT FROM FileMetadata WHERE context = ? AND md5 = ? )"), context, md5);
         } finally {
             connection.close();
         }
@@ -70,7 +83,7 @@ public class OrientMetadataStorage extends MetadataStorage {
     public Collection<ODocument> selectDoc(String context) throws Exception {
         ODatabaseDocumentTx connection = ds.getConnection();
         try {
-            return connection.query(new OSQLSynchQuery<ODocument>("SELECT FROM FileMetadata WHERE context = ?"), context);
+            return (List<ODocument>)connection.query(new OSQLSynchQuery<ODocument>("SELECT FROM FileMetadata WHERE context = ?"), context);
         } finally {
             connection.close();
         }
@@ -159,6 +172,7 @@ public class OrientMetadataStorage extends MetadataStorage {
             metadata.setSize((Long) document.field("size"));
             metadata.setZip((Boolean) document.field("zip"));
             metadata.setChunksNumber((Integer) document.field("chunksNumber"));
+            metadata.setAutoClose((Boolean) document.field("autoClose"));
             metadata.setProperties((Map<String, Object>) document.field("properties"));
             metadata.setStatus(toFileStatus((ODocument) document.field("status")));
             return metadata;
@@ -180,6 +194,7 @@ public class OrientMetadataStorage extends MetadataStorage {
             status.setChunksIndex((Set<Integer>) document.field("chunksIndex"));
             status.setCurrentSize((Long) document.field("currentSize"));
             status.setComplete((Boolean) document.field("complete"));
+            status.setError((String) document.field("error"));
             return status;
         } else
             return null;
@@ -191,6 +206,7 @@ public class OrientMetadataStorage extends MetadataStorage {
             metadata.setFile(toFileMetadata((ODocument) document.field("file")));
             metadata.setSize((Long) document.field("size"));
             metadata.setIndex((Integer) document.field("index"));
+            metadata.setUploaded((Boolean) document.field("uploaded"));
             return metadata;
         } else
             return null;
@@ -209,27 +225,27 @@ public class OrientMetadataStorage extends MetadataStorage {
         ODocument statusDoc = toDocument(metadata.getStatus(), document!=null ? (ODocument) document.field("status") : null, overwrite);
         return toDocument(
                 FileMetadata.class.getName(),
-                new String[]{"context","md5","name","date","size","zip","chunksNumber","properties","status"},
-                new Object[]{metadata.getContext(), metadata.getMd5(), metadata.getName(), metadata.getDate(), metadata.getSize(), metadata.isZip(), metadata.getChunksNumber(), metadata.getProperties(), statusDoc },
-                new OType[][]{{OType.STRING},{OType.STRING},{OType.STRING},{OType.DATETIME},{OType.LONG},{OType.BOOLEAN},{OType.INTEGER},{OType.EMBEDDEDMAP},{OType.EMBEDDED}},
+                new String[]{"context","md5","name","date","size","zip","chunksNumber","properties","autoClose","status"},
+                new Object[]{metadata.getContext(), metadata.getMd5(), metadata.getName(), metadata.getDate(), metadata.getSize(), metadata.isZip(), metadata.getChunksNumber(), metadata.getProperties(), metadata.isAutoClose(), statusDoc },
+                new OType[][]{{OType.STRING},{OType.STRING},{OType.STRING},{OType.DATETIME},{OType.LONG},{OType.BOOLEAN},{OType.INTEGER},{OType.EMBEDDEDMAP},{OType.BOOLEAN},{OType.EMBEDDED}},
                 document, overwrite
         );
     }
     private ODocument toDocument (FileStatus status, ODocument document, boolean overwrite) throws Exception {
         return toDocument(
                 FileStatus.class.getName(),
-                new String[]{"currentSize","chunksIndex","complete"},
-                new Object[]{status.getCurrentSize(), status.getChunksIndex(), status.isComplete() },
-                new OType[][]{{OType.LONG},{OType.EMBEDDEDSET, OType.INTEGER},{OType.BOOLEAN}},
+                new String[]{"currentSize","chunksIndex","complete","error"},
+                new Object[]{status.getCurrentSize(), status.getChunksIndex(), status.getComplete(), status.getError() },
+                new OType[][]{{OType.LONG},{OType.EMBEDDEDSET, OType.INTEGER},{OType.BOOLEAN},{OType.STRING}},
                 document, overwrite
         );
     }
     private ODocument toDocument (ChunkMetadata metadata, ODocument fileMetadataDoc, ODocument document, boolean overwrite) throws Exception {
         return toDocument(
                 FileStatus.class.getName(),
-                new String[]{"file","index","size"},
-                new Object[]{fileMetadataDoc, metadata.getIndex(), metadata.getSize()},
-                new OType[][]{{OType.LINK},{OType.INTEGER},{OType.LONG}},
+                new String[]{"file","index","size","uploaded"},
+                new Object[]{fileMetadataDoc, metadata.getIndex(), metadata.getSize(), metadata.isUploaded()},
+                new OType[][]{{OType.LINK},{OType.INTEGER},{OType.LONG},{OType.BOOLEAN}},
                 document, overwrite
         );
     }

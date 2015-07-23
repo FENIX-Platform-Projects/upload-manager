@@ -5,6 +5,7 @@ public class ChunkMetadata {
     private FileMetadata file;
     private int index;
     private Long size;
+    private boolean uploaded;
 
 
     public FileMetadata getFile() {
@@ -29,5 +30,13 @@ public class ChunkMetadata {
 
     public void setSize(Long size) {
         this.size = size;
+    }
+
+    public boolean isUploaded() {
+        return uploaded;
+    }
+
+    public void setUploaded(boolean uploaded) {
+        this.uploaded = uploaded;
     }
 }

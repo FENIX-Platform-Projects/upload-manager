@@ -14,6 +14,7 @@ public abstract class MetadataStorage {
 
 
     public abstract FileMetadata load(String context, String md5) throws Exception;
+    public abstract ChunkMetadata load(String context, String md5, Integer index) throws Exception;
     public abstract Collection<ChunkMetadata> loadChunks(String context, String md5) throws Exception;
     public abstract Collection<FileMetadata> select(String context) throws Exception;
 

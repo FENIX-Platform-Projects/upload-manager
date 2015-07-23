@@ -17,5 +17,6 @@ public abstract class BinaryStorage {
 
     public abstract void closeFile(FileMetadata fileMetadata) throws Exception;
     public abstract void removeFile(FileMetadata fileMetadata) throws Exception;
+    public abstract void removeChunk(ChunkMetadata chunkMetadata) throws Exception;
 
 }
