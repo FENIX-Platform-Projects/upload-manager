@@ -1,4 +1,4 @@
-CONNECT remote:localhost/uploader_metadata admin admin;
+CONNECT remote:localhost/uploader_metadata_1.0 admin admin;
 
 
 

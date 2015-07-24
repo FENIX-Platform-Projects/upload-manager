@@ -17,7 +17,7 @@ public class MetadataStorageFactory {
         if (instance==null) {
             String pluginClassName = config.get("metadata.plugin");
             if (pluginClassName!=null)
-                instance = (MetadataStorage) instanceFactory.select((Class<? extends MetadataStorage>)Class.forName(pluginClassName));
+                instance = instanceFactory.select((Class<? extends MetadataStorage>)Class.forName(pluginClassName)).iterator().next();
             instance.init();
         }
         return instance;

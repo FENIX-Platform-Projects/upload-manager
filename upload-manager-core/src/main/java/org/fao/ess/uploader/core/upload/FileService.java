@@ -90,11 +90,27 @@ public class FileService {
     }
 
     @POST
-    @Path("{context}/{md5}/{index}")
-    @Consumes(MediaType.APPLICATION_OCTET_STREAM)
-    public void uploadChunk (@Context HttpServletRequest request, @PathParam("context") String context, @PathParam("md5") String md5, @PathParam("index") Integer index) throws Exception {
+    @Path("chunk/{context}/{md5}")
+    //@Consumes(MediaType.APPLICATION_OCTET_STREAM)
+    public void uploadChunk (@Context HttpServletRequest request, @PathParam("context") String context, @PathParam("md5") String md5, @QueryParam("index") Integer index) throws Exception {
         MetadataStorage metadataStorage = metadataFactory.getInstance();
         BinaryStorage binaryStorage = binaryFactory.getInstance();
+        Long size = null;
+        //Calculate index
+        if (index==null) {
+            String positionHeader = request.getHeader("Content-Range");
+            Integer bytesWordIndex = positionHeader != null ? positionHeader.indexOf("bytes") : null;
+            String positionString = bytesWordIndex != null ? positionHeader.substring(bytesWordIndex + "bytes".length()).trim() : null;
+            if (positionString != null) {
+                long from = Long.parseLong(positionString.substring(0, positionString.indexOf('-')));
+                long to = Long.parseLong(positionString.substring(positionString.indexOf('-') + 1, positionString.indexOf('/')));
+                size = Long.parseLong(positionString.substring(positionString.indexOf('/') + 1));
+                index = (int)Math.floor((size*1.0) / (to-from));
+            }
+        }
+        //Validate
+        if (index==null)
+            throw new NotAllowedException("Chunk index is mandatory");
         //Check if chunk already exists
         ChunkMetadata metadata = metadataStorage.load(context, md5, index);
         if (metadata!=null) {
@@ -111,6 +127,8 @@ public class FileService {
         metadata = new ChunkMetadata();
         metadata.setIndex(index);
         metadata.setFile(fileMetadata);
+        if (size!=null)
+            metadata.setSize(size);
         //Save metadata
         metadataStorage.save(metadata);
         //Pre process data
@@ -125,12 +143,14 @@ public class FileService {
         metadataStorage.save(metadata);
         //Update file metadata
         status.addChunkIndex(index);
+        if (size!=null)
+            status.setCurrentSize(status.getCurrentSize()+size);
         metadataStorage.save(fileMetadata);
         //Post process chunk data
         for (PostUpload postUpload : processorsFactory.getPostUploadInstances(context))
             postUpload.chunkUploaded(metadata,binaryStorage);
         //Close file automatically if required
-        if (fileMetadata.isAutoClose())
+        if (fileMetadata.isAutoClose() && fileMetadata.getChunksNumber()!=null && status.getChunksIndex()!=null && status.getChunksIndex().size()==fileMetadata.getChunksNumber())
             close(context,md5);
     }
 
@@ -146,7 +166,7 @@ public class FileService {
             throw new NotFoundException("File not found\ncontext: "+context+" - md5: "+md5);
         FileStatus status = fileMetadata.getStatus();
         //Check if file can be closed
-        if (fileMetadata.getChunksNumber()==null && status.getChunksIndex()==null && status.getChunksIndex().size()!=fileMetadata.getChunksNumber())
+        if (fileMetadata.getChunksNumber()==null && (status.getChunksIndex()==null || status.getChunksIndex().size()!=fileMetadata.getChunksNumber()))
             throw new NotAllowedException("File incomplete");
         //Close file
         binaryStorage.closeFile(fileMetadata);
@@ -184,4 +204,12 @@ public class FileService {
         metadataStorage.remove(context, md5);
     }
 
+
+
+    //Utils
+/*
+    InputStream getInputStream(HttpServletRequest request) throws Exception {
+
+    }
+*/
 }

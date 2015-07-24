@@ -19,13 +19,24 @@
             <version>${project.version}</version>
         </dependency>
 
-        <!-- FTP Client -->
+        <!-- FTP/FTPS Client -->
         <dependency>
             <groupId>commons-net</groupId>
             <artifactId>commons-net</artifactId>
             <version>${apache.commons.version}</version>
         </dependency>
 
+        <!-- SFTP/SSH client -->
+        <dependency>
+            <groupId>com.jcraft</groupId>
+            <artifactId>jsch</artifactId>
+            <version>0.1.51</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.6</version>
+        </dependency>
 
     </dependencies>
 </project>

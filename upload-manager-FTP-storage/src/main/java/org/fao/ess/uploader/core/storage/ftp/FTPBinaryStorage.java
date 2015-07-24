@@ -38,6 +38,7 @@ public class FTPBinaryStorage extends BinaryStorage {
         String hostPort = config.get("storage.port");
         usr = config.get("storage.usr");
         psw = config.get("storage.psw");
+        String path = config.get("storage.path");
         //Retrieve host address
         byte[] hostAddressBytes = new byte[4];
         if (hostAddress!=null)
@@ -68,6 +69,8 @@ public class FTPBinaryStorage extends BinaryStorage {
         }
         //Create FTP client
         ftpClient = new FTPClient();
+        if (path!=null)
+            ftpClient.changeWorkingDirectory(path);
     }
 
     @Override

@@ -17,7 +17,7 @@ public class BinaryStorageFactory {
         if (instance==null) {
             String pluginClassName = config.get("storage.plugin");
             if (pluginClassName!=null)
-                instance = (BinaryStorage) instanceFactory.select((Class<? extends BinaryStorage>)Class.forName(pluginClassName));
+                instance = instanceFactory.select((Class<? extends BinaryStorage>)Class.forName(pluginClassName)).iterator().next();
             instance.init();
         }
         return instance;
