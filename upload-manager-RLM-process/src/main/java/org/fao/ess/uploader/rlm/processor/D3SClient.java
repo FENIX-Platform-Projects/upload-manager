@@ -29,8 +29,7 @@ public class D3SClient {
 
     private String url;
 
-    @Inject
-    UploaderConfig config;
+    @Inject private UploaderConfig config;
 
 
     public void sendDataUpdatedSignal() throws Exception {
@@ -70,5 +69,18 @@ public class D3SClient {
         Response response = target.request(MediaType.APPLICATION_JSON_TYPE).build("PATCH", javax.ws.rs.client.Entity.json(replicationFilter)).invoke();
         if (response.getStatus() != 200)
             throw new Exception("Error from D3S during datasets metadata update");
+    }
+
+    public static void main(String[] args) {
+        D3SClient client = new D3SClient();
+        client.config = new UploaderConfig();
+        client.config.put("d3s.url","http://localhost:7777/v2");
+
+
+        try {
+            client.sendDataUpdatedSignal();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

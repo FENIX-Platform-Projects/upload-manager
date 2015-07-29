@@ -29,51 +29,47 @@ public class OrientMetadataStorage extends MetadataStorage {
 
     @Override
     public FileMetadata load(String context, String md5) throws Exception {
-        return toFileMetadata(loadDoc(context, md5));
-    }
-    public ODocument loadDoc(String context, String md5) throws Exception {
         ODatabaseDocumentTx connection = ds.getConnection();
         try {
-            List<ODocument> metadataList = connection.query(new OSQLSynchQuery<ODocument>("SELECT FROM FileMetadata WHERE context = ? AND md5 = ?"), context, md5);
-            return metadataList.size()==1 ? metadataList.iterator().next() : null;
+            return toFileMetadata(loadDoc(connection, context, md5));
         } finally {
             connection.close();
         }
+    }
+    public ODocument loadDoc(ODatabaseDocumentTx connection, String context, String md5) throws Exception {
+        List<ODocument> metadataList = connection.query(new OSQLSynchQuery<ODocument>("SELECT FROM FileMetadata WHERE context = ? AND md5 = ?"), context, md5);
+        return metadataList.size()==1 ? metadataList.iterator().next() : null;
     }
 
     @Override
     public ChunkMetadata load(String context, String md5, Integer index) throws Exception {
-        return toChunkMetadata(loadDoc(context, md5, index));
-    }
-    public ODocument loadDoc(String context, String md5, Integer index) throws Exception {
         ODatabaseDocumentTx connection = ds.getConnection();
         try {
-            ODocument fileMetadataDoc = loadDoc(context, md5);
-            return fileMetadataDoc!=null ? loadChunkDoc(fileMetadataDoc, index) : null;
+            return toChunkMetadata(loadDoc(connection, context, md5, index));
         } finally {
             connection.close();
         }
+    }
+    public ODocument loadDoc(ODatabaseDocumentTx connection, String context, String md5, Integer index) throws Exception {
+        ODocument fileMetadataDoc = loadDoc(connection, context, md5);
+        return fileMetadataDoc!=null ? loadChunkDoc(connection, fileMetadataDoc, index) : null;
     }
     @Override
     public Collection<ChunkMetadata> loadChunks(String context, String md5) throws Exception {
-        return toChunkMetadata(loadChunksDoc(context,md5));
-    }
-    public Collection<ODocument> loadChunksDoc(String context, String md5) throws Exception {
         ODatabaseDocumentTx connection = ds.getConnection();
         try {
-            return (List<ODocument>)connection.query(new OSQLSynchQuery<ODocument>("SELECT FROM ChunkMetadata WHERE file IN ( SELECT FROM FileMetadata WHERE context = ? AND md5 = ? )"), context, md5);
+            return toChunkMetadata(loadChunksDoc(connection, context, md5));
         } finally {
             connection.close();
         }
     }
-    public ODocument loadChunkDoc(ODocument fileMetadataDoc, int index) throws Exception {
-        ODatabaseDocumentTx connection = ds.getConnection();
-        try {
-            List<ODocument> chunks = connection.query(new OSQLSynchQuery<ODocument>("SELECT FROM ChunkMetadata WHERE file = ? and index = ?"), fileMetadataDoc, index);
-            return chunks.size()==1 ? chunks.iterator().next() : null;
-        } finally {
-            connection.close();
-        }
+    public Collection<ODocument> loadChunksDoc(ODatabaseDocumentTx connection, String context, String md5) throws Exception {
+        ODocument fileMetadataDoc = loadDoc(connection, context, md5);
+        return (List<ODocument>)connection.query(new OSQLSynchQuery<ODocument>("SELECT FROM ChunkMetadata WHERE file = ?"), fileMetadataDoc.getIdentity());
+    }
+    public ODocument loadChunkDoc(ODatabaseDocumentTx connection, ODocument fileMetadataDoc, int index) throws Exception {
+        List<ODocument> chunks = connection.query(new OSQLSynchQuery<ODocument>("SELECT FROM ChunkMetadata WHERE file = ? and index = ?"), fileMetadataDoc.getIdentity(), index);
+        return chunks.size()==1 ? chunks.iterator().next() : null;
     }
 
     @Override
@@ -93,7 +89,7 @@ public class OrientMetadataStorage extends MetadataStorage {
     public void save(FileMetadata metadata) throws Exception {
         ODatabaseDocumentTx connection = ds.getConnection();
         try {
-            connection.save(toDocument(metadata, loadDoc(metadata.getContext(), metadata.getMd5()), false));
+            connection.save(toDocument(metadata, loadDoc(connection, metadata.getContext(), metadata.getMd5()), false));
         } finally {
             connection.close();
         }
@@ -104,11 +100,11 @@ public class OrientMetadataStorage extends MetadataStorage {
         ODatabaseDocumentTx connection = ds.getConnection();
         try {
             FileMetadata fileMetadata = metadata.getFile();
-            ODocument fileMetadataDocument = fileMetadata!=null ? loadDoc(fileMetadata.getContext(), fileMetadata.getMd5()) : null;
+            ODocument fileMetadataDocument = fileMetadata!=null ? loadDoc(connection, fileMetadata.getContext(), fileMetadata.getMd5()) : null;
             if (fileMetadataDocument==null)
                 throw new NoContentException("context: "+(fileMetadata!=null?fileMetadata.getContext():null)+" - md5: "+(fileMetadata!=null?fileMetadata.getMd5():null));
 
-            connection.save(toDocument(metadata, fileMetadataDocument, loadChunkDoc(fileMetadataDocument, metadata.getIndex()), false));
+            connection.save(toDocument(metadata, fileMetadataDocument, loadChunkDoc(connection, fileMetadataDocument, metadata.getIndex()), false));
         } finally {
             connection.close();
         }
@@ -119,10 +115,13 @@ public class OrientMetadataStorage extends MetadataStorage {
         ODatabaseDocumentTx connection = ds.getConnection();
         try {
             connection.begin();
-            connection.command(new OCommandSQL("DELETE FROM ChunkMetadata WHERE file IN ( SELECT FROM FileMetadata WHERE context = ? AND md5 = ? )")).execute(context, md5);
-            int n = connection.command(new OCommandSQL("DELETE FROM FileMetadata WHERE context = ? AND md5 = ? ")).execute(context, md5);
+            ODocument fileDoc = loadDoc(connection, context, md5);
+            if (fileDoc==null)
+                return false;
+            connection.command(new OCommandSQL("DELETE FROM ChunkMetadata WHERE file = ?")).execute(fileDoc.getIdentity());
+            connection.command(new OCommandSQL("DELETE FROM FileMetadata WHERE context = ? AND md5 = ? ")).execute(context, md5);
             connection.commit();
-            return n>0;
+            return true;
         } catch (Exception ex) {
             connection.rollback();
             throw ex;
@@ -135,7 +134,10 @@ public class OrientMetadataStorage extends MetadataStorage {
     public boolean remove(String context, String md5, int index) throws Exception {
         ODatabaseDocumentTx connection = ds.getConnection();
         try {
-            int n = connection.command(new OCommandSQL("DELETE FROM ChunkMetadata WHERE file IN ( SELECT FROM FileMetadata WHERE context = ? AND md5 = ? ) and index = ?")).execute(context, md5, index);
+            ODocument fileDoc = loadDoc(connection, context, md5);
+            if (fileDoc==null)
+                return false;
+            int n = connection.command(new OCommandSQL("DELETE FROM ChunkMetadata WHERE file = ? and index = ?")).execute(fileDoc.getIdentity(), index);
             return n>0;
         } finally {
             connection.close();
@@ -147,7 +149,8 @@ public class OrientMetadataStorage extends MetadataStorage {
         ODatabaseDocumentTx connection = ds.getConnection();
         try {
             connection.begin();
-            connection.command(new OCommandSQL("DELETE FROM ChunkMetadata WHERE file IN ( SELECT FROM FileMetadata WHERE context = ? )")).execute(context);
+            List<ODocument> fileMetadataList = connection.query(new OSQLSynchQuery<ODocument>("SELECT FROM FileMetadata WHERE context = ?"), context);
+            connection.command(new OCommandSQL("DELETE FROM ChunkMetadata WHERE file IN ( ? )")).execute(fileMetadataList);
             int n = connection.command(new OCommandSQL("DELETE FROM FileMetadata WHERE context = ?")).execute(context);
             connection.commit();
             return n>0;
@@ -224,7 +227,7 @@ public class OrientMetadataStorage extends MetadataStorage {
     private ODocument toDocument (FileMetadata metadata, ODocument document, boolean overwrite) throws Exception {
         ODocument statusDoc = toDocument(metadata.getStatus(), document!=null ? (ODocument) document.field("status") : null, overwrite);
         return toDocument(
-                FileMetadata.class.getName(),
+                FileMetadata.class.getSimpleName(),
                 new String[]{"context","md5","name","date","size","zip","chunksNumber","properties","autoClose","status"},
                 new Object[]{metadata.getContext(), metadata.getMd5(), metadata.getName(), metadata.getDate(), metadata.getSize(), metadata.isZip(), metadata.getChunksNumber(), metadata.getProperties(), metadata.isAutoClose(), statusDoc },
                 new OType[][]{{OType.STRING},{OType.STRING},{OType.STRING},{OType.DATETIME},{OType.LONG},{OType.BOOLEAN},{OType.INTEGER},{OType.EMBEDDEDMAP},{OType.BOOLEAN},{OType.EMBEDDED}},
@@ -233,7 +236,7 @@ public class OrientMetadataStorage extends MetadataStorage {
     }
     private ODocument toDocument (FileStatus status, ODocument document, boolean overwrite) throws Exception {
         return toDocument(
-                FileStatus.class.getName(),
+                FileStatus.class.getSimpleName(),
                 new String[]{"currentSize","chunksIndex","complete","error"},
                 new Object[]{status.getCurrentSize(), status.getChunksIndex(), status.getComplete(), status.getError() },
                 new OType[][]{{OType.LONG},{OType.EMBEDDEDSET, OType.INTEGER},{OType.BOOLEAN},{OType.STRING}},
@@ -242,7 +245,7 @@ public class OrientMetadataStorage extends MetadataStorage {
     }
     private ODocument toDocument (ChunkMetadata metadata, ODocument fileMetadataDoc, ODocument document, boolean overwrite) throws Exception {
         return toDocument(
-                FileStatus.class.getName(),
+                ChunkMetadata.class.getSimpleName(),
                 new String[]{"file","index","size","uploaded"},
                 new Object[]{fileMetadataDoc, metadata.getIndex(), metadata.getSize(), metadata.isUploaded()},
                 new OType[][]{{OType.LINK},{OType.INTEGER},{OType.LONG},{OType.BOOLEAN}},

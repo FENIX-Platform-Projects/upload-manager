@@ -7,6 +7,7 @@ import org.fao.ess.uploader.core.dto.ChunkMetadata;
 import org.fao.ess.uploader.core.dto.FileMetadata;
 import org.fao.ess.uploader.core.storage.BinaryStorage;
 import org.fao.ess.uploader.core.upload.PostUpload;
+import org.fao.ess.uploader.core.upload.UploadContext;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -16,6 +17,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 
 @ApplicationScoped
+@UploadContext("c")
 public class GlobalUpdateManager implements PostUpload {
     @Inject RLMDataConnector dataConnector;
     @Inject D3SClient d3sClient;
@@ -30,13 +32,7 @@ public class GlobalUpdateManager implements PostUpload {
         //Load data stream
         InputStream dataStream = storage.readFile(metadata, null);
         //Prepare CSV parser
-        CSVParser parser = new CSVParser(
-                new InputStreamReader(dataStream),
-                CSVFormat.DEFAULT.withDelimiter(';')
-                        .withIgnoreEmptyLines()
-                        .withQuote('"')
-                        .withHeader()
-        );
+        RLMCSVParser parser = new RLMCSVParser(dataStream);
         //Get data database connection
         Connection connection = dataConnector.getConnection();
         boolean autoCommit = connection.getAutoCommit();
@@ -46,17 +42,17 @@ public class GlobalUpdateManager implements PostUpload {
             connection.createStatement().executeUpdate("TRUNCATE TABLE master");
             PreparedStatement statement = connection.prepareStatement("INSERT INTO master (country,year,year_label,indicator,indicator_label,qualifier,value,um,source,topic) VALUES (?,?,?,?,?,?,?,?,?,?)");
             int c=0;
-            for (CSVRecord record : parser) {
-                statement.setString(1, record.get(0));
-                statement.setInt(2, record.get(1) != null ? new Integer(record.get(1)) : null);
-                statement.setString(3, record.get(2));
-                statement.setString(4, record.get(3));
-                statement.setString(5, record.get(4));
-                statement.setString(6, record.get(5));
-                statement.setString(7, record.get(6));
-                statement.setString(8, record.get(7));
-                statement.setString(9, record.get(8));
-                statement.setString(10, record.get(9));
+            for (String[] record = parser.nextRow(); record!=null; record = parser.nextRow()) {
+                statement.setString(1, record[0]);
+                statement.setInt(2, record[1] != null ? new Integer(record[1]) : null);
+                statement.setString(3, record[2]);
+                statement.setString(4, record[3]);
+                statement.setString(5, record[4]);
+                statement.setString(6, record[5]);
+                statement.setString(7, record[6]);
+                statement.setString(8, record[7]);
+                statement.setString(9, record[8]);
+                statement.setString(10, record[9]);
                 statement.addBatch();
                 if (c++==1000) { //Flush each 1000 rows
                     statement.executeBatch();

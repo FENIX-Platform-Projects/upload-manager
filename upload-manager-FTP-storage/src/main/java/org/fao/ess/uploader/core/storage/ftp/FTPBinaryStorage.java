@@ -20,12 +20,12 @@ import java.util.Comparator;
 @ApplicationScoped
 public class FTPBinaryStorage extends BinaryStorage {
     private @Inject UploaderConfig config;
-    private FTPClient ftpClient;
 
     private InetAddress host;
     private Integer port;
     private String usr;
     private String psw;
+    private String path;
 
 
     //INTERFACE
@@ -38,7 +38,7 @@ public class FTPBinaryStorage extends BinaryStorage {
         String hostPort = config.get("storage.port");
         usr = config.get("storage.usr");
         psw = config.get("storage.psw");
-        String path = config.get("storage.path");
+        path = config.get("storage.path");
         //Retrieve host address
         byte[] hostAddressBytes = new byte[4];
         if (hostAddress!=null)
@@ -67,19 +67,12 @@ public class FTPBinaryStorage extends BinaryStorage {
         } catch (NumberFormatException ex) {
             throw new Exception("Wrong FTP storage host port format: '"+hostPort+'\'');
         }
-        //Create FTP client
-        ftpClient = new FTPClient();
-        if (path!=null)
-            ftpClient.changeWorkingDirectory(path);
     }
 
     @Override
     public void writeChunk(ChunkMetadata chunkMetadata, InputStream input) throws Exception {
-        open();
         try {
-            if (checkChunk(chunkMetadata))
-                ftpClient.deleteFile(getFileName(chunkMetadata));
-            ftpClient.appendFile(getFileName(chunkMetadata), input);
+            writeChunk(chunkMetadata, input, 2);
         } finally {
             input.close();
         }
@@ -87,81 +80,145 @@ public class FTPBinaryStorage extends BinaryStorage {
 
     @Override
     public InputStream readFile(FileMetadata fileMetadata, OutputStream outputStream) throws Exception {
-        open();
-        if (outputStream!=null)
-            try {
-                ftpClient.retrieveFile(getFileName(fileMetadata),outputStream);
-                return null;
-            } finally {
+        try {
+            return readFile(fileMetadata, outputStream, 2);
+        } finally {
+            if (outputStream!=null)
                 outputStream.close();
-            }
-        else
-            return ftpClient.retrieveFileStream(getFileName(fileMetadata));
+        }
     }
 
     @Override
     public void closeFile(FileMetadata fileMetadata) throws Exception {
-        open();
-        OutputStream output = ftpClient.appendFileStream(getFileName(fileMetadata));
-        try {
-            for (String chunkFileName : chunksFile(fileMetadata))
-                ftpClient.retrieveFile(chunkFileName,output);
-        } finally {
-            output.close();
-        }
+        closeFile(fileMetadata, 2);
     }
 
     @Override
     public void removeFile(FileMetadata fileMetadata) throws Exception {
-        open();
-        ftpClient.deleteFile(getFileName(fileMetadata));
+        removeFile(fileMetadata, 2);
     }
 
     @Override
     public void removeChunk(ChunkMetadata chunkMetadata) throws Exception {
-        open();
-        ftpClient.deleteFile(getFileName(chunkMetadata));
+        removeChunk(chunkMetadata, 2);
     }
 
-    //INTERNAL LOGIC
+    //LOGIC
 
-    //Connection management
-    private synchronized void open() throws IOException {
-        if (ftpClient!=null && ftpClient.isAvailable() && !ftpClient.isConnected()) {
-            if (port!=null)
-                ftpClient.connect(host,port);
+    private void writeChunk(ChunkMetadata chunkMetadata, InputStream input, int remainingAttempts) throws Exception {
+        FTPClient ftpClient = connect();
+        try {
+            if (checkChunk(ftpClient, chunkMetadata))
+                ftpClient.deleteFile(getFileName(chunkMetadata));
+            ftpClient.appendFile(getFileName(chunkMetadata), input);
+        } catch (Exception ex) {
+            if (--remainingAttempts>0)
+                writeChunk(chunkMetadata,input,remainingAttempts);
             else
-                ftpClient.connect(host);
-            if (usr!=null)
-                ftpClient.login(usr, psw);
+                throw ex;
+        } finally {
+            try { ftpClient.disconnect(); } catch (Exception ex) {}
         }
     }
-    private void close() throws IOException {
-        if (ftpClient!=null && ftpClient.isAvailable() && ftpClient.isConnected())
-            ftpClient.disconnect();
+
+    private InputStream readFile(FileMetadata fileMetadata, OutputStream outputStream, int remainingAttempts) throws Exception {
+        FTPClient ftpClient = connect();
+        try {
+            if (outputStream != null) {
+                ftpClient.retrieveFile(getFileName(fileMetadata), outputStream);
+                return null;
+            } else
+                return ftpClient.retrieveFileStream(getFileName(fileMetadata));
+        } catch (Exception ex) {
+            if (--remainingAttempts>0)
+                return readFile(fileMetadata, outputStream, remainingAttempts);
+            else
+                throw ex;
+        } finally {
+            try { ftpClient.disconnect(); } catch (Exception ex) {}
+        }
     }
 
-    //Chunks read
-    private boolean checkChunk (ChunkMetadata chunkMetadata) throws Exception {
-        FTPFile[] files = ftpClient.listFiles(getFileName(chunkMetadata));
-        return files!=null && files.length==1;
+    private void closeFile(FileMetadata fileMetadata, int remainingAttempts) throws Exception {
+        FTPClient ftpInputClient = connect();
+        FTPClient ftpOutputClient = connect();
+        OutputStream output = ftpOutputClient.appendFileStream(getFileName(fileMetadata));
+        try {
+            for (String chunkFileName : chunksFile(ftpInputClient, fileMetadata))
+                ftpInputClient.retrieveFile(chunkFileName,output);
+        } catch (Exception ex) {
+            if (--remainingAttempts>0)
+                closeFile(fileMetadata, remainingAttempts);
+            else
+                throw ex;
+        } finally {
+            output.close();
+            try { ftpInputClient.disconnect(); } catch (Exception ex) {}
+            try { ftpOutputClient.disconnect(); } catch (Exception ex) {}
+        }
     }
 
+    private void removeFile(FileMetadata fileMetadata, int remainingAttempts) throws Exception {
+        FTPClient ftpClient = connect();
+        try {
+            ftpClient.deleteFile(getFileName(fileMetadata));
+        } catch (Exception ex) {
+            if (--remainingAttempts>0)
+                removeFile(fileMetadata,remainingAttempts);
+            else
+                throw ex;
+        } finally {
+            try { ftpClient.disconnect(); } catch (Exception ex) {}
+        }
+    }
+
+    private void removeChunk(ChunkMetadata chunkMetadata, int remainingAttempts) throws Exception {
+        FTPClient ftpClient = connect();
+        try {
+            ftpClient.deleteFile(getFileName(chunkMetadata));
+        } catch (Exception ex) {
+            if (--remainingAttempts>0)
+                removeChunk(chunkMetadata,remainingAttempts);
+            else
+                throw ex;
+        } finally {
+            try { ftpClient.disconnect(); } catch (Exception ex) {}
+        }
+    }
 
 
 
     //UTILS
 
-    private String getFileName(FileMetadata fileMetadata) {
-        StringBuilder name = new StringBuilder("./");
-        if (fileMetadata!=null) {
-            if (fileMetadata.getContext()!=null)
-                name.append(fileMetadata.getContext()).append('/');
-            name.append(fileMetadata.getName()!=null ? fileMetadata.getName() : fileMetadata.getMd5());
-        }
-        return name.length()>2 ? name.toString() : null;
+    //Retrieve connection
+    private FTPClient connect() throws IOException {
+        FTPClient ftpClient = new FTPClient();
+
+        if (port!=null)
+            ftpClient.connect(host, port);
+        else
+            ftpClient.connect(host);
+        if (usr!=null)
+            ftpClient.login(usr, psw);
+
+        if (path!=null)
+            ftpClient.changeWorkingDirectory(path);
+
+        return ftpClient;
     }
 
+    //Retrieve file name
+    private String getFileName(FileMetadata fileMetadata) {
+        StringBuilder name = new StringBuilder();
+        if (fileMetadata!=null) {
+            if (fileMetadata.getContext()!=null)
+                name.append(fileMetadata.getContext()).append("___");
+            name.append(fileMetadata.getMd5());
+        }
+        return name.length()>0 ? name.toString() : null;
+    }
+
+    //Retrive chunk file name
     private String getFileName(ChunkMetadata chunkMetadata) {
         if (chunkMetadata==null)
             return null;
@@ -169,35 +226,44 @@ public class FTPBinaryStorage extends BinaryStorage {
         return baseFileName!=null ? baseFileName+"___"+chunkMetadata.getIndex() : null;
     }
 
-    private String[] chunksFile (FileMetadata fileMetadata) throws Exception {
-        String folder = fileMetadata!=null ? "./"+(fileMetadata.getContext()!=null ? fileMetadata.getContext() : "") : null;
-        String name = folder!=null ? (fileMetadata.getName()!=null ? fileMetadata.getName() : fileMetadata.getMd5()) : null;
-        final String prefix = name!=null ? name+"___" : null;
+    //List existing chunks for a specific file
+    private String[] chunksFile (FTPClient ftpClient, FileMetadata fileMetadata) throws Exception {
+        final String prefix = getFileName(fileMetadata)+"___";
+        final int prefixLength = prefix.length();
 
-        FTPFile[] chunksFile = prefix == null ? null :
-            ftpClient.listFiles(folder, new FTPFileFilter() {
+        FTPFile[] chunksFile = prefix == null ? new FTPFile[0] :
+            ftpClient.listFiles("./", new FTPFileFilter() {
                 @Override
                 public boolean accept(FTPFile ftpFile) {
                     return ftpFile.getName().startsWith(prefix);
                 }
             });
-        chunksFile = chunksFile==null ? new FTPFile[0] : chunksFile;
-        Arrays.sort(chunksFile, new Comparator<FTPFile>() {
-            @Override
-            public int compare(FTPFile o1, FTPFile o2) {
-                return o1.getName().compareTo(o2.getName());
-            }
-        });
 
-        if (!folder.endsWith("/"))
-            folder = folder + '/';
         String[] chunksFileName = new String[chunksFile.length];
         for (int i=0; i<chunksFile.length; i++)
-            chunksFileName[i] = folder+chunksFile[i].getName();
+            chunksFileName[i] = chunksFile[i].getName();
+        Arrays.sort(chunksFileName, new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                return new Integer(o1.substring(prefixLength)).compareTo(new Integer(o2.substring(prefixLength)));
+            }
+        });
 
         return chunksFileName;
     }
 
+    //Check chunk file availability
+    private boolean checkChunk (FTPClient ftpClient, ChunkMetadata chunkMetadata) throws Exception {
+        final String name = getFileName(chunkMetadata);
+        FTPFile[] files = ftpClient.listFiles("./", new FTPFileFilter() {
+            @Override
+            public boolean accept(FTPFile ftpFile) {
+                return ftpFile.getName().equals(name);
+            }
+        });
+
+        return files!=null && files.length==1;
+    }
 
 
 }

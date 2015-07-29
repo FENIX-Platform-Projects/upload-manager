@@ -40,6 +40,14 @@
                     <groupId>org.fao.fenix</groupId>
                     <artifactId>tomcat-J2EE</artifactId>
                     <version>1.0</version>
+					<exclusions>
+						<exclusion>
+							<groupId>org.javassist</groupId>
+							<artifactId>javassist</artifactId>
+						</exclusion>
+
+					</exclusions>
+
                 </dependency>
             </dependencies>
         </profile>

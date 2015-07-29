@@ -11,10 +11,7 @@ import org.fao.ess.uploader.core.storage.BinaryStorageFactory;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.StreamingOutput;
+import javax.ws.rs.core.*;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -35,7 +32,7 @@ public class FileService {
         //Load file metadata and check file availability
         FileMetadata fileMetadata = metadataStorage.load(context, md5);
         if (fileMetadata==null)
-            throw new NotFoundException("File not found\ncontext: "+context+" - md5: "+md5);
+            throw new NoContentException("File not found\ncontext: "+context+" - md5: "+md5);
         if (!fileMetadata.getStatus().getComplete())
             throw new NotAllowedException("File incomplete");
         //Create file stream
@@ -67,7 +64,7 @@ public class FileService {
     @POST
     @Path("{context}/{md5}")
     @Consumes(MediaType.APPLICATION_OCTET_STREAM)
-    public void uploadFile (@Context HttpServletRequest request, @PathParam("context") String context, @PathParam("md5") String md5) throws Exception {
+    public Response uploadFile (@Context HttpServletRequest request, @PathParam("context") String context, @PathParam("md5") String md5) throws Exception {
         MetadataStorage metadataStorage = metadataFactory.getInstance();
         //Remove existing file if not completed
         FileMetadata metadata = metadataStorage.load(context,md5);
@@ -87,25 +84,37 @@ public class FileService {
         metadataStorage.save(metadata);
         //Save chunk and close file
         uploadChunk(request, context, md5, 0);
+
+        return Response.created(null).build();
     }
 
     @POST
     @Path("chunk/{context}/{md5}")
     //@Consumes(MediaType.APPLICATION_OCTET_STREAM)
-    public void uploadChunk (@Context HttpServletRequest request, @PathParam("context") String context, @PathParam("md5") String md5, @QueryParam("index") Integer index) throws Exception {
+    public Response uploadChunk (@Context HttpServletRequest request, @PathParam("context") String context, @PathParam("md5") String md5, @QueryParam("index") Integer index) throws Exception {
         MetadataStorage metadataStorage = metadataFactory.getInstance();
         BinaryStorage binaryStorage = binaryFactory.getInstance();
-        Long size = null;
+        //Load file metadata
+        FileMetadata fileMetadata = metadataStorage.load(context, md5);
+        if (fileMetadata==null)
+            throw new NoContentException("File not found\ncontext: "+context+" - md5: "+md5);
         //Calculate index
+        Long size = null;
+        Long fileSize = fileMetadata.getSize();
+        Integer chunksNumber = fileMetadata.getChunksNumber();
         if (index==null) {
             String positionHeader = request.getHeader("Content-Range");
             Integer bytesWordIndex = positionHeader != null ? positionHeader.indexOf("bytes") : null;
-            String positionString = bytesWordIndex != null ? positionHeader.substring(bytesWordIndex + "bytes".length()).trim() : null;
+            String positionString = bytesWordIndex != null && bytesWordIndex >= 0 ? positionHeader.substring(bytesWordIndex + "bytes".length()).trim() : null;
             if (positionString != null) {
                 long from = Long.parseLong(positionString.substring(0, positionString.indexOf('-')));
                 long to = Long.parseLong(positionString.substring(positionString.indexOf('-') + 1, positionString.indexOf('/')));
-                size = Long.parseLong(positionString.substring(positionString.indexOf('/') + 1));
-                index = (int)Math.floor((size*1.0) / (to-from));
+                size = to-from+1;
+                if (fileSize==null)
+                    fileMetadata.setSize(fileSize = Long.parseLong(positionString.substring(positionString.indexOf('/') + 1)));
+                if (chunksNumber==null)
+                    fileMetadata.setChunksNumber(chunksNumber = (int)(fileSize/size + (fileSize%size>0 ? 1 : 0)));
+                index = to<(fileSize-1) ? (int)(from/size) : chunksNumber-1;
             }
         }
         //Validate
@@ -120,9 +129,6 @@ public class FileService {
                 binaryStorage.removeChunk(metadata);
         }
         //Prepare chunk metadata
-        FileMetadata fileMetadata = metadataStorage.load(context,md5);
-        if (fileMetadata==null)
-            throw new NotFoundException("File not found\ncontext: "+context+" - md5: "+md5);
         FileStatus status = fileMetadata.getStatus();
         metadata = new ChunkMetadata();
         metadata.setIndex(index);
@@ -144,26 +150,28 @@ public class FileService {
         //Update file metadata
         status.addChunkIndex(index);
         if (size!=null)
-            status.setCurrentSize(status.getCurrentSize()+size);
+            status.setCurrentSize(status.getCurrentSize() + size);
         metadataStorage.save(fileMetadata);
         //Post process chunk data
         for (PostUpload postUpload : processorsFactory.getPostUploadInstances(context))
             postUpload.chunkUploaded(metadata,binaryStorage);
         //Close file automatically if required
         if (fileMetadata.isAutoClose() && fileMetadata.getChunksNumber()!=null && status.getChunksIndex()!=null && status.getChunksIndex().size()==fileMetadata.getChunksNumber())
-            close(context,md5);
+            close(context,md5,true);
+
+        return Response.ok().build();
     }
 
 
     @POST
     @Path("closure/{context}/{md5}")
-    public void close(@PathParam("context") String context, @PathParam("md5") String md5) throws Exception {
+    public Response close(@PathParam("context") String context, @PathParam("md5") String md5, @QueryParam("process") @DefaultValue("true") boolean process) throws Exception {
         MetadataStorage metadataStorage = metadataFactory.getInstance();
         BinaryStorage binaryStorage = binaryFactory.getInstance();
         //Load file metadata
         FileMetadata fileMetadata = metadataStorage.load(context, md5);
         if (fileMetadata==null)
-            throw new NotFoundException("File not found\ncontext: "+context+" - md5: "+md5);
+            throw new NoContentException("File not found\ncontext: "+context+" - md5: "+md5);
         FileStatus status = fileMetadata.getStatus();
         //Check if file can be closed
         if (fileMetadata.getChunksNumber()==null && (status.getChunksIndex()==null || status.getChunksIndex().size()!=fileMetadata.getChunksNumber()))
@@ -179,29 +187,54 @@ public class FileService {
             metadataStorage.remove(context, md5, chunkMetadata.getIndex());
         }
         //Post process uploaded file
-        for (PostUpload postUpload : processorsFactory.getPostUploadInstances(context))
-            postUpload.fileUploaded(fileMetadata, binaryStorage);
+        if (process)
+            for (PostUpload postUpload : processorsFactory.getPostUploadInstances(context))
+                postUpload.fileUploaded(fileMetadata, binaryStorage);
+
+        return Response.ok().build();
     }
 
 
     @DELETE
     @Path("{context}/{md5}")
-    public void removeFile (@PathParam("context") String context, @PathParam("md5") String md5) throws Exception {
+    public Response removeFile (@PathParam("context") String context, @PathParam("md5") String md5) throws Exception {
         MetadataStorage metadataStorage = metadataFactory.getInstance();
         BinaryStorage binaryStorage = binaryFactory.getInstance();
         //Load file metadata and check file availability
         FileMetadata fileMetadata = metadataStorage.load(context, md5);
         if (fileMetadata==null)
-            throw new NotFoundException("File not found\ncontext: "+context+" - md5: "+md5);
+            throw new NoContentException("File not found\ncontext: "+context+" - md5: "+md5);
         //Remove chunks
-        for (ChunkMetadata chunkMetadata : metadataStorage.loadChunks(context, md5)) {
+        for (ChunkMetadata chunkMetadata : metadataStorage.loadChunks(context, md5))
             binaryStorage.removeChunk(chunkMetadata);
-            metadataStorage.remove(context, md5, chunkMetadata.getIndex());
-        }
         //Remove file
         if (fileMetadata.getStatus().getComplete())
             binaryStorage.removeFile(fileMetadata);
         metadataStorage.remove(context, md5);
+
+        return Response.ok().build();
+    }
+
+
+
+    @POST
+    @Path("process/{context}/{md5}")
+    public Response postProcessFile(@PathParam("context") String context, @PathParam("md5") String md5) throws Exception {
+        MetadataStorage metadataStorage = metadataFactory.getInstance();
+        BinaryStorage binaryStorage = binaryFactory.getInstance();
+        //Load file metadata
+        FileMetadata fileMetadata = metadataStorage.load(context, md5);
+        if (fileMetadata==null)
+            throw new NoContentException("File not found\ncontext: "+context+" - md5: "+md5);
+        FileStatus status = fileMetadata.getStatus();
+        if (!status.getComplete())
+            throw new NotAllowedException("File isn't complete");
+
+        //Post process uploaded file
+        for (PostUpload postUpload : processorsFactory.getPostUploadInstances(context))
+            postUpload.fileUploaded(fileMetadata, binaryStorage);
+
+        return Response.ok().build();
     }
 
 

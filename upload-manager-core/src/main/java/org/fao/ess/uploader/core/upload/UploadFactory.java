@@ -26,7 +26,7 @@ public class UploadFactory {
         Collection<PostUpload> instances = new LinkedList<>();
         for (Iterator<PostUpload> instanceIterator = postInstance.select(PostUpload.class).iterator(); instanceIterator.hasNext();) {
             PostUpload instance = instanceIterator.next();
-            UploadContext contextAnnotation = instance.getClass().getAnnotation(UploadContext.class);
+            UploadContext contextAnnotation = instance.getClass().getSuperclass().getAnnotation(UploadContext.class);
 
             if (context==null || (contextAnnotation!=null && context.equals(contextAnnotation.value())))
                 instances.add(instance);
