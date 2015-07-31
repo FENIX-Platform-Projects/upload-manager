@@ -5,6 +5,7 @@ CONNECT remote:localhost/uploader_metadata_1.0 admin admin;
 CREATE CLASS FileStatus;
 CREATE CLASS FileMetadata;
 CREATE CLASS ChunkMetadata;
+CREATE CLASS ProcessMetadata;
 
 
 
@@ -29,12 +30,24 @@ CREATE PROPERTY ChunkMetadata.index INTEGER;
 CREATE PROPERTY ChunkMetadata.size LONG;
 CREATE PROPERTY ChunkMetadata.uploaded BOOLEAN;
 
+CREATE PROPERTY ProcessMetadata.file LINK FileMetadata;
+CREATE PROPERTY ProcessMetadata.index INTEGER;
+CREATE PROPERTY ProcessMetadata.name STRING;
+CREATE PROPERTY ProcessMetadata.error STRING;
+CREATE PROPERTY ProcessMetadata.completed BOOLEAN;
+
+
 
 
 CREATE INDEX FileMetadata.id ON FileMetadata (context, md5) UNIQUE;
-CREATE INDEX ChunkMetadata.id ON ChunkMetadata (file, index) UNIQUE;
-
 CREATE INDEX FileMetadata.context NOTUNIQUE;
+
+CREATE INDEX ChunkMetadata.id ON ChunkMetadata (file, index) UNIQUE;
+CREATE INDEX ChunkMetadata.file NOTUNIQUE;
+
+CREATE INDEX ProcessMetadata.id ON ProcessMetadata (file, index) UNIQUE;
+CREATE INDEX ProcessMetadata.file NOTUNIQUE;
+
 
 
 

@@ -8,6 +8,7 @@ import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
 import org.fao.ess.uploader.core.dto.ChunkMetadata;
 import org.fao.ess.uploader.core.dto.FileMetadata;
 import org.fao.ess.uploader.core.dto.FileStatus;
+import org.fao.ess.uploader.core.dto.ProcessMetadata;
 import org.fao.ess.uploader.core.init.UploaderConfig;
 import org.fao.ess.uploader.core.metadata.MetadataStorage;
 
@@ -54,6 +55,7 @@ public class OrientMetadataStorage extends MetadataStorage {
         ODocument fileMetadataDoc = loadDoc(connection, context, md5);
         return fileMetadataDoc!=null ? loadChunkDoc(connection, fileMetadataDoc, index) : null;
     }
+
     @Override
     public Collection<ChunkMetadata> loadChunks(String context, String md5) throws Exception {
         ODatabaseDocumentTx connection = ds.getConnection();
@@ -76,6 +78,25 @@ public class OrientMetadataStorage extends MetadataStorage {
     public Collection<FileMetadata> select(String context) throws Exception {
         return toFileMetadata(selectDoc(context));
     }
+
+    @Override
+    public Collection<ProcessMetadata> loadProcesses(String context, String md5) throws Exception {
+        ODatabaseDocumentTx connection = ds.getConnection();
+        try {
+            return toProcessMetadata(loadProcessesDoc(connection, context, md5));
+        } finally {
+            connection.close();
+        }
+    }
+    public Collection<ODocument> loadProcessesDoc(ODatabaseDocumentTx connection, String context, String md5) throws Exception {
+        ODocument fileMetadataDoc = loadDoc(connection, context, md5);
+        return (List<ODocument>)connection.query(new OSQLSynchQuery<ODocument>("SELECT FROM ProcessMetadata WHERE file = ? ORDER BY index"), fileMetadataDoc.getIdentity());
+    }
+    public ODocument loadProcessDoc(ODatabaseDocumentTx connection, ODocument fileMetadataDoc, int index) throws Exception {
+        List<ODocument> processes = connection.query(new OSQLSynchQuery<ODocument>("SELECT FROM ProcessMetadata WHERE file = ? and index = ?"), fileMetadataDoc.getIdentity(), index);
+        return processes.size()==1 ? processes.iterator().next() : null;
+    }
+
     public Collection<ODocument> selectDoc(String context) throws Exception {
         ODatabaseDocumentTx connection = ds.getConnection();
         try {
@@ -111,6 +132,21 @@ public class OrientMetadataStorage extends MetadataStorage {
     }
 
     @Override
+    public void save(ProcessMetadata metadata) throws Exception {
+        ODatabaseDocumentTx connection = ds.getConnection();
+        try {
+            FileMetadata fileMetadata = metadata.getFile();
+            ODocument fileMetadataDocument = fileMetadata!=null ? loadDoc(connection, fileMetadata.getContext(), fileMetadata.getMd5()) : null;
+            if (fileMetadataDocument==null)
+                throw new NoContentException("context: "+(fileMetadata!=null?fileMetadata.getContext():null)+" - md5: "+(fileMetadata!=null?fileMetadata.getMd5():null));
+
+            connection.save(toDocument(metadata, fileMetadataDocument, loadProcessDoc(connection, fileMetadataDocument, metadata.getIndex()), false));
+        } finally {
+            connection.close();
+        }
+    }
+
+    @Override
     public boolean remove(String context,String md5) throws Exception {
         ODatabaseDocumentTx connection = ds.getConnection();
         try {
@@ -119,12 +155,27 @@ public class OrientMetadataStorage extends MetadataStorage {
             if (fileDoc==null)
                 return false;
             connection.command(new OCommandSQL("DELETE FROM ChunkMetadata WHERE file = ?")).execute(fileDoc.getIdentity());
+            connection.command(new OCommandSQL("DELETE FROM ProcessMetadata WHERE file = ?")).execute(fileDoc.getIdentity());
             connection.command(new OCommandSQL("DELETE FROM FileMetadata WHERE context = ? AND md5 = ? ")).execute(context, md5);
             connection.commit();
             return true;
         } catch (Exception ex) {
             connection.rollback();
             throw ex;
+        } finally {
+            connection.close();
+        }
+    }
+
+    @Override
+    public boolean removeProcess(String context, String md5) throws Exception {
+        ODatabaseDocumentTx connection = ds.getConnection();
+        try {
+            ODocument fileDoc = loadDoc(connection, context, md5);
+            if (fileDoc==null)
+                return false;
+            int n = connection.command(new OCommandSQL("DELETE FROM ProcessMetadata WHERE file = ?")).execute(fileDoc.getIdentity());
+            return n>0;
         } finally {
             connection.close();
         }
@@ -151,6 +202,7 @@ public class OrientMetadataStorage extends MetadataStorage {
             connection.begin();
             List<ODocument> fileMetadataList = connection.query(new OSQLSynchQuery<ODocument>("SELECT FROM FileMetadata WHERE context = ?"), context);
             connection.command(new OCommandSQL("DELETE FROM ChunkMetadata WHERE file IN ( ? )")).execute(fileMetadataList);
+            connection.command(new OCommandSQL("DELETE FROM ProcessMetadata WHERE file IN ( ? )")).execute(fileMetadataList);
             int n = connection.command(new OCommandSQL("DELETE FROM FileMetadata WHERE context = ?")).execute(context);
             connection.commit();
             return n>0;
@@ -209,7 +261,7 @@ public class OrientMetadataStorage extends MetadataStorage {
             metadata.setFile(toFileMetadata((ODocument) document.field("file")));
             metadata.setSize((Long) document.field("size"));
             metadata.setIndex((Integer) document.field("index"));
-            metadata.setUploaded((Boolean) document.field("uploaded"));
+            metadata.setUploaded(document.field("uploaded")!=null ? (Boolean) document.field("uploaded") : false);
             return metadata;
         } else
             return null;
@@ -219,6 +271,28 @@ public class OrientMetadataStorage extends MetadataStorage {
             Collection<ChunkMetadata> metadataList = new LinkedList<>();
             for (ODocument document : documents)
                 metadataList.add(toChunkMetadata(document));
+            return metadataList;
+        } else
+            return null;
+    }
+
+    private ProcessMetadata toProcessMetadata(ODocument document) throws Exception {
+        if (document!=null) {
+            ProcessMetadata metadata = new ProcessMetadata();
+            metadata.setFile(toFileMetadata((ODocument) document.field("file")));
+            metadata.setName((String) document.field("name"));
+            metadata.setError((String) document.field("error"));
+            metadata.setIndex((Integer) document.field("index"));
+            metadata.setCompleted((Boolean) document.field("completed"));
+            return metadata;
+        } else
+            return null;
+    }
+    private Collection<ProcessMetadata> toProcessMetadata(Collection<ODocument> documents) throws Exception {
+        if (documents!=null) {
+            Collection<ProcessMetadata> metadataList = new LinkedList<>();
+            for (ODocument document : documents)
+                metadataList.add(toProcessMetadata(document));
             return metadataList;
         } else
             return null;
@@ -249,6 +323,15 @@ public class OrientMetadataStorage extends MetadataStorage {
                 new String[]{"file","index","size","uploaded"},
                 new Object[]{fileMetadataDoc, metadata.getIndex(), metadata.getSize(), metadata.isUploaded()},
                 new OType[][]{{OType.LINK},{OType.INTEGER},{OType.LONG},{OType.BOOLEAN}},
+                document, overwrite
+        );
+    }
+    private ODocument toDocument (ProcessMetadata metadata, ODocument fileMetadataDoc, ODocument document, boolean overwrite) throws Exception {
+        return toDocument(
+                ProcessMetadata.class.getSimpleName(),
+                new String[]{"file","index","name","error","completed"},
+                new Object[]{fileMetadataDoc, metadata.getIndex(), metadata.getName(), metadata.getError(), metadata.isCompleted()},
+                new OType[][]{{OType.LINK},{OType.INTEGER},{OType.STRING},{OType.STRING},{OType.BOOLEAN}},
                 document, overwrite
         );
     }

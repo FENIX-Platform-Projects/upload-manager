@@ -67,7 +67,7 @@ public class D3SClient {
         Client client = ClientBuilder.newClient();
         WebTarget target = client.target(url);
         Response response = target.request(MediaType.APPLICATION_JSON_TYPE).build("PATCH", javax.ws.rs.client.Entity.json(replicationFilter)).invoke();
-        if (response.getStatus() != 200)
+        if (response.getStatus() != 200 && response.getStatus() != 504)
             throw new Exception("Error from D3S during datasets metadata update");
     }
 

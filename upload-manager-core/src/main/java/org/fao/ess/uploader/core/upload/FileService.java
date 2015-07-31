@@ -3,8 +3,12 @@ package org.fao.ess.uploader.core.upload;
 import org.fao.ess.uploader.core.dto.ChunkMetadata;
 import org.fao.ess.uploader.core.dto.FileMetadata;
 import org.fao.ess.uploader.core.dto.FileStatus;
+import org.fao.ess.uploader.core.dto.ProcessMetadata;
 import org.fao.ess.uploader.core.metadata.MetadataStorage;
 import org.fao.ess.uploader.core.metadata.MetadataStorageFactory;
+import org.fao.ess.uploader.core.process.PostUpload;
+import org.fao.ess.uploader.core.process.PreUpload;
+import org.fao.ess.uploader.core.process.ProcessFactory;
 import org.fao.ess.uploader.core.storage.BinaryStorage;
 import org.fao.ess.uploader.core.storage.BinaryStorageFactory;
 
@@ -20,7 +24,8 @@ import java.io.OutputStream;
 public class FileService {
     @Inject MetadataStorageFactory metadataFactory;
     @Inject BinaryStorageFactory binaryFactory;
-    @Inject UploadFactory processorsFactory;
+    @Inject
+    ProcessFactory processorsFactory;
 
 
     @GET
@@ -119,7 +124,9 @@ public class FileService {
         }
         //Validate
         if (index==null)
-            throw new NotAllowedException("Chunk index is mandatory");
+            index = 0;
+        if (chunksNumber==null)
+            fileMetadata.setChunksNumber(1);
         //Check if chunk already exists
         ChunkMetadata metadata = metadataStorage.load(context, md5, index);
         if (metadata!=null) {
@@ -153,8 +160,8 @@ public class FileService {
             status.setCurrentSize(status.getCurrentSize() + size);
         metadataStorage.save(fileMetadata);
         //Post process chunk data
-        for (PostUpload postUpload : processorsFactory.getPostUploadInstances(context))
-            postUpload.chunkUploaded(metadata,binaryStorage);
+        for (ProcessMetadata postUploadMetadata : processorsFactory.getPostUploadInstances(fileMetadata))
+            postUploadMetadata.instance().chunkUploaded(metadata, binaryStorage);
         //Close file automatically if required
         if (fileMetadata.isAutoClose() && fileMetadata.getChunksNumber()!=null && status.getChunksIndex()!=null && status.getChunksIndex().size()==fileMetadata.getChunksNumber())
             close(context,md5,true);
@@ -188,8 +195,8 @@ public class FileService {
         }
         //Post process uploaded file
         if (process)
-            for (PostUpload postUpload : processorsFactory.getPostUploadInstances(context))
-                postUpload.fileUploaded(fileMetadata, binaryStorage);
+            for (ProcessMetadata postUploadMetadata : processorsFactory.getPostUploadInstances(fileMetadata))
+                postUploadMetadata.instance().fileUploaded(fileMetadata, binaryStorage);
 
         return Response.ok().build();
     }
@@ -216,26 +223,6 @@ public class FileService {
     }
 
 
-
-    @POST
-    @Path("process/{context}/{md5}")
-    public Response postProcessFile(@PathParam("context") String context, @PathParam("md5") String md5) throws Exception {
-        MetadataStorage metadataStorage = metadataFactory.getInstance();
-        BinaryStorage binaryStorage = binaryFactory.getInstance();
-        //Load file metadata
-        FileMetadata fileMetadata = metadataStorage.load(context, md5);
-        if (fileMetadata==null)
-            throw new NoContentException("File not found\ncontext: "+context+" - md5: "+md5);
-        FileStatus status = fileMetadata.getStatus();
-        if (!status.getComplete())
-            throw new NotAllowedException("File isn't complete");
-
-        //Post process uploaded file
-        for (PostUpload postUpload : processorsFactory.getPostUploadInstances(context))
-            postUpload.fileUploaded(fileMetadata, binaryStorage);
-
-        return Response.ok().build();
-    }
 
 
 
