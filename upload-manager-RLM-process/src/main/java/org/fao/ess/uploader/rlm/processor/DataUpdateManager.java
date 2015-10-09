@@ -58,6 +58,11 @@ public class DataUpdateManager implements PostUpload {
             }
             if (c>0)
                 statement.executeBatch();
+            //Update indicators
+            connection.createStatement().executeUpdate("TRUNCATE TABLE codes_indicators");
+            connection.createStatement().executeUpdate("INSERT INTO codes_indicators (indicator_parent_code, indicator_code, indicator_label, indicator_source) SELECT DISTINCT topic, indicator, indicator_label, source FROM master ORDER BY topic, indicator");
+            connection.createStatement().executeUpdate("INSERT INTO codes_indicators (indicator_code, indicator_label) SELECT topic_code, topic_label FROM codes_topics");
+            //Commit changes
             connection.commit();
         } finally {
             connection.setAutoCommit(autoCommit);
