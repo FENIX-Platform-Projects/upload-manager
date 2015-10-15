@@ -36,7 +36,7 @@ public class DataUpdateManager implements PostUpload {
         //begin data transfer transaction
         try {
             connection.createStatement().executeUpdate("TRUNCATE TABLE master");
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO master (country,year,year_label,indicator,indicator_label,qualifier,value,um,source,topic) VALUES (?,?,?,?,?,?,?,?,?,?)");
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO master (country,year,year_label,indicator,indicator_label,qualifier,value,um,source,topic,flag) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
             int c=0;
             for (String[] record = parser.nextRow(); record!=null; record = parser.nextRow()) {
                 statement.setString(1, record[0]);
@@ -49,6 +49,7 @@ public class DataUpdateManager implements PostUpload {
                 statement.setString(8, record[7]);
                 statement.setString(9, record[8]);
                 statement.setString(10, record[9]);
+                statement.setString(11, record[10]);
                 statement.addBatch();
                 if (c++==1000) { //Flush each 1000 rows
                     statement.executeBatch();
