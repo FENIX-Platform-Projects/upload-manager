@@ -39,7 +39,10 @@ public class RLMCSVParser {
         while (line!=null) {
             int nextIndex;
             String item;
-            if (line.charAt(0) == '"') {
+            if (line.trim().length()==0) {
+                item = "";
+                nextIndex = 0;
+            } else if (line.charAt(0) == '"') {
                 nextIndex = line.indexOf('"', 1);
                 item = line.substring(1, nextIndex).trim();
                 nextIndex = line.indexOf(',', nextIndex);

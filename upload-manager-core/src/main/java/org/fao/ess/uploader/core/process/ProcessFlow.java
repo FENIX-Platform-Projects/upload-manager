@@ -56,6 +56,7 @@ public class ProcessFlow implements Runnable {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+            ex.printStackTrace();
         }
     }
 }
