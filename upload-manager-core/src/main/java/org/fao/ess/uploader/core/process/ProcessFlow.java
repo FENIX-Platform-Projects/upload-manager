@@ -7,6 +7,7 @@ import org.fao.ess.uploader.core.storage.BinaryStorage;
 
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.Map;
 
 public class ProcessFlow implements Runnable {
     private MetadataStorage metadataStorage;
@@ -14,15 +15,17 @@ public class ProcessFlow implements Runnable {
     private FileMetadata fileMetadata;
 
     private Collection<ProcessMetadata> flow;
+    private Map<String, Object> processingParams;
 
     private long delay;
 
 
-    public ProcessFlow(MetadataStorage metadataStorage, BinaryStorage binaryStorage, FileMetadata fileMetadata, Collection<ProcessMetadata> flow) {
+    public ProcessFlow(MetadataStorage metadataStorage, BinaryStorage binaryStorage, FileMetadata fileMetadata, Collection<ProcessMetadata> flow, Map<String, Object> processingParams) {
         this.metadataStorage = metadataStorage;
         this.binaryStorage = binaryStorage;
         this.fileMetadata = fileMetadata;
         this.flow = flow;
+        this.processingParams = processingParams;
     }
 
     public void start(long delay) {
@@ -43,7 +46,7 @@ public class ProcessFlow implements Runnable {
         ProcessMetadata currentProcess = null;
         try {
             for (Iterator<ProcessMetadata> processIterator=flow.iterator(); processIterator.hasNext();) {
-                (currentProcess=processIterator.next()).instance().fileUploaded(fileMetadata, binaryStorage);
+                (currentProcess=processIterator.next()).instance().fileUploaded(fileMetadata, binaryStorage,processingParams);
                 currentProcess.setCompleted(true);
                 metadataStorage.save(currentProcess);
             }

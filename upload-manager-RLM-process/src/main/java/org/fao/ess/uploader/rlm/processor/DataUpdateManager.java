@@ -11,6 +11,7 @@ import javax.inject.Inject;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.util.Map;
 
 @ApplicationScoped
 @ProcessInfo(context = "c", name = "RLMDataUpdate", priority = 1)
@@ -24,7 +25,7 @@ public class DataUpdateManager implements PostUpload {
     }
 
     @Override
-    public void fileUploaded(FileMetadata metadata, BinaryStorage storage) throws Exception {
+    public void fileUploaded(FileMetadata metadata, BinaryStorage storage, Map<String, Object> processingParams) throws Exception {
         //Load data stream
         InputStream dataStream = storage.readFile(metadata, null);
         //Prepare CSV parser

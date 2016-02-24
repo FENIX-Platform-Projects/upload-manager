@@ -11,6 +11,7 @@ import javax.inject.Inject;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.util.Map;
 
 @ApplicationScoped
 @ProcessInfo(context = "c", name = "RLMMetadataUpdate", priority = 2)
@@ -23,7 +24,7 @@ public class MetadataUpdateManager implements PostUpload {
     }
 
     @Override
-    public void fileUploaded(FileMetadata metadata, BinaryStorage storage) throws Exception {
+    public void fileUploaded(FileMetadata metadata, BinaryStorage storage, Map<String, Object> processingParams) throws Exception {
         //Update D3S resources
         d3sClient.sendDataUpdatedSignal();
     }

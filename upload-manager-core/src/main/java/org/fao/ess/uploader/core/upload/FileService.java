@@ -19,6 +19,7 @@ import javax.ws.rs.core.*;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Map;
 
 @Path("file")
 public class FileService {
@@ -164,7 +165,7 @@ public class FileService {
             postUploadMetadata.instance().chunkUploaded(metadata, binaryStorage);
         //Close file automatically if required
         if (fileMetadata.isAutoClose() && fileMetadata.getChunksNumber()!=null && status.getChunksIndex()!=null && status.getChunksIndex().size()==fileMetadata.getChunksNumber())
-            close(context,md5,true);
+            close(context,md5,true,null);
 
         return Response.ok().build();
     }
@@ -172,7 +173,7 @@ public class FileService {
 
     @POST
     @Path("closure/{context}/{md5}")
-    public Response close(@PathParam("context") String context, @PathParam("md5") String md5, @QueryParam("process") @DefaultValue("true") boolean process) throws Exception {
+    public Response close(@PathParam("context") String context, @PathParam("md5") String md5, @QueryParam("process") @DefaultValue("true") boolean process, Map<String, Object> processingParams) throws Exception {
         MetadataStorage metadataStorage = metadataFactory.getInstance();
         BinaryStorage binaryStorage = binaryFactory.getInstance();
         //Load file metadata
@@ -196,7 +197,7 @@ public class FileService {
         //Post process uploaded file
         if (process)
             for (ProcessMetadata postUploadMetadata : processorsFactory.getPostUploadInstances(fileMetadata))
-                postUploadMetadata.instance().fileUploaded(fileMetadata, binaryStorage);
+                postUploadMetadata.instance().fileUploaded(fileMetadata, binaryStorage,processingParams);
 
         return Response.ok().build();
     }

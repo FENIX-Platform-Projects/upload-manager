@@ -14,6 +14,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.NoContentException;
 import javax.ws.rs.core.Response;
 import java.util.Collection;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 @Path("process")
 public class ProcessService {
@@ -24,7 +26,7 @@ public class ProcessService {
 
     @POST
     @Path("{context}/{md5}")
-    public Response createProcess(@PathParam("context") String context, @PathParam("md5") String md5) throws Exception {
+    public Response createProcess(@PathParam("context") String context, @PathParam("md5") String md5, Map<String, Object> processingParams) throws Exception {
         MetadataStorage metadataStorage = metadataFactory.getInstance();
         BinaryStorage binaryStorage = binaryFactory.getInstance();
         //Load file metadata
@@ -44,7 +46,7 @@ public class ProcessService {
             for (ProcessMetadata metadata : flow)
                 metadataStorage.save(metadata);
             //Start flow execution
-            new ProcessFlow(metadataStorage, binaryStorage, fileMetadata, flow).start(500);
+            new ProcessFlow(metadataStorage, binaryStorage, fileMetadata, flow, processingParams).start(500);
         }
 
         return Response.ok().build();
