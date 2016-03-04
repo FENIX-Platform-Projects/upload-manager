@@ -19,6 +19,7 @@ import javax.ws.rs.core.*;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.HashMap;
 import java.util.Map;
 
 @Path("file")
@@ -69,7 +70,6 @@ public class FileService {
 
     @POST
     @Path("{context}/{md5}")
-    @Consumes(MediaType.APPLICATION_OCTET_STREAM)
     public Response uploadFile (@Context HttpServletRequest request, @PathParam("context") String context, @PathParam("md5") String md5) throws Exception {
         MetadataStorage metadataStorage = metadataFactory.getInstance();
         //Remove existing file if not completed
@@ -96,7 +96,6 @@ public class FileService {
 
     @POST
     @Path("chunk/{context}/{md5}")
-    //@Consumes(MediaType.APPLICATION_OCTET_STREAM)
     public Response uploadChunk (@Context HttpServletRequest request, @PathParam("context") String context, @PathParam("md5") String md5, @QueryParam("index") Integer index) throws Exception {
         MetadataStorage metadataStorage = metadataFactory.getInstance();
         BinaryStorage binaryStorage = binaryFactory.getInstance();
@@ -223,14 +222,4 @@ public class FileService {
         return Response.ok().build();
     }
 
-
-
-
-
-    //Utils
-/*
-    InputStream getInputStream(HttpServletRequest request) throws Exception {
-
-    }
-*/
 }

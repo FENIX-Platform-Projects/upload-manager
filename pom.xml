@@ -16,6 +16,7 @@
         <module>upload-manager-FTP-storage</module>
         <module>upload-manager-orient-metadata</module>
         <module>upload-manager-RLM-process</module>
+        <module>upload-manager-policy-process</module>
 
         <module>upload-manager-dist</module>
     </modules>

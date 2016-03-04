@@ -1,5 +1,6 @@
 package org.fao.ess.uploader.core.storage.ftp;
 
+import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 import org.apache.commons.net.ftp.FTPFileFilter;
@@ -203,6 +204,8 @@ public class FTPBinaryStorage extends BinaryStorage {
 
         if (path!=null)
             ftpClient.changeWorkingDirectory(path);
+
+        ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
 
         return ftpClient;
     }
