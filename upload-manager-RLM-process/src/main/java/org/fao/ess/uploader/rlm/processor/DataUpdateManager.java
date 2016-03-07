@@ -2,6 +2,7 @@ package org.fao.ess.uploader.rlm.processor;
 
 import org.fao.ess.uploader.core.dto.ChunkMetadata;
 import org.fao.ess.uploader.core.dto.FileMetadata;
+import org.fao.ess.uploader.core.metadata.MetadataStorage;
 import org.fao.ess.uploader.core.process.PostUpload;
 import org.fao.ess.uploader.core.process.ProcessInfo;
 import org.fao.ess.uploader.core.storage.BinaryStorage;
@@ -20,12 +21,12 @@ public class DataUpdateManager implements PostUpload {
     @Inject D3SClient d3sClient;
 
     @Override
-    public void chunkUploaded(ChunkMetadata metadata, BinaryStorage storage) throws Exception {
+    public void chunkUploaded(ChunkMetadata metadata, MetadataStorage metadataStorage, BinaryStorage storage) throws Exception {
         //Nothing to do here
     }
 
     @Override
-    public void fileUploaded(FileMetadata metadata, BinaryStorage storage, Map<String, Object> processingParams) throws Exception {
+    public void fileUploaded(FileMetadata metadata, MetadataStorage metadataStorage, BinaryStorage storage, Map<String, Object> processingParams) throws Exception {
         //Load data stream
         InputStream dataStream = storage.readFile(metadata, null);
         //Prepare CSV parser

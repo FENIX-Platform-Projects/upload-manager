@@ -2,6 +2,7 @@ package org.fao.ess.uploader.rlm.processor;
 
 import org.fao.ess.uploader.core.dto.ChunkMetadata;
 import org.fao.ess.uploader.core.dto.FileMetadata;
+import org.fao.ess.uploader.core.metadata.MetadataStorage;
 import org.fao.ess.uploader.core.storage.BinaryStorage;
 import org.fao.ess.uploader.core.process.PostUpload;
 import org.fao.ess.uploader.core.process.ProcessInfo;
@@ -19,12 +20,12 @@ public class MetadataUpdateManager implements PostUpload {
     @Inject D3SClient d3sClient;
 
     @Override
-    public void chunkUploaded(ChunkMetadata metadata, BinaryStorage storage) throws Exception {
+    public void chunkUploaded(ChunkMetadata metadata, MetadataStorage metadataStorage, BinaryStorage storage) throws Exception {
         //Nothing to do here
     }
 
     @Override
-    public void fileUploaded(FileMetadata metadata, BinaryStorage storage, Map<String, Object> processingParams) throws Exception {
+    public void fileUploaded(FileMetadata metadata, MetadataStorage metadataStorage, BinaryStorage storage, Map<String, Object> processingParams) throws Exception {
         //Update D3S resources
         d3sClient.sendDataUpdatedSignal();
     }

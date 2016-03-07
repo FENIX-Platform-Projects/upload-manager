@@ -26,8 +26,7 @@ import java.util.Map;
 public class FileService {
     @Inject MetadataStorageFactory metadataFactory;
     @Inject BinaryStorageFactory binaryFactory;
-    @Inject
-    ProcessFactory processorsFactory;
+    @Inject ProcessFactory processorsFactory;
 
 
     @GET
@@ -161,7 +160,7 @@ public class FileService {
         metadataStorage.save(fileMetadata);
         //Post process chunk data
         for (ProcessMetadata postUploadMetadata : processorsFactory.getPostUploadInstances(fileMetadata))
-            postUploadMetadata.instance().chunkUploaded(metadata, binaryStorage);
+            postUploadMetadata.instance().chunkUploaded(metadata, metadataStorage, binaryStorage);
         //Close file automatically if required
         if (fileMetadata.isAutoClose() && fileMetadata.getChunksNumber()!=null && status.getChunksIndex()!=null && status.getChunksIndex().size()==fileMetadata.getChunksNumber())
             close(context,md5,true,null);
@@ -196,7 +195,7 @@ public class FileService {
         //Post process uploaded file
         if (process)
             for (ProcessMetadata postUploadMetadata : processorsFactory.getPostUploadInstances(fileMetadata))
-                postUploadMetadata.instance().fileUploaded(fileMetadata, binaryStorage,processingParams);
+                postUploadMetadata.instance().fileUploaded(fileMetadata, metadataStorage, binaryStorage,processingParams);
 
         return Response.ok().build();
     }

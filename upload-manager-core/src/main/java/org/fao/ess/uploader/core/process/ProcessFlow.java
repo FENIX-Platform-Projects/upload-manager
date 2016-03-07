@@ -46,7 +46,7 @@ public class ProcessFlow implements Runnable {
         ProcessMetadata currentProcess = null;
         try {
             for (Iterator<ProcessMetadata> processIterator=flow.iterator(); processIterator.hasNext();) {
-                (currentProcess=processIterator.next()).instance().fileUploaded(fileMetadata, binaryStorage,processingParams);
+                (currentProcess=processIterator.next()).instance().fileUploaded(fileMetadata, metadataStorage, binaryStorage,processingParams);
                 currentProcess.setCompleted(true);
                 metadataStorage.save(currentProcess);
             }

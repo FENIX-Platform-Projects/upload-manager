@@ -29,7 +29,9 @@ public class ProcessFactory {
         List<Object[]> instancesIndex = new LinkedList<>();
         for (Iterator<PostUpload> instanceIterator = postInstance.select(PostUpload.class).iterator(); instanceIterator.hasNext();) {
             PostUpload instance = instanceIterator.next();
-            ProcessInfo contextAnnotation = instance.getClass().getSuperclass().getAnnotation(ProcessInfo.class);
+            ProcessInfo contextAnnotation = instance.getClass().getAnnotation(ProcessInfo.class);
+            if (contextAnnotation==null)
+                contextAnnotation = instance.getClass().getSuperclass().getAnnotation(ProcessInfo.class);
 
             if (context==null || (contextAnnotation!=null && context.equals(contextAnnotation.context()))) {
                 ProcessMetadata metadata = new ProcessMetadata();
