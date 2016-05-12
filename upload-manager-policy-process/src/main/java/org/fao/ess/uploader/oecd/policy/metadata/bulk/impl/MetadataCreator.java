@@ -1,4 +1,4 @@
-package org.fao.ess.uploader.oecd.policy.metadata.bulk;
+package org.fao.ess.uploader.oecd.policy.metadata.bulk.impl;
 
 import org.fao.fenix.commons.msd.dto.full.*;
 import org.fao.fenix.commons.msd.dto.type.DocumentType;
@@ -15,7 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class MetadataCreator {
-    @Inject protected FileUtils fileUtils;
+    @Inject public FileUtils fileUtils;
 
     private String[] header;
 
@@ -23,7 +23,7 @@ public class MetadataCreator {
         this.header = header;
     }
 
-    private static final String templatePath = "policy/oecd/metadata/templates/";
+    private static final String templatePath = "/policy/oecd/metadata/templates/";
     public DSDDataset create (String templateName) throws Exception {
         InputStream templateStream = this.getClass().getResourceAsStream(templatePath+templateName+".json");
         if (templateStream==null)
@@ -175,7 +175,7 @@ public class MetadataCreator {
                 if (document != null)
                     documents.add(document);
             } catch (Exception ex) {
-                errors.add("Errors in document " + i + ":\n");
+                errors.add("Errors in document " + i + ":\n"+ex.getMessage());
             }
         }
 
@@ -223,7 +223,7 @@ public class MetadataCreator {
         Collection<String> errors = new LinkedList<>();
 
         OjCitation document = new OjCitation();
-        DocumentType type = documentKind!=null && documentKind.trim().length()>0 ? DocumentType.valueOf(documentKind) : null;
+        DocumentType type = documentKind!=null && documentKind.trim().length()>0 ? DocumentType.valueOf(documentKind.trim()) : null;
         if (type==null && documentKind!=null && documentKind.trim().length()>0)
             errors.add("Wrong document kind");
         document.setDocumentKind(type);
@@ -326,7 +326,7 @@ public class MetadataCreator {
             return null;
 
         ResponsiblePartyRole responsiblePartyRole = null;
-        if (role!=null && role.trim().length()>0 && (responsiblePartyRole = ResponsiblePartyRole.valueOf(role))==null)
+        if (role!=null && role.trim().length()>0 && (responsiblePartyRole = ResponsiblePartyRole.valueOf(role.trim().toLowerCase()))==null)
             throw new Exception("Undefined contact role: "+role);
 
         OjResponsibleParty responsibleParty = new OjResponsibleParty();

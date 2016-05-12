@@ -2,17 +2,19 @@ package org.fao.ess.uploader.oecd.policy.metadata.bulk;
 
 import org.fao.ess.uploader.core.dto.ChunkMetadata;
 import org.fao.ess.uploader.core.dto.FileMetadata;
+import org.fao.ess.uploader.core.init.UploaderConfig;
 import org.fao.ess.uploader.core.metadata.MetadataStorage;
 import org.fao.ess.uploader.core.process.PostUpload;
 import org.fao.ess.uploader.core.process.ProcessInfo;
 import org.fao.ess.uploader.core.storage.BinaryStorage;
+import org.fao.ess.uploader.oecd.policy.metadata.bulk.dto.MetadataGroups;
+import org.fao.ess.uploader.oecd.policy.metadata.bulk.impl.D3SClient;
+import org.fao.ess.uploader.oecd.policy.metadata.bulk.impl.MetadataCreator;
+import org.fao.ess.uploader.oecd.policy.metadata.bulk.impl.XLStoCSV;
 import org.fao.fenix.commons.msd.dto.full.DSDDataset;
 import org.fao.fenix.commons.msd.dto.full.MeIdentification;
 import org.fao.fenix.commons.utils.FileUtils;
-import sftp.SftpPropertiesValues;
-import sftp.SftpUpload;
 
-import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -22,6 +24,9 @@ import java.util.*;
 public class MetadataBulk implements PostUpload {
     @Inject private XLStoCSV csvConverter;
     @Inject private MetadataCreator metadataFactory;
+    @Inject private UploaderConfig config;
+    @Inject private D3SClient d3SClient;
+
 
 
     @Override
@@ -33,7 +38,7 @@ public class MetadataBulk implements PostUpload {
     public void fileUploaded(FileMetadata metadata, MetadataStorage metadataStorage, BinaryStorage storage, Map<String, Object> processingParams) throws Exception {
         InputStream excelFileInput = storage.readFile(metadata, null);
         Collection<MeIdentification<DSDDataset>> metadataList = createMetadata(excelFileInput, "dsdDefault");
-        //TODO update metadata (delete and insert)
+        sendMetadata(metadataList);
     }
 
     private Collection<MeIdentification<DSDDataset>> createMetadata (InputStream excelFileInput, String dsdTemplate) throws Exception {
@@ -62,20 +67,60 @@ public class MetadataBulk implements PostUpload {
         return metadataList;
     }
 
+    private void sendMetadata (Collection<MeIdentification<DSDDataset>> source) throws Exception {
+        //Init
+        String baseUrl = config.get("d3s.url");
+        baseUrl = baseUrl + (baseUrl.charAt(baseUrl.length() - 1) != '/' ? "/" : "");
 
+        //Load existing metadata and create metadata groups
+        Collection<MeIdentification<DSDDataset>> destination = d3SClient.retrieveMetadata(baseUrl);
+        MetadataGroups updateGroups = groupMetadata(source, destination);
+
+        //Update metadata
+        if (updateGroups.update.size()>0)
+            d3SClient.updateMetadata(baseUrl, updateGroups.update);
+        if (updateGroups.insert.size()>0)
+            d3SClient.insertMetadata(baseUrl, updateGroups.insert);
+        if (updateGroups.delete.size()>0)
+            d3SClient.deleteMetadata(baseUrl, updateGroups.delete);
+    }
+
+    private MetadataGroups groupMetadata(Collection<MeIdentification<DSDDataset>> source, Collection<MeIdentification<DSDDataset>> destination) {
+        MetadataGroups groups = new MetadataGroups();
+
+        groups.insert.addAll(source);
+        groups.insert.removeAll(destination);
+
+        groups.update.addAll(source);
+        groups.update.retainAll(destination);
+
+        groups.delete.addAll(destination);
+        groups.delete.removeAll(source);
+
+        return groups;
+    }
+
+}
+
+
+
+
+/*
     public static void main(String[] args) {
         try {
-            FileInputStream input = new FileInputStream("test/Metadatafile_22Apr2016.xlsx");
+            FileInputStream excelFileInput = new FileInputStream("test/Metadatafile_22Apr2016.xlsx");
             MetadataBulk logic = new MetadataBulk();
             logic.csvConverter = new XLStoCSV();
             logic.metadataFactory = new MetadataCreator();
             logic.metadataFactory.fileUtils = new FileUtils();
+            logic.d3SClient = new D3SClient();
+            logic.config = new UploaderConfig();
+            logic.config.add("d3s.url", "http://localhost:7777/v2/");
 
-            logic.createMetadata(input, "dsdDefault");
+            Collection<MeIdentification<DSDDataset>> metadataList = logic.createMetadata(excelFileInput, "dsdDefault");
+            logic.sendMetadata(metadataList);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
-
-}
+*/

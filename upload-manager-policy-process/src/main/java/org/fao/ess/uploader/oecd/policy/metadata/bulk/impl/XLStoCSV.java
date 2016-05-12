@@ -1,4 +1,4 @@
-package org.fao.ess.uploader.oecd.policy.metadata.bulk;
+package org.fao.ess.uploader.oecd.policy.metadata.bulk.impl;
 
 import java.io.*;
 import java.util.Collection;
