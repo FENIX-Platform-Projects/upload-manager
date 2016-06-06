@@ -1,4 +1,4 @@
-package org.fao.ess.uploader.oecd.policy.metadata.bulk.impl;
+package org.fao.ess.uploader.oecd.policy.bulk.metadata.impl;
 
 import org.fao.fenix.commons.msd.dto.full.*;
 import org.fao.fenix.commons.msd.dto.type.DocumentType;

@@ -1,4 +1,4 @@
-package org.fao.ess.uploader.oecd.policy.metadata.bulk.impl;
+package org.fao.ess.uploader.oecd.policy.bulk.utils;
 
 import org.fao.fenix.commons.find.dto.filter.FieldFilter;
 import org.fao.fenix.commons.find.dto.filter.IdFilter;

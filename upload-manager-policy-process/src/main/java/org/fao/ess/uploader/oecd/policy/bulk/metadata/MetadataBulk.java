@@ -1,4 +1,4 @@
-package org.fao.ess.uploader.oecd.policy.metadata.bulk;
+package org.fao.ess.uploader.oecd.policy.bulk.metadata;
 
 import org.fao.ess.uploader.core.dto.ChunkMetadata;
 import org.fao.ess.uploader.core.dto.FileMetadata;
@@ -7,25 +7,25 @@ import org.fao.ess.uploader.core.metadata.MetadataStorage;
 import org.fao.ess.uploader.core.process.PostUpload;
 import org.fao.ess.uploader.core.process.ProcessInfo;
 import org.fao.ess.uploader.core.storage.BinaryStorage;
-import org.fao.ess.uploader.oecd.policy.metadata.bulk.dto.MetadataGroups;
-import org.fao.ess.uploader.oecd.policy.metadata.bulk.impl.D3SClient;
-import org.fao.ess.uploader.oecd.policy.metadata.bulk.impl.MetadataCreator;
-import org.fao.ess.uploader.oecd.policy.metadata.bulk.impl.XLStoCSV;
+import org.fao.ess.uploader.oecd.policy.bulk.metadata.impl.XLStoCSV;
+import org.fao.ess.uploader.oecd.policy.bulk.metadata.dto.MetadataGroups;
+import org.fao.ess.uploader.oecd.policy.bulk.utils.D3SClient;
+import org.fao.ess.uploader.oecd.policy.bulk.metadata.impl.MetadataCreator;
 import org.fao.fenix.commons.msd.dto.full.DSDDataset;
 import org.fao.fenix.commons.msd.dto.full.MeIdentification;
 import org.fao.fenix.commons.utils.FileUtils;
 
 import javax.inject.Inject;
-import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.*;
 
-@ProcessInfo(context = "policy.metadata.bulk", name = "PolicyData", priority = 1)
+@ProcessInfo(context = "policy.metadata.bulk", name = "PolicyMetadataBulk", priority = 1)
 public class MetadataBulk implements PostUpload {
     @Inject private XLStoCSV csvConverter;
     @Inject private MetadataCreator metadataFactory;
     @Inject private UploaderConfig config;
     @Inject private D3SClient d3SClient;
+    @Inject private FileUtils fileUtils;
 
 
 
@@ -41,7 +41,7 @@ public class MetadataBulk implements PostUpload {
         sendMetadata(metadataList);
     }
 
-    private Collection<MeIdentification<DSDDataset>> createMetadata (InputStream excelFileInput, String dsdTemplate) throws Exception {
+    public Collection<MeIdentification<DSDDataset>> createMetadata (InputStream excelFileInput, String dsdTemplate) throws Exception {
         Iterator<String[]> csvIterator = csvConverter.toCSV(excelFileInput).iterator();
         metadataFactory.setHeader(csvIterator.next());
         DSDDataset defaultDSD = metadataFactory.create(dsdTemplate);
@@ -67,7 +67,7 @@ public class MetadataBulk implements PostUpload {
         return metadataList;
     }
 
-    private void sendMetadata (Collection<MeIdentification<DSDDataset>> source) throws Exception {
+    public void sendMetadata (Collection<MeIdentification<DSDDataset>> source) throws Exception {
         //Init
         String baseUrl = config.get("d3s.url");
         baseUrl = baseUrl + (baseUrl.charAt(baseUrl.length() - 1) != '/' ? "/" : "");
