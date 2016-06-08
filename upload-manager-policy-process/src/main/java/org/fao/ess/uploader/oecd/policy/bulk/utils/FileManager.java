@@ -7,9 +7,8 @@ import org.fao.fenix.commons.utils.FileUtils;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import java.io.*;
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.Properties;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @ApplicationScoped
 public class FileManager {
@@ -20,99 +19,53 @@ public class FileManager {
 
 
     //SFTP operations management
-    private void initSFTP() throws Exception {
-        if (properties==null)
-            properties = new HostProperties(
-                    null,
-                    config.get("remote.host"),
-                    new Integer(config.get("remote.port")),
-                    config.get("remote.usr"),
-                    config.get("remote.psw"),
-                    config.get("remote.path")
-            );
-    }
-
     public void uploadAttachments(String source, String[] policyIDs) throws Exception {
         ChannelSftp channel = getConnection();
         File attachmentsFolder = getAttachmentsFolder(source);
-        if (attachmentsFolder.exists() && attachmentsFolder.isDirectory())
+        if (attachmentsFolder.exists() && attachmentsFolder.isDirectory()) {
+            //Create path to needed folders
+            String backupPath = properties.getPath() + "/backup/" + source + '/' + getTimeSuffix();
+            String destinationPath = properties.getPath() + '/' + source;
+            String lastBackupPath = getLastBackupPath(properties.getPath() + "/backup/" + source, channel);
             try {
-                String destinationPath = properties.getPath() + '/' + source;
-                mkDir(destinationPath, channel);
-                channel.cd(destinationPath);
+                //Create backup folder
+                mkDir(backupPath, channel);
+                try {
+                    //Copy new files into the new backup folder
+                    for (File sourceFolder : attachmentsFolder.listFiles())
+                        if (sourceFolder.isDirectory()) {
+                            String policyID = null;
+                            try {
+                                policyID = policyIDs[Integer.parseInt(sourceFolder.getName()) - 1];
+                            } catch (Exception ex) {
+                            }
+                            if (policyID != null) {
+                                String fileDestinationPath = backupPath + '/' + policyID;
+                                mkDir(fileDestinationPath, channel);
+                                channel.cd(fileDestinationPath);
 
-                for (File sourceFolder : attachmentsFolder.listFiles())
-                    if (sourceFolder.isDirectory()) {
-                        String policyID = null;
-                        try { policyID = policyIDs[Integer.parseInt(sourceFolder.getName()) - 1]; } catch (Exception ex) { }
-                        if (policyID!=null) {
-                            String fileDestinationPath = destinationPath+'/'+policyID;
-                            mkDir(fileDestinationPath, channel);
-                            channel.cd(fileDestinationPath);
-
-                            for (File sourceFile : sourceFolder.listFiles())
-                                if (sourceFile.isFile())
-                                    uploadAttachment(channel, sourceFile);
+                                for (File sourceFile : sourceFolder.listFiles())
+                                    if (sourceFile.isFile())
+                                        uploadAttachment(channel, sourceFile);
+                            }
                         }
+                    //Refresh link to the new backup folder
+                    channel.rm(destinationPath);
+                    try {
+                        channel.symlink(destinationPath, backupPath);
+                    } catch (Exception ex) {
+                        channel.symlink(destinationPath, lastBackupPath); //try to restore the link to the previous backup folder
+                        throw ex;
                     }
+                } catch (Exception ex) {
+                    rmDir(backupPath, channel); //try to roll back backup folder creation
+                    throw ex;
+                }
             } finally {
-                if (channel!=null)
+                if (channel != null && !channel.isClosed())
                     close(channel);
             }
-    }
-
-    public void backupAttachments(String source) throws Exception {
- /*       ChannelSftp channel = getConnection();
-        try {
-            String destinationPath = properties.getPath() + '/' + source;
-            mkDir(destinationPath, channel);
-            String backupPath = properties.getPath() + "/backup/" + source;
-            mkDir(destinationPath, channel);
-            channel.cd(backupPath);
-/
-            for (File sourceFolder : attachmentsFolder.listFiles())
-                if (sourceFolder.isDirectory()) {
-                    String policyID = null;
-                    try { policyID = policyIDs[Integer.parseInt(sourceFolder.getName()) - 1]; } catch (Exception ex) { }
-                    if (policyID!=null) {
-                        String fileDestinationPath = destinationPath+'/'+policyID;
-                        mkDir(fileDestinationPath, channel);
-                        channel.cd(fileDestinationPath);
-
-                        for (File sourceFile : sourceFolder.listFiles())
-                            if (sourceFile.isFile())
-                                uploadAttachment(channel, sourceFile);
-                    }
-                }
-        } finally {
-            if (channel!=null)
-                close(channel);
         }
-        */
-    }
-
-    public void restoreAttachments(String source) throws Exception {
-
-    }
-
-
-    private ChannelSftp getConnection() throws Exception {
-        Properties config = new Properties();
-        config.put("StrictHostKeyChecking", "no");
-
-        JSch jsch = new JSch();
-        Session session = jsch.getSession(properties.getUser(), properties.getHost(), properties.getPort());
-        session.setPassword(properties.getPassword());
-        session.setConfig(config);
-        session.connect();
-
-        ChannelSftp channel = (ChannelSftp)session.openChannel("sftp");
-        channel.connect();
-        return channel;
-    }
-    private void close(ChannelSftp channel) {
-        try { channel.disconnect(); } catch (Exception ex) {}
-        try { channel.getSession().disconnect(); } catch (Exception ex) {}
     }
 
     private void uploadAttachment(ChannelSftp channel, File sourceFile) throws Exception {
@@ -144,15 +97,6 @@ public class FileManager {
         channel.put(fileStream, fileName, monitor, ChannelSftp.OVERWRITE);
         channel.disconnect();
     }
-
-    private void mkDir(String path, ChannelSftp channel) throws SftpException {
-        SftpATTRS attributes=null;
-        try { attributes = channel.stat(path); } catch (Exception e) { }
-        if (attributes == null)
-            channel.mkdir(path);
-    }
-
-
 
 
 
@@ -187,7 +131,7 @@ public class FileManager {
 
 
 
-    //Utils
+    //File utils
 
     private File getFolder(String source) {
         if (tmpFolder==null) {
@@ -209,4 +153,61 @@ public class FileManager {
         return file.exists() && file.isFile() ? new FileInputStream(file) : null;
     }
 
+
+    //SFTP utils
+
+    private void initSFTP() throws Exception {
+        if (properties==null)
+            properties = new HostProperties(
+                    null,
+                    config.get("remote.host"),
+                    new Integer(config.get("remote.port")),
+                    config.get("remote.usr"),
+                    config.get("remote.psw"),
+                    config.get("remote.path")
+            );
+    }
+
+    private ChannelSftp getConnection() throws Exception {
+        initSFTP();
+
+        Session session = new JSch().getSession(properties.getUser(), properties.getHost(), properties.getPort());
+        session.setPassword(properties.getPassword());
+        Properties config = new Properties();
+        config.put("StrictHostKeyChecking", "no");
+        session.setConfig(config);
+        session.connect();
+
+        ChannelSftp channel = (ChannelSftp)session.openChannel("sftp");
+        channel.connect();
+        return channel;
+    }
+    private void close(ChannelSftp channel) {
+        try { channel.disconnect(); } catch (Exception ex) {}
+        try { channel.getSession().disconnect(); } catch (Exception ex) {}
+    }
+
+    private void mkDir(String path, ChannelSftp channel) throws SftpException {
+        SftpATTRS attributes=null;
+        try { attributes = channel.stat(path); } catch (Exception e) { }
+        if (attributes == null)
+            channel.mkdir(path);
+    }
+    private void rmDir(String path, ChannelSftp channel) throws SftpException {
+        SftpATTRS attributes=null;
+        try { attributes = channel.stat(path); } catch (Exception e) { }
+        if (attributes != null)
+            channel.rmdir(path);
+    }
+
+    SimpleDateFormat timeSuffixFormat = new SimpleDateFormat("yyyyMMddhhmmss");
+    private String getTimeSuffix(Date ... date) {
+        return timeSuffixFormat.format(date!=null && date.length>0 ? date[0] : new Date());
+    }
+
+    private String getLastBackupPath(String path, ChannelSftp channel) throws SftpException {
+        Vector<String> content = channel.ls(path);
+        Collections.sort(content);
+        return content.lastElement();
+    }
 }
