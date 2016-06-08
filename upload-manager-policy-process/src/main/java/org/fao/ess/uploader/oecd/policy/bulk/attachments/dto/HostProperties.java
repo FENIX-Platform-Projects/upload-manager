@@ -1,4 +1,4 @@
-package org.fao.ess.uploader.oecd.policy.bulk.utils;
+package org.fao.ess.uploader.oecd.policy.bulk.attachments.dto;
 
 public class HostProperties {
     private String protocol;

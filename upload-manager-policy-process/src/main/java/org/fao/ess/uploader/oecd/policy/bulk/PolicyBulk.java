@@ -7,7 +7,7 @@ import org.fao.ess.uploader.core.process.PostUpload;
 import org.fao.ess.uploader.core.process.ProcessInfo;
 import org.fao.ess.uploader.core.storage.BinaryStorage;
 import org.fao.ess.uploader.oecd.policy.bulk.metadata.MetadataBulk;
-import org.fao.ess.uploader.oecd.policy.bulk.utils.FileManager;
+import org.fao.ess.uploader.oecd.policy.bulk.attachments.impl.FileManager;
 import org.fao.fenix.commons.msd.dto.full.DSDDataset;
 import org.fao.fenix.commons.msd.dto.full.MeIdentification;
 

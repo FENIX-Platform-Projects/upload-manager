@@ -1,7 +1,8 @@
-package org.fao.ess.uploader.oecd.policy.bulk.utils;
+package org.fao.ess.uploader.oecd.policy.bulk.attachments.impl;
 
 import com.jcraft.jsch.*;
 import org.fao.ess.uploader.core.init.UploaderConfig;
+import org.fao.ess.uploader.oecd.policy.bulk.attachments.dto.HostProperties;
 import org.fao.fenix.commons.utils.FileUtils;
 
 import javax.enterprise.context.ApplicationScoped;
