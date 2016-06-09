@@ -1,0 +1,171 @@
+--STRUCTURE--
+
+create schema backup;
+create sequence flow_policy_id;
+create sequence flow_cpl_id;
+
+
+--INIT--
+
+creazione tabella backup:
+create table backup.wto_20160608124532 (
+    Commodity_ID integer not null references commlistwithid (commodity_id),
+    Country_Code integer not null check (Country_Code >= 0),
+    Country_Name varchar not null,
+    Subnational_Code integer not null,
+    Subnational_Name varchar not null,
+    CommodityDomain_Code integer not null check (Country_Code >= 0),
+    CommodityDomain_Name varchar not null,
+    PolicyDomain_Code integer not null check (Country_Code >= 0),
+    PolicyDomain_Name varchar not null,
+    PolicyType_Code integer not null check (Country_Code >= 0),
+    PolicyType_Name varchar not null,
+    PolicyMeasure_Code integer not null check (Country_Code >= 0),
+    PolicyMeasure_Name varchar not null,
+    CommodityClass_Code integer not null check (Country_Code >= 0),
+    CommodityClass_Name varchar not null,
+    Condition_Code integer,
+    Condition varchar,
+    IndividualPolicy_Code integer,
+    IndividualPolicy_Name varchar,
+    Start_Date date,
+    End_Date date,
+    Element_Code integer,
+    Policy_Element varchar,
+    HS_Code varchar,
+    HS_Version varchar,
+    HS_Suffix varchar,
+    Description varchar,
+    Short_Description varchar,
+    Shared_Group_Code varchar,
+    Second_Generation_Specific varchar,
+    Imposed_End_Date varchar,
+    Units varchar,
+    Value varchar,
+    Value_Text varchar,
+    Value_Type varchar,
+    Exemptions varchar,
+    Notes varchar,
+    Measure_Description varchar,
+    Link varchar,
+    Source varchar,
+    Date_Of_Publication date,
+    Title_Of_Notice varchar,
+    Legal_Basis_Name varchar,
+    Benchmark_Tax varchar,
+    Benchmark_Product varchar,
+    Tax_Rate_Biofuel varchar,
+    Tax_Rate_Benchmark varchar,
+    Start_Date_Tax varchar,
+    Benchmark_Link varchar,
+    Benchmark_Link_pdf varchar,
+    Product_Original_HS varchar,
+    Product_Original_Name varchar,
+    Type_Of_Change_Code double precision,
+    Type_Of_Change_Name varchar,
+    Original_Dataset varchar,
+    Condition_Exists varchar not null,
+    MinAVTariffValue varchar,
+    MaxAVTariffValue varchar,
+    CountAVTariff varchar,
+    CountNAVTariff varchar
+)
+
+--aggiornamento codici negativi per subnational già esistenti per label e inserimento di quelli nuovi (non si fa riferimento a cpl)
+    - aggiornamento corrispondenti id di metadato provenienti dall'excel
+P.S.: tutto da Java
+
+
+
+--CANCELLAZIONE--
+
+
+Cancellare le cpl
+delete from mastertable/mastertableb where cpl_id in (
+	select cpl_id from (select distinct cpl_id, source from policysource) ps group by cpl_id having count(*) = 1 and first (source) = 'WTO'
+)
+
+Cancellare le policy
+delete from pdfuploadinfo/metadata_id_linked_to_cpl_id/policytable where policy_id in (
+	select policy_id from policysource where source = 'WTO'
+)
+
+Cancellare la source da
+delete from policysource where source = 'WTO'
+
+
+
+
+--ELABORAZIONE--
+
+- import del CSV nella tabella di backup
+
+--calcolo metadata_id e aggiungo in numero di cartella alle righe del csv
+create sequence flow_wto_seq;
+create table backup.step_wto_20160608124532_1 as
+    select
+        nextval ('flow_wto_seq') as index,
+        'POLICY_'||Country_Code||'_'||Subnational_Code||'_'||CommodityDomain_Code||'_'||CommodityClass_Code||'_'||PolicyDomain_Code||'_'||PolicyType_Code||'_'||PolicyMeasure_Code||'_'||Condition_Exists as metadata_id,
+        Commodity_ID,Country_Code,Country_Name,Subnational_Code,Subnational_Name,CommodityDomain_Code,CommodityDomain_Name,PolicyDomain_Code,PolicyDomain_Name,PolicyType_Code,PolicyType_Name,PolicyMeasure_Code,PolicyMeasure_Name,CommodityClass_Code,CommodityClass_Name,Condition_Code,Condition,IndividualPolicy_Code,IndividualPolicy_Name,Start_Date,End_Date,Element_Code,Policy_Element,HS_Code,HS_Version,HS_Suffix,Description,Short_Description,Shared_Group_Code,Second_Generation_Specific,Imposed_End_Date,Units,Value,Value_Text,Value_Type,Exemptions,Notes,Measure_Description,Link,Source,Date_Of_Publication,Title_Of_Notice,Legal_Basis_Name,Benchmark_Tax,Benchmark_Product,Tax_Rate_Biofuel,Tax_Rate_Benchmark,Start_Date_Tax,Benchmark_Link,Benchmark_Link_pdf,Product_Original_HS,Product_Original_Name,Type_Of_Change_Code,Type_Of_Change_Name,Original_Dataset,Condition_Exists,MinAVTariffValue,MaxAVTariffValue,CountAVTariff,CountNAVTariff
+    from backup.wto_20160608124532;
+
+drop sequence flow_wto_seq ;
+
+--recupero i cpl_id esistenti
+create table backup.step_wto_20160608124532_2 as
+    select s.index, s.metadata_id, o.cpl_id, cast (null as integer) as policy_id, cast (null as varchar) as link_pdf, s.Commodity_ID, s.Country_Code, s.Country_Name, s.Subnational_Code, s.Subnational_Name, s.CommodityDomain_Code, s.CommodityDomain_Name, s.PolicyDomain_Code, s.PolicyDomain_Name, s.PolicyType_Code, s.PolicyType_Name, s.PolicyMeasure_Code, s.PolicyMeasure_Name, s.CommodityClass_Code, s.CommodityClass_Name, s.Condition_Code, s.Condition, s.IndividualPolicy_Code, s.IndividualPolicy_Name, s.Start_Date, s.End_Date, s.Element_Code, s.Policy_Element, s.HS_Code, s.HS_Version, s.HS_Suffix, s.Description, s.Short_Description, s.Shared_Group_Code, s.Second_Generation_Specific, s.Imposed_End_Date, s.Units, s.Value, s.Value_Text, s.Value_Type, s.Exemptions, s.Notes, s.Measure_Description, s.Link, s.Source, s.Date_Of_Publication, s.Title_Of_Notice, s.Legal_Basis_Name, s.Benchmark_Tax, s.Benchmark_Product, s.Tax_Rate_Biofuel, s.Tax_Rate_Benchmark, s.Start_Date_Tax, s.Benchmark_Link, s.Benchmark_Link_pdf, s.Product_Original_HS, s.Product_Original_Name, s.Type_Of_Change_Code, s.Type_Of_Change_Name, s.Original_Dataset, s.Condition_Exists, s.MinAVTariffValue, s.MaxAVTariffValue, s.CountAVTariff, s.CountNAVTariff
+     from   backup.step_wto_20160608124532_1 s
+            left outer join
+            (select a.cpl_id, Commodity_ID, Country_Code, Country_Name, b.Subnational_Code, Subnational_Name, CommodityDomain_Code, CommodityDomain_Name, PolicyDomain_Code, PolicyDomain_Name, PolicyType_Code, PolicyType_Name, PolicyMeasure_Code, PolicyMeasure_Name, CommodityClass_Code, CommodityClass_Name, Condition_Code, Condition, IndividualPolicy_Code, IndividualPolicy_Name from mastertable a join mastertableb b on (a.cpl_id = b.cpl_id)) o
+            on (s.Subnational_Code=o.Subnational_Code AND s.Commodity_ID=o.Commodity_ID AND s.Country_Code=o.Country_Code AND s.Country_Name=o.Country_Name AND s.CommodityDomain_Code=o.CommodityDomain_Code AND s.CommodityDomain_Name=o.CommodityDomain_Name AND s.PolicyDomain_Code=o.PolicyDomain_Code AND s.PolicyDomain_Name=o.PolicyDomain_Name AND s.PolicyType_Code=o.PolicyType_Code AND s.PolicyType_Name=o.PolicyType_Name AND s.PolicyMeasure_Code=o.PolicyMeasure_Code AND s.PolicyMeasure_Name=o.PolicyMeasure_Name AND s.CommodityClass_Code=o.CommodityClass_Code AND s.CommodityClass_Name=o.CommodityClass_Name AND s.Condition_Code=o.Condition_Code AND s.Condition=o.Condition AND s.IndividualPolicy_Code=o.IndividualPolicy_Code AND s.IndividualPolicy_Name=o.IndividualPolicy_Name)
+;
+drop table backup.step_wto_20160608124532_1;
+
+--valorizzo nuovi policy_id
+select setval ('flow_policy_id', max(policy_id)) from policytable;
+update backup.step_wto_20160608124532_2 set policy_id = nextval ('flow_policy_id');
+
+
+--aggiorno campo link_pdf con insert singole da java esaminando gli allegati (il separatore da usare è '; ')
+--completo aggiornamento della tabella pdfuploadinfo con inserimenti singoli da java
+
+
+--aggiorno la tabella policysource con i cpl_id già valorizzati
+insert into policysource select cpl_id, policy_id, 'WTO' from backup.step_wto_20160608124532_2 where cpl_id is not null;
+
+--aggiungo le nuove policy con cpl_id valorizzato alla tebella policytable
+insert into policytable select metadata_id, policy_id, cpl_id, commodity_id, policy_element, start_date, end_date, units, value, value_text, value_type, exemptions, minavtariffvalue, notes, link, source, title_of_notice, legal_basis_name, date_of_publication, imposed_end_date, second_generation_specific, benchmark_tax, benchmark_product, tax_rate_biofuel, tax_rate_benchmark, start_date_tax, benchmark_link, original_dataset, type_of_change_code, type_of_change_name, measure_description, product_original_hs, product_original_name, link_pdf, benchmark_link_pdf, element_code, maxavtariffvalue, countavtariff, countnavtariff from backup.step_wto_20160608124532_2 where cpl_id is not null;
+
+
+--cancello cpl esistenti e valorizzo nuovi cpl_id
+delete from backup.step_wto_20160608124532_2 where cpl_id is not null;
+select setval ('flow_cpl_id', max(cpl_id)) from mastertable;
+update backup.step_wto_20160608124532_2 set cpl_id = nextval ('flow_cpl_id');
+
+--completo aggiornamento della tabella policysource
+insert into policysource select distinct cpl_id, policy_id, 'WTO' from backup.step_wto_20160608124532_2;
+
+--completo aggiornamento della tebella policytable
+insert into policytable select metadata_id, policy_id, cpl_id, commodity_id, policy_element, start_date, end_date, units, value, value_text, value_type, exemptions, minavtariffvalue, notes, link, source, title_of_notice, legal_basis_name, date_of_publication, imposed_end_date, second_generation_specific, benchmark_tax, benchmark_product, tax_rate_biofuel, tax_rate_benchmark, start_date_tax, benchmark_link, original_dataset, type_of_change_code, type_of_change_name, measure_description, product_original_hs, product_original_name, link_pdf, benchmark_link_pdf, element_code, maxavtariffvalue, countavtariff, countnavtariff from backup.step_wto_20160608124532_2;
+
+--completo aggiornamento della tebella master
+insert into mastertable select cpl_id, commodity_id, country_code, country_name, subnational_code, subnational_name, commoditydomain_code, commoditydomain_name, commodityclass_code, commodityclass_name, policydomain_code, policydomain_name, policytype_code, policytype_name, policymeasure_code, policymeasure_name, condition_code, condition, individualpolicy_code, individualpolicy_name from backup.step_wto_20160608124532_2;
+
+--completo aggiornamento della tabella master b
+insert into mastertableb select cpl_id, subnational_code from backup.step_wto_20160608124532_2;
+
+
+--elimino tabella temporanea
+drop table backup.step_wto_20160608124532_2;
+
+--reset della tabella metadata_id_linked_to_cpl_id
+truncate table metadata_id_linked_to_cpl_id;
+insert into metadata_id_linked_to_cpl_id select distinct metadata_id, cpl_id, policy_id from policytable;
+
+--aggiornamento viste
+CREATE OR REPLACE VIEW policyTableViewPd_and_startDate AS select metadata_id, policy_id, policytable.cpl_id, country_code, country_name, commodityclass_code, commodityclass_name, policytype_code, policytype_name, policymeasure_code, policymeasure_name, commodity_id, policy_element, CASE WHEN value_text='elim' THEN lead(start_date) OVER (ORDER BY policytable.cpl_id ASC, date_of_publication DESC, start_date ASC) ELSE start_date END AS start_date, CASE WHEN value_text='elim' THEN start_date ELSE end_date END AS end_date, units, value, value_text, value_type, exemptions, minavtariffvalue, notes, link, source, title_of_notice, legal_basis_name, date_of_publication, imposed_end_date, second_generation_specific, benchmark_tax, benchmark_product, tax_rate_biofuel, tax_rate_benchmark, start_date_tax, benchmark_link, original_dataset, type_of_change_code, type_of_change_name, measure_description, product_original_hs, product_original_name, link_pdf, benchmark_link_pdf, element_code, maxavtariffvalue, countavtariff, countnavtariff from policytable JOIN (select cpl_id, country_code, country_name, commodityclass_code, commodityclass_name, policytype_code, policytype_name, policymeasure_code, policymeasure_name from mastertable)master ON master.cpl_id = policytable.cpl_id ORDER BY master.cpl_id ASC, date_of_publication DESC, start_date ASC;
+TRUNCATE TABLE appForPolicyTableViewTest;
+INSERT INTO appForPolicyTableViewTest SELECT metadata_id, policy_id, mastertable.cpl_id, country_code, country_name, commodityclass_code, commodityclass_name, policytype_code, policytype_name, policymeasure_code, policymeasure_name, mastertable.commodity_id, policy_element, start_date, end_date, units, value, value_text, value_type, exemptions, minavtariffvalue, notes, link, source, title_of_notice, legal_basis_name, date_of_publication, imposed_end_date, second_generation_specific, benchmark_tax, benchmark_product, tax_rate_biofuel, tax_rate_benchmark, start_date_tax, benchmark_link, original_dataset, type_of_change_code, type_of_change_name, measure_description, product_original_hs, product_original_name, link_pdf, benchmark_link_pdf, element_code, maxavtariffvalue, countavtariff, countnavtariff FROM mastertable, policytable where mastertable.cpl_id= policytable.cpl_id;
+CREATE OR REPLACE view policyTableViewTest AS (SELECT * FROM appForPolicyTableViewTest);
+
+

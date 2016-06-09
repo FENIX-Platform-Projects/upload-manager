@@ -16,6 +16,7 @@ import org.fao.fenix.commons.msd.dto.full.MeIdentification;
 import org.fao.fenix.commons.utils.FileUtils;
 
 import javax.inject.Inject;
+import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.*;
 
@@ -100,12 +101,8 @@ public class MetadataBulk implements PostUpload {
         return groups;
     }
 
-}
 
 
-
-
-/*
     public static void main(String[] args) {
         try {
             FileInputStream excelFileInput = new FileInputStream("test/Metadatafile_22Apr2016.xlsx");
@@ -123,4 +120,10 @@ public class MetadataBulk implements PostUpload {
             e.printStackTrace();
         }
     }
-*/
+
+
+}
+
+
+
+
