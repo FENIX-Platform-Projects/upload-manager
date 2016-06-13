@@ -3,8 +3,9 @@ package org.fao.ess.uploader.oecd.policy.bulk.utils;
 import org.fao.fenix.commons.find.dto.filter.FieldFilter;
 import org.fao.fenix.commons.find.dto.filter.IdFilter;
 import org.fao.fenix.commons.find.dto.filter.StandardFilter;
-import org.fao.fenix.commons.msd.dto.full.DSDDataset;
-import org.fao.fenix.commons.msd.dto.full.MeIdentification;
+import org.fao.fenix.commons.msd.dto.data.ReplicationFilter;
+import org.fao.fenix.commons.msd.dto.data.Resource;
+import org.fao.fenix.commons.msd.dto.full.*;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.ws.rs.client.Client;
@@ -75,11 +76,53 @@ public class D3SClient {
             throw new Exception("Error from D3S requiring existing datasets metadata");
     }
 
+    public void updateCodelists (String baseUrl, Collection<Resource<DSDCodelist, Code>> resourceList) throws Exception {
+        if (resourceList==null || resourceList.size()==0)
+            return;
+        //Send request
+        for (Resource<DSDCodelist, Code> resource : resourceList) {
+            Response response = sendRequest(baseUrl + "msd/resources", resource, "put", null);
+            if (response.getStatus() != 200 && response.getStatus() != 201)
+                throw new Exception("Error from D3S updating codelist "+resource.getMetadata().getUid());
+        }
+    }
+    public void updateDatasetMetadataUpdateDate (String baseUrl, String contextSystem) throws Exception {
+        if (contextSystem==null)
+            return;
+        //Create filter
+        StandardFilter filter = new StandardFilter();
+
+        FieldFilter fieldFilter = new FieldFilter();
+        fieldFilter.enumeration = Arrays.asList(contextSystem);
+        filter.put("dsd.contextSystem", fieldFilter);
+
+        fieldFilter = new FieldFilter();
+        fieldFilter.enumeration = Arrays.asList("dataset");
+        filter.put("meContent.resourceRepresentationType", fieldFilter);
+
+        MeIdentification<DSDDataset> metadata = new MeIdentification<>();
+        MeMaintenance meMaintenance = new MeMaintenance();
+        metadata.setMeMaintenance(meMaintenance);
+        SeUpdate seUpdate = new SeUpdate();
+        seUpdate.setUpdateDate(new Date());
+        meMaintenance.setSeUpdate(seUpdate);
+
+        ReplicationFilter<DSDDataset> updateFilter = new ReplicationFilter<>();
+        updateFilter.setFilter(filter);
+        updateFilter.setMetadata(metadata);
+
+        //Send request
+        Response response = sendRequest(baseUrl+"msd/resources/replication", updateFilter, "patch", null);
+        if (response.getStatus() != 200 && response.getStatus() != 201)
+            throw new Exception("Error from D3S updating datasets metadata last update date");
+    }
+
     private Response sendRequest(String url, Object entity, String method, Map<String,String> parameters) throws Exception {
         Client client = ClientBuilder.newClient();
         WebTarget target = client.target(url);
         return target.request(MediaType.APPLICATION_JSON_TYPE).build(method.trim().toUpperCase(), javax.ws.rs.client.Entity.json(entity)).invoke();
     }
+
 
 }
 

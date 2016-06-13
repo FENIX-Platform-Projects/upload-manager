@@ -71,10 +71,22 @@ create table backup.wto_20160608124532 (
     CountNAVTariff varchar
 )
 
+- import del CSV nella tabella di backup
+
 --aggiornamento codici negativi per subnational già esistenti per label e inserimento di quelli nuovi (non si fa riferimento a cpl)
     - aggiornamento corrispondenti id di metadato provenienti dall'excel
 P.S.: tutto da Java
 
+--calcolo metadata_id e aggiungo in numero di cartella alle righe del csv
+create sequence flow_wto_seq;
+create table backup.step_wto_20160608124532_1 as
+    select
+        nextval ('flow_wto_seq') as index,
+        'POLICY_'||Country_Code||'_'||Subnational_Code||'_'||CommodityDomain_Code||'_'||CommodityClass_Code||'_'||PolicyDomain_Code||'_'||PolicyType_Code||'_'||PolicyMeasure_Code||'_'||Condition_Exists as metadata_id,
+        Commodity_ID,Country_Code,Country_Name,Subnational_Code,Subnational_Name,CommodityDomain_Code,CommodityDomain_Name,PolicyDomain_Code,PolicyDomain_Name,PolicyType_Code,PolicyType_Name,PolicyMeasure_Code,PolicyMeasure_Name,CommodityClass_Code,CommodityClass_Name,Condition_Code,Condition,IndividualPolicy_Code,IndividualPolicy_Name,Start_Date,End_Date,Element_Code,Policy_Element,HS_Code,HS_Version,HS_Suffix,Description,Short_Description,Shared_Group_Code,Second_Generation_Specific,Imposed_End_Date,Units,Value,Value_Text,Value_Type,Exemptions,Notes,Measure_Description,Link,Source,Date_Of_Publication,Title_Of_Notice,Legal_Basis_Name,Benchmark_Tax,Benchmark_Product,Tax_Rate_Biofuel,Tax_Rate_Benchmark,Start_Date_Tax,Benchmark_Link,Benchmark_Link_pdf,Product_Original_HS,Product_Original_Name,Type_Of_Change_Code,Type_Of_Change_Name,Original_Dataset,Condition_Exists,MinAVTariffValue,MaxAVTariffValue,CountAVTariff,CountNAVTariff
+    from backup.wto_20160608124532;
+
+drop sequence flow_wto_seq ;
 
 
 --CANCELLAZIONE--
@@ -94,22 +106,8 @@ Cancellare la source da
 delete from policysource where source = 'WTO'
 
 
-
-
 --ELABORAZIONE--
 
-- import del CSV nella tabella di backup
-
---calcolo metadata_id e aggiungo in numero di cartella alle righe del csv
-create sequence flow_wto_seq;
-create table backup.step_wto_20160608124532_1 as
-    select
-        nextval ('flow_wto_seq') as index,
-        'POLICY_'||Country_Code||'_'||Subnational_Code||'_'||CommodityDomain_Code||'_'||CommodityClass_Code||'_'||PolicyDomain_Code||'_'||PolicyType_Code||'_'||PolicyMeasure_Code||'_'||Condition_Exists as metadata_id,
-        Commodity_ID,Country_Code,Country_Name,Subnational_Code,Subnational_Name,CommodityDomain_Code,CommodityDomain_Name,PolicyDomain_Code,PolicyDomain_Name,PolicyType_Code,PolicyType_Name,PolicyMeasure_Code,PolicyMeasure_Name,CommodityClass_Code,CommodityClass_Name,Condition_Code,Condition,IndividualPolicy_Code,IndividualPolicy_Name,Start_Date,End_Date,Element_Code,Policy_Element,HS_Code,HS_Version,HS_Suffix,Description,Short_Description,Shared_Group_Code,Second_Generation_Specific,Imposed_End_Date,Units,Value,Value_Text,Value_Type,Exemptions,Notes,Measure_Description,Link,Source,Date_Of_Publication,Title_Of_Notice,Legal_Basis_Name,Benchmark_Tax,Benchmark_Product,Tax_Rate_Biofuel,Tax_Rate_Benchmark,Start_Date_Tax,Benchmark_Link,Benchmark_Link_pdf,Product_Original_HS,Product_Original_Name,Type_Of_Change_Code,Type_Of_Change_Name,Original_Dataset,Condition_Exists,MinAVTariffValue,MaxAVTariffValue,CountAVTariff,CountNAVTariff
-    from backup.wto_20160608124532;
-
-drop sequence flow_wto_seq ;
 
 --recupero i cpl_id esistenti
 create table backup.step_wto_20160608124532_2 as
@@ -137,13 +135,13 @@ insert into policysource select cpl_id, policy_id, 'WTO' from backup.step_wto_20
 insert into policytable select metadata_id, policy_id, cpl_id, commodity_id, policy_element, start_date, end_date, units, value, value_text, value_type, exemptions, minavtariffvalue, notes, link, source, title_of_notice, legal_basis_name, date_of_publication, imposed_end_date, second_generation_specific, benchmark_tax, benchmark_product, tax_rate_biofuel, tax_rate_benchmark, start_date_tax, benchmark_link, original_dataset, type_of_change_code, type_of_change_name, measure_description, product_original_hs, product_original_name, link_pdf, benchmark_link_pdf, element_code, maxavtariffvalue, countavtariff, countnavtariff from backup.step_wto_20160608124532_2 where cpl_id is not null;
 
 
---cancello cpl esistenti e valorizzo nuovi cpl_id
+--cancello cpl esistenti dallo step 2 e valorizzo nuovi cpl_id
 delete from backup.step_wto_20160608124532_2 where cpl_id is not null;
 select setval ('flow_cpl_id', max(cpl_id)) from mastertable;
 update backup.step_wto_20160608124532_2 set cpl_id = nextval ('flow_cpl_id');
 
 --completo aggiornamento della tabella policysource
-insert into policysource select distinct cpl_id, policy_id, 'WTO' from backup.step_wto_20160608124532_2;
+insert into policysource select cpl_id, policy_id, 'WTO' from backup.step_wto_20160608124532_2;
 
 --completo aggiornamento della tebella policytable
 insert into policytable select metadata_id, policy_id, cpl_id, commodity_id, policy_element, start_date, end_date, units, value, value_text, value_type, exemptions, minavtariffvalue, notes, link, source, title_of_notice, legal_basis_name, date_of_publication, imposed_end_date, second_generation_specific, benchmark_tax, benchmark_product, tax_rate_biofuel, tax_rate_benchmark, start_date_tax, benchmark_link, original_dataset, type_of_change_code, type_of_change_name, measure_description, product_original_hs, product_original_name, link_pdf, benchmark_link_pdf, element_code, maxavtariffvalue, countavtariff, countnavtariff from backup.step_wto_20160608124532_2;
@@ -152,7 +150,7 @@ insert into policytable select metadata_id, policy_id, cpl_id, commodity_id, pol
 insert into mastertable select cpl_id, commodity_id, country_code, country_name, subnational_code, subnational_name, commoditydomain_code, commoditydomain_name, commodityclass_code, commodityclass_name, policydomain_code, policydomain_name, policytype_code, policytype_name, policymeasure_code, policymeasure_name, condition_code, condition, individualpolicy_code, individualpolicy_name from backup.step_wto_20160608124532_2;
 
 --completo aggiornamento della tabella master b
-insert into mastertableb select cpl_id, subnational_code from backup.step_wto_20160608124532_2;
+insert into mastertableb select distinct cpl_id, subnational_code from backup.step_wto_20160608124532_2;
 
 
 --elimino tabella temporanea
@@ -169,3 +167,6 @@ INSERT INTO appForPolicyTableViewTest SELECT metadata_id, policy_id, mastertable
 CREATE OR REPLACE view policyTableViewTest AS (SELECT * FROM appForPolicyTableViewTest);
 
 
+-- aggiornamento codelist
+
+-- aggiornamento data ultimo aggiornamento metadati dei dataset di aggregazione e fetch degli stessi

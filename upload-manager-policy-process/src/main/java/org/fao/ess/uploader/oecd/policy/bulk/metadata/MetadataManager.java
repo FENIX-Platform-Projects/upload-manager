@@ -11,6 +11,9 @@ import org.fao.ess.uploader.oecd.policy.bulk.metadata.impl.XLStoCSV;
 import org.fao.ess.uploader.oecd.policy.bulk.metadata.dto.MetadataGroups;
 import org.fao.ess.uploader.oecd.policy.bulk.utils.D3SClient;
 import org.fao.ess.uploader.oecd.policy.bulk.metadata.impl.MetadataCreator;
+import org.fao.fenix.commons.msd.dto.data.Resource;
+import org.fao.fenix.commons.msd.dto.full.Code;
+import org.fao.fenix.commons.msd.dto.full.DSDCodelist;
 import org.fao.fenix.commons.msd.dto.full.DSDDataset;
 import org.fao.fenix.commons.msd.dto.full.MeIdentification;
 import org.fao.fenix.commons.utils.FileUtils;
@@ -21,7 +24,7 @@ import java.io.InputStream;
 import java.util.*;
 
 @ProcessInfo(context = "policy.metadata.bulk", name = "PolicyMetadataBulk", priority = 1)
-public class MetadataBulk implements PostUpload {
+public class MetadataManager implements PostUpload {
     @Inject private XLStoCSV csvConverter;
     @Inject private MetadataCreator metadataFactory;
     @Inject private UploaderConfig config;
@@ -86,6 +89,24 @@ public class MetadataBulk implements PostUpload {
             d3SClient.deleteMetadata(baseUrl, updateGroups.delete);
     }
 
+    public void sendLastUpdateDateUpdate (String context) throws Exception {
+        //Init
+        String baseUrl = config.get("d3s.url");
+        baseUrl = baseUrl + (baseUrl.charAt(baseUrl.length() - 1) != '/' ? "/" : "");
+
+        //Send update request
+        d3SClient.updateDatasetMetadataUpdateDate(baseUrl, context);
+    }
+
+    public void sendCodelists(Collection<Resource<DSDCodelist, Code>> resources) throws Exception {
+        //Init
+        String baseUrl = config.get("d3s.url");
+        baseUrl = baseUrl + (baseUrl.charAt(baseUrl.length() - 1) != '/' ? "/" : "");
+        //And send
+        if (resources!=null && resources.size()>0)
+            d3SClient.updateCodelists(baseUrl,resources);
+    }
+
     private MetadataGroups groupMetadata(Collection<MeIdentification<DSDDataset>> source, Collection<MeIdentification<DSDDataset>> destination) {
         MetadataGroups groups = new MetadataGroups();
 
@@ -106,7 +127,7 @@ public class MetadataBulk implements PostUpload {
     public static void main(String[] args) {
         try {
             FileInputStream excelFileInput = new FileInputStream("test/Metadatafile_22Apr2016.xlsx");
-            MetadataBulk logic = new MetadataBulk();
+            MetadataManager logic = new MetadataManager();
             logic.csvConverter = new XLStoCSV();
             logic.metadataFactory = new MetadataCreator();
             logic.metadataFactory.fileUtils = new FileUtils();

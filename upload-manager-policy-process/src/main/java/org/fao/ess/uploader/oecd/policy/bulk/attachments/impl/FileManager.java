@@ -2,12 +2,15 @@ package org.fao.ess.uploader.oecd.policy.bulk.attachments.impl;
 
 import com.jcraft.jsch.*;
 import org.fao.ess.uploader.core.init.UploaderConfig;
+import org.fao.ess.uploader.oecd.policy.bulk.attachments.dto.AttachmentProperties;
 import org.fao.ess.uploader.oecd.policy.bulk.attachments.dto.HostProperties;
 import org.fao.fenix.commons.utils.FileUtils;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import java.io.*;
+import java.security.DigestInputStream;
+import java.security.MessageDigest;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -20,7 +23,8 @@ public class FileManager {
 
 
     //SFTP operations management
-    public void uploadAttachments(String source, String[] policyIDs) throws Exception {
+    public Collection<AttachmentProperties> uploadAttachments(String source, Integer[] policyIDs) throws Exception {
+        Collection<AttachmentProperties> attachments = new LinkedList<>();
         ChannelSftp channel = getConnection();
         File attachmentsFolder = getAttachmentsFolder(source);
         if (attachmentsFolder.exists() && attachmentsFolder.isDirectory()) {
@@ -35,7 +39,7 @@ public class FileManager {
                     //Copy new files into the new backup folder
                     for (File sourceFolder : attachmentsFolder.listFiles())
                         if (sourceFolder.isDirectory()) {
-                            String policyID = null;
+                            Integer policyID = null;
                             try {
                                 policyID = policyIDs[Integer.parseInt(sourceFolder.getName()) - 1];
                             } catch (Exception ex) {
@@ -46,8 +50,10 @@ public class FileManager {
                                 channel.cd(fileDestinationPath);
 
                                 for (File sourceFile : sourceFolder.listFiles())
-                                    if (sourceFile.isFile())
-                                        uploadAttachment(channel, sourceFile);
+                                    if (sourceFile.isFile()) {
+                                        String digest = uploadAttachment(channel, sourceFile);
+                                        attachments.add(new AttachmentProperties(policyID, sourceFile.getName(), digest, sourceFile.length()));
+                                    }
                             }
                         }
                     //Refresh link to the new backup folder
@@ -67,10 +73,13 @@ public class FileManager {
                     close(channel);
             }
         }
+        return attachments;
     }
 
-    private void uploadAttachment(ChannelSftp channel, File sourceFile) throws Exception {
-        uploadAttachment(channel, new FileInputStream(sourceFile), sourceFile.getName());
+    private String uploadAttachment(ChannelSftp channel, File sourceFile) throws Exception {
+        DigestInputStream input = new DigestInputStream(new FileInputStream(sourceFile), MessageDigest.getInstance("MD5"));
+        uploadAttachment(channel, input, sourceFile.getName());
+        return input.getMessageDigest().toString();
     }
 
     private void uploadAttachment(ChannelSftp channel, InputStream fileStream, String fileName) throws Exception {
