@@ -14,6 +14,9 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.io.UnsupportedEncodingException;
+import java.net.URI;
+import java.net.URLEncoder;
 import java.util.*;
 
 @ApplicationScoped
@@ -32,7 +35,10 @@ public class D3SClient {
         filter.put("meContent.resourceRepresentationType", fieldFilter);
 
         //Send request
-        Response response = sendRequest(baseUrl+"msd/resources/find", filter, "post", null);
+        Map<String,String> parameters = new HashMap<>();
+        parameters.put("maxSize","1000000");
+        String url = addQueryParameters(baseUrl+"msd/resources/find", parameters);
+        Response response = sendRequest(url, filter, "post");
         if (response.getStatus() != 200 && response.getStatus() != 201 && response.getStatus() != 204)
             throw new Exception("Error from D3S requiring existing datasets metadata");
 
@@ -43,19 +49,23 @@ public class D3SClient {
     public void insertMetadata (String baseUrl, Collection<MeIdentification<DSDDataset>> metadataList) throws Exception {
         if (metadataList==null || metadataList.size()==0)
             return;
-        //Send request
-        Response response = sendRequest(baseUrl+"msd/resources/massive", metadataList, "post", null);
-        if (response.getStatus() != 200 && response.getStatus() != 201)
-            throw new Exception("Error from D3S adding datasets metadata");
+        //Send requests
+        for (Collection<MeIdentification<DSDDataset>> segment : splitCollection(metadataList,25)) {
+            Response response = sendRequest(baseUrl + "msd/resources/massive", segment, "post");
+            if (response.getStatus() != 200 && response.getStatus() != 201)
+                throw new Exception("Error from D3S adding datasets metadata");
+        }
     }
 
     public void updateMetadata (String baseUrl, Collection<MeIdentification<DSDDataset>> metadataList) throws Exception {
         if (metadataList==null || metadataList.size()==0)
             return;
         //Send request
-        Response response = sendRequest(baseUrl+"msd/resources/massive", metadataList, "put", null);
-        if (response.getStatus() != 200 && response.getStatus() != 201)
-            throw new Exception("Error from D3S adding datasets metadata");
+        for (Collection<MeIdentification<DSDDataset>> segment : splitCollection(metadataList,25)) {
+            Response response = sendRequest(baseUrl + "msd/resources/massive", segment, "put");
+            if (response.getStatus() != 200 && response.getStatus() != 201)
+                throw new Exception("Error from D3S adding datasets metadata");
+        }
     }
 
     public void deleteMetadata (String baseUrl, Collection<MeIdentification<DSDDataset>> metadataList) throws Exception {
@@ -71,7 +81,7 @@ public class D3SClient {
         filter.put("id", fieldFilter);
 
         //Send request
-        Response response = sendRequest(baseUrl+"msd/resources/massive/delete", filter, "post", null);
+        Response response = sendRequest(baseUrl+"msd/resources/massive/delete", filter, "post");
         if (response.getStatus() != 200 && response.getStatus() != 201)
             throw new Exception("Error from D3S requiring existing datasets metadata");
     }
@@ -81,7 +91,7 @@ public class D3SClient {
             return;
         //Send request
         for (Resource<DSDCodelist, Code> resource : resourceList) {
-            Response response = sendRequest(baseUrl + "msd/resources", resource, "put", null);
+            Response response = sendRequest(baseUrl + "msd/resources", resource, "put");
             if (response.getStatus() != 200 && response.getStatus() != 201)
                 throw new Exception("Error from D3S updating codelist "+resource.getMetadata().getUid());
         }
@@ -112,16 +122,49 @@ public class D3SClient {
         updateFilter.setMetadata(metadata);
 
         //Send request
-        Response response = sendRequest(baseUrl+"msd/resources/replication", updateFilter, "patch", null);
-        if (response.getStatus() != 200 && response.getStatus() != 201)
+        Response response = sendRequest(baseUrl+"msd/resources/replication", updateFilter, "patch");
+        if (response.getStatus() != 200 && response.getStatus() != 201 && response.getStatus() != 204)
             throw new Exception("Error from D3S updating datasets metadata last update date");
     }
 
-    private Response sendRequest(String url, Object entity, String method, Map<String,String> parameters) throws Exception {
+    private Response sendRequest(String url, Object entity, String method) throws Exception {
         Client client = ClientBuilder.newClient();
         WebTarget target = client.target(url);
         return target.request(MediaType.APPLICATION_JSON_TYPE).build(method.trim().toUpperCase(), javax.ws.rs.client.Entity.json(entity)).invoke();
     }
+
+    private String addQueryParameters (String url, Map<String,String> parameters) throws UnsupportedEncodingException {
+        StringBuilder sb = new StringBuilder(url);
+        if (parameters!=null && parameters.size()>0) {
+            sb.append('?');
+            for (Map.Entry<String, String> parameter : parameters.entrySet())
+                sb.append(URLEncoder.encode(parameter.getKey(), "UTF-8")).append('=').append(URLEncoder.encode(parameter.getValue(), "UTF-8")).append('&');
+            sb.setLength(sb.length()-1);
+        }
+        return sb.toString();
+    }
+
+
+
+    private <T> Collection<Collection<T>>  splitCollection(Collection<T> list, int segmentSize) {
+        if (list==null)
+            return null;
+        Collection<Collection<T>> buffer = new LinkedList<>();
+        Collection<T> segment = new LinkedList<>();
+        int count = 0;
+        for (T element : list) {
+            if (++count>segmentSize) {
+                buffer.add(segment);
+                segment = new LinkedList<>();
+                count=0;
+            }
+            segment.add(element);
+        }
+        if (segment.size()>0)
+            buffer.add(segment);
+        return buffer;
+    }
+
 
 
 }

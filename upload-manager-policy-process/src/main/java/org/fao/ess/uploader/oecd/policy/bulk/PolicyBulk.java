@@ -10,7 +10,7 @@ import org.fao.ess.uploader.oecd.policy.bulk.attachments.dto.AttachmentPropertie
 import org.fao.ess.uploader.oecd.policy.bulk.data.impl.CodeList;
 import org.fao.ess.uploader.oecd.policy.bulk.data.impl.CodeListManager;
 import org.fao.ess.uploader.oecd.policy.bulk.data.impl.DataManager;
-import org.fao.ess.uploader.oecd.policy.bulk.metadata.MetadataManager;
+import org.fao.ess.uploader.oecd.policy.bulk.metadata.D3SManager;
 import org.fao.ess.uploader.oecd.policy.bulk.attachments.impl.FileManager;
 import org.fao.ess.uploader.oecd.policy.bulk.utils.D3SClient;
 import org.fao.fenix.commons.msd.dto.data.Resource;
@@ -21,7 +21,6 @@ import org.fao.fenix.commons.msd.dto.full.MeIdentification;
 
 import javax.inject.Inject;
 import javax.ws.rs.BadRequestException;
-import java.io.File;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.util.*;
@@ -29,7 +28,7 @@ import java.util.regex.Pattern;
 
 @ProcessInfo(context = "policy.bulk", name = "PolicyBulk", priority = 1)
 public class PolicyBulk implements PostUpload {
-    @Inject private MetadataManager metadataManager;
+    @Inject private D3SManager metadataManager;
     @Inject private FileManager tmpFileManager;
     @Inject private DataManager dataManager;
     @Inject private CodeListManager codeListManager;
@@ -47,42 +46,71 @@ public class PolicyBulk implements PostUpload {
         if (source==null)
             throw new BadRequestException("Source is undefined");
         InputStream zipFileInput = storage.readFile(metadata, null);
-        //Create temporary folder with zip file content
-        File tmpFolder = tmpFileManager.createTmpFolder(zipFileInput, source);
-        //Read dataset metadata using 'dsdDefault' template for dsd
-        Collection<MeIdentification<DSDDataset>> metadataList = metadataManager.createMetadata(tmpFileManager.getMetadataFileStream(source), "dsdDefault");
-        //Upload CSV data
-        Connection databaseConnection = dataManager.getConnection();
-        String backupTableName = dataManager.createBackupTable(source, databaseConnection);
-        dataManager.uploadCSV(tmpFileManager.getDataFileStream(source), backupTableName, databaseConnection);
-        //Manage negative sub-national codes (update correspondent metadata uid)
-        updateMetadataUid(
-                metadataList,
-                dataManager.getSubnationalCodesTranscodeMap(backupTableName, databaseConnection)
-        );
-        //Create and verify metadata id
-        checkMetadataId(
-                metadataList,
-                dataManager.createMetadataId(backupTableName, databaseConnection)
-        );
-        //Remove existing source related data from the original database
-        dataManager.removeStrictlySourceRelatedData(source, backupTableName, databaseConnection);
-        //Create new policies id
-        Integer[] policiesId = dataManager.createPolicyId(backupTableName, databaseConnection);
-        //Upload attachments into the repository folder
-        Collection<AttachmentProperties> attachmentsMetadata = tmpFileManager.uploadAttachments(source, policiesId);
-        //Insert attachments metadata into the database
-        dataManager.updateAttachmentsData(attachmentsMetadata, backupTableName, databaseConnection);
-        //publish temporary data into the database
-        dataManager.finishDataPublication(source, backupTableName, databaseConnection);
-        //Insert or update datasets metadata
-        metadataManager.sendMetadata(metadataList);
-        //Update codelists into D3S
-        metadataManager.sendCodelists(getCodelists(databaseConnection));
-        //Update update date of related views into D3S
-        metadataManager.sendLastUpdateDateUpdate("oecd_view");
+        //Start post processing
+        mainLogic(source, zipFileInput);
+    }
 
-        //TODO manage errors with rollback on maden changes
+    public void mainLogic(String source, InputStream zipFileInput) throws Exception {
+        //Create temporary folder with zip file content
+        tmpFileManager.createTmpFolder(zipFileInput, source);
+        try {
+            //Read dataset metadata using 'dsdDefault' template for dsd
+            Collection<MeIdentification<DSDDataset>> metadataList = metadataManager.createMetadata(tmpFileManager.getMetadataFileStream(source), "dsdDefault");
+            Connection databaseConnection = dataManager.getConnection();
+            try {
+                //Retrieve existing metadataIds
+                Collection<String> legacyMetadata = dataManager.getLegacyMetadataIds(source, databaseConnection);
+                //Upload CSV data
+                String backupTableName = dataManager.createBackupTable(source, databaseConnection);
+                dataManager.uploadCSV(tmpFileManager.getDataFileStream(source), backupTableName, databaseConnection);
+                //Manage negative sub-national codes (update correspondent metadata uid)
+                updateMetadataUid(
+                        metadataList,
+                        dataManager.getSubnationalCodesTranscodeMap(backupTableName, databaseConnection)
+                );
+                //Create and verify metadata id
+                checkMetadataId(
+                        metadataList,
+                        dataManager.createMetadataId(backupTableName, databaseConnection)
+                );
+                //Remove existing source related data from the original database
+                dataManager.removeStrictlySourceRelatedData(source, backupTableName, databaseConnection);
+                //Create new policies id
+                Integer[] policiesId = dataManager.createPolicyId(backupTableName, databaseConnection);
+
+                //Upload attachments into the repository folder
+                Collection<AttachmentProperties> attachmentsMetadata = tmpFileManager.uploadAttachments(source, policiesId);
+                try {
+                    //Insert attachments metadata into the database
+                    dataManager.updateAttachmentsData(attachmentsMetadata, backupTableName, databaseConnection);
+
+                    //publish temporary data into the database
+                    dataManager.finishDataPublication(source, backupTableName, databaseConnection);
+
+                    //Insert or update datasets metadata
+                    metadataManager.deleteLegacyMetadata(legacyMetadata);
+                    metadataManager.sendMetadata(metadataList);
+                    //Update codelists into D3S
+                    metadataManager.sendCodelists(getCodelists(databaseConnection));
+                    //Update update date of related views into D3S
+                    metadataManager.sendLastUpdateDateUpdate("oecd_view");
+
+                    //Commit database changes
+                    databaseConnection.commit();
+                } catch (Exception ex) {
+                    tmpFileManager.restoreAttachments(source);
+                    throw ex;
+                }
+            } catch (Exception ex) {
+                databaseConnection.rollback();
+                throw ex;
+            } finally {
+                databaseConnection.close();
+            }
+        } finally {
+            //Remove tmp folder
+            tmpFileManager.removeTmpFolder(source);
+        }
     }
 
     private Collection<Resource<DSDCodelist, Code>> getCodelists (Connection databaseConnection) throws Exception {

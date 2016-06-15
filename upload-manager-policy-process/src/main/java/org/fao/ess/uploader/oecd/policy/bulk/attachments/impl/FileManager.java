@@ -8,7 +8,9 @@ import org.fao.fenix.commons.utils.FileUtils;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.ws.rs.BadRequestException;
 import java.io.*;
+import java.math.BigInteger;
 import java.security.DigestInputStream;
 import java.security.MessageDigest;
 import java.text.SimpleDateFormat;
@@ -23,16 +25,39 @@ public class FileManager {
 
 
     //SFTP operations management
+    public String restoreAttachments(String source) throws Exception {
+        ChannelSftp channel = getConnection();
+        try {
+            String destinationPath = properties.getPath() + '/' + source;
+            channel.rm(destinationPath);
+            String backupSourcePath = properties.getPath() + "/backup/" + source;
+            String lastBackupFolder = getLastBackupPath(backupSourcePath, channel);
+            if (lastBackupFolder!=null) {
+                rmDir(backupSourcePath + '/' + lastBackupFolder, channel);
+                lastBackupFolder = getLastBackupPath(backupSourcePath, channel);
+                if (lastBackupFolder!=null) {
+                    channel.symlink(backupSourcePath + '/' + lastBackupFolder, destinationPath);
+                    //return the name of the restored backup
+                    return lastBackupFolder.substring(lastBackupFolder.lastIndexOf('/')+1);
+                }
+            }
+            return null;
+        } finally {
+            close(channel);
+        }
+    }
     public Collection<AttachmentProperties> uploadAttachments(String source, Integer[] policyIDs) throws Exception {
         Collection<AttachmentProperties> attachments = new LinkedList<>();
-        ChannelSftp channel = getConnection();
         File attachmentsFolder = getAttachmentsFolder(source);
         if (attachmentsFolder.exists() && attachmentsFolder.isDirectory()) {
-            //Create path to needed folders
-            String backupPath = properties.getPath() + "/backup/" + source + '/' + getTimeSuffix();
-            String destinationPath = properties.getPath() + '/' + source;
-            String lastBackupPath = getLastBackupPath(properties.getPath() + "/backup/" + source, channel);
+            ChannelSftp channel = getConnection();
             try {
+                //Create path to needed folders
+                String backupPath = properties.getPath() + "/backup/" + source + '/' + getTimeSuffix();
+                String destinationPath = properties.getPath() + '/' + source;
+                String backupSourcePath = properties.getPath() + "/backup/" + source;
+                mkDir(backupSourcePath, channel);
+                String lastBackupFolder = getLastBackupPath(backupSourcePath, channel);
                 //Create backup folder
                 mkDir(backupPath, channel);
                 try {
@@ -42,8 +67,7 @@ public class FileManager {
                             Integer policyID = null;
                             try {
                                 policyID = policyIDs[Integer.parseInt(sourceFolder.getName()) - 1];
-                            } catch (Exception ex) {
-                            }
+                            } catch (Exception ex) { }
                             if (policyID != null) {
                                 String fileDestinationPath = backupPath + '/' + policyID;
                                 mkDir(fileDestinationPath, channel);
@@ -54,14 +78,16 @@ public class FileManager {
                                         String digest = uploadAttachment(channel, sourceFile);
                                         attachments.add(new AttachmentProperties(policyID, sourceFile.getName(), digest, sourceFile.length()));
                                     }
-                            }
+                            } else
+                                throw new BadRequestException("Policy ID not found for attachments into folder: "+sourceFolder.getName());
                         }
                     //Refresh link to the new backup folder
-                    channel.rm(destinationPath);
+                    rmFile(destinationPath, channel);
                     try {
-                        channel.symlink(destinationPath, backupPath);
+                        channel.symlink(backupPath, destinationPath);
                     } catch (Exception ex) {
-                        channel.symlink(destinationPath, lastBackupPath); //try to restore the link to the previous backup folder
+                        if (lastBackupFolder!=null) //try to restore the link to the previous backup folder
+                            channel.symlink(backupSourcePath + '/' + lastBackupFolder, destinationPath);
                         throw ex;
                     }
                 } catch (Exception ex) {
@@ -69,8 +95,7 @@ public class FileManager {
                     throw ex;
                 }
             } finally {
-                if (channel != null && !channel.isClosed())
-                    close(channel);
+                close(channel);
             }
         }
         return attachments;
@@ -78,36 +103,9 @@ public class FileManager {
 
     private String uploadAttachment(ChannelSftp channel, File sourceFile) throws Exception {
         DigestInputStream input = new DigestInputStream(new FileInputStream(sourceFile), MessageDigest.getInstance("MD5"));
-        uploadAttachment(channel, input, sourceFile.getName());
-        return input.getMessageDigest().toString();
+        channel.put(input, sourceFile.getName(), null, ChannelSftp.OVERWRITE);
+        return new BigInteger(1, input.getMessageDigest().digest()).toString(16);
     }
-
-    private void uploadAttachment(ChannelSftp channel, InputStream fileStream, String fileName) throws Exception {
-        SftpProgressMonitor monitor= new SftpProgressMonitor() {
-            private String s, s1;
-
-            @Override
-            public void init(int i, String s, String s1, long l) {
-                System.out.println("sftp init: "+i+" - "+s+" - "+s1+" - "+l);
-                this.s = s;
-                this.s1 = s1;
-            }
-
-            @Override
-            public boolean count(long l) {
-                System.out.println("sftp count: "+l);
-                return false;
-            }
-
-            @Override
-            public void end() {
-                System.out.println("sftp done: "+s+" - "+s1);
-            }
-        };
-        channel.put(fileStream, fileName, monitor, ChannelSftp.OVERWRITE);
-        channel.disconnect();
-    }
-
 
 
     //Temporary folder management
@@ -145,7 +143,7 @@ public class FileManager {
 
     private File getFolder(String source) {
         if (tmpFolder==null) {
-            String tmpFilePath = config.get("local.folder.tmp");
+            String tmpFilePath = config.get("policy.local.folder.tmp");
             tmpFolder = new File(tmpFilePath != null ? tmpFilePath : "/tmp");
         }
 
@@ -170,11 +168,11 @@ public class FileManager {
         if (properties==null)
             properties = new HostProperties(
                     null,
-                    config.get("remote.host"),
-                    new Integer(config.get("remote.port")),
-                    config.get("remote.usr"),
-                    config.get("remote.psw"),
-                    config.get("remote.path")
+                    config.get("policy.remote.host"),
+                    new Integer(config.get("policy.remote.port")),
+                    config.get("policy.remote.usr"),
+                    config.get("policy.remote.psw"),
+                    config.get("policy.remote.path")
             );
     }
 
@@ -203,11 +201,24 @@ public class FileManager {
         if (attributes == null)
             channel.mkdir(path);
     }
-    private void rmDir(String path, ChannelSftp channel) throws SftpException {
+    public static void rmDir(String path, ChannelSftp channel) throws SftpException {
+        if (!".".equals(path) && !"..".equals(path))
+            if (channel.stat(path).isDir()) {
+                channel.cd(path);
+                Vector <ChannelSftp.LsEntry> entries = channel.ls(".");
+                for (ChannelSftp.LsEntry entry: entries)
+                    rmDir(entry.getFilename(), channel);
+                channel.cd("..");
+                channel.rmdir(path);
+            } else {
+                channel.rm(path);
+            }
+    }
+    private void rmFile(String path, ChannelSftp channel) throws SftpException {
         SftpATTRS attributes=null;
         try { attributes = channel.stat(path); } catch (Exception e) { }
         if (attributes != null)
-            channel.rmdir(path);
+            channel.rm(path);
     }
 
     SimpleDateFormat timeSuffixFormat = new SimpleDateFormat("yyyyMMddhhmmss");
@@ -216,8 +227,8 @@ public class FileManager {
     }
 
     private String getLastBackupPath(String path, ChannelSftp channel) throws SftpException {
-        Vector<String> content = channel.ls(path);
+        Vector<ChannelSftp.LsEntry> content = channel.ls(path);
         Collections.sort(content);
-        return content.lastElement();
+        return content.size()>2 ? content.lastElement().getFilename() : null;
     }
 }

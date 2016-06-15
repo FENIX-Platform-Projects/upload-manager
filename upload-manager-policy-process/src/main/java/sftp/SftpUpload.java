@@ -11,10 +11,10 @@ public class SftpUpload {
     public SftpUpload() {
     }
 
-    public void connect(Properties prop, Session session, Channel channel, ChannelSftp channelSftp, File f, String policyId) throws Exception {
-        connect(prop, session, channel, channelSftp, f!=null ? new FileInputStream(f) : null, f!=null ? f.getName() : null, policyId);
+    public void connect(Properties prop, Session session, Channel channel, ChannelSftp channelSftp, File f, String source, String policyId) throws Exception {
+        connect(prop, session, channel, channelSftp, f!=null ? new FileInputStream(f) : null, f!=null ? f.getName() : null, source, policyId);
     }
-    public void connect(Properties prop, Session session, Channel channel, ChannelSftp channelSftp, InputStream fileStream, String fileName, String policyId) throws Exception {
+    public void connect(Properties prop, Session session, Channel channel, ChannelSftp channelSftp, InputStream fileStream, String fileName, String source, String policyId) throws Exception {
         String SFTPHOST = prop.getProperty("SFTPHOST");
         String SFTPPORT = prop.getProperty("SFTPPORT");
         String SFTPUSER = prop.getProperty("SFTPUSER");
@@ -29,7 +29,7 @@ public class SftpUpload {
             session.setConfig(config);
             session.connect();
             System.out.println("Before upload...");
-            uploadFile(prop, session, channel, channelSftp, fileStream, fileName, policyId);
+            uploadFile(prop, session, channel, channelSftp, fileStream, fileName, source, policyId);
         }
         else {
             String err = prop.getProperty("ERROR_PARAMETERS");
@@ -37,23 +37,23 @@ public class SftpUpload {
         }
     }
 
-    public void uploadFile(Properties prop, Session session, Channel channel, ChannelSftp channelSftp, File file, String policyId) throws Exception {
+    public void uploadFile(Properties prop, Session session, Channel channel, ChannelSftp channelSftp, File file, String source, String policyId) throws Exception {
         String FILENAME = file!=null && file.isFile() ? file.getName() : null;
         InputStream fileInputStream = file!=null && file.isFile() ? new FileInputStream(file) : null;
 
-        uploadFile(prop, session, channel, channelSftp, fileInputStream, FILENAME, policyId);
+        uploadFile(prop, session, channel, channelSftp, fileInputStream, FILENAME, source, policyId);
     }
-    public void uploadFile(Properties prop, Session session, Channel channel, ChannelSftp channelSftp, InputStream fileStream, String fileName, String policyId) throws Exception {
+    public void uploadFile(Properties prop, Session session, Channel channel, ChannelSftp channelSftp, InputStream fileStream, String fileName, String source, String policyId) throws Exception {
 
         String SFTPSERVERDIR = prop.getProperty("SFTPSERVERDIR");
 
-        if( fileStream!=null && fileName!=null && policyId!=null ){
+        if( fileStream!=null && fileName!=null && source!=null && policyId!=null ){
 
             channel = session.openChannel("sftp");
             channel.connect();
             channelSftp = (ChannelSftp) channel;
 
-            String newUploadDirectory = SFTPSERVERDIR + "/" + policyId;
+            String newUploadDirectory = SFTPSERVERDIR + "/" + source + "/" + policyId;
             uploadDirectoryCreation(newUploadDirectory, channelSftp);
             channelSftp.cd(newUploadDirectory);
 

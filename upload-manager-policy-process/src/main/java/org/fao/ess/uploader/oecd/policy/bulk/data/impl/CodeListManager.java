@@ -3,7 +3,9 @@ package org.fao.ess.uploader.oecd.policy.bulk.data.impl;
 import org.fao.fenix.commons.msd.dto.data.Resource;
 import org.fao.fenix.commons.msd.dto.full.Code;
 import org.fao.fenix.commons.msd.dto.full.DSDCodelist;
+import org.fao.fenix.commons.msd.dto.full.MeContent;
 import org.fao.fenix.commons.msd.dto.full.MeIdentification;
+import org.fao.fenix.commons.msd.dto.type.RepresentationType;
 import org.fao.fenix.commons.utils.FileUtils;
 import org.fao.fenix.commons.utils.JSONUtils;
 import org.fao.fenix.commons.utils.Language;
@@ -26,6 +28,9 @@ public class CodeListManager {
         MeIdentification<DSDCodelist> metadata = new MeIdentification<>();
         metadata.setUid(codeList.getUid());
         metadata.setVersion(codeList.getVersion());
+        MeContent meContent = new MeContent();
+        meContent.setResourceRepresentationType(RepresentationType.codelist);
+        metadata.setMeContent(meContent);
         //Load codes data
         ResultSet data = connection.createStatement().executeQuery(codeList.getQuery());
         //Parse data

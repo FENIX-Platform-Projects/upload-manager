@@ -28,6 +28,7 @@ public class DataManager implements PostUpload {
     @Override
     public void fileUploaded(FileMetadata metadata, MetadataStorage metadataStorage, BinaryStorage storage, Map<String, Object> processingParams) throws Exception {
         transferFile(
+                processingParams!=null ? (String)processingParams.get("source") : null,
                 processingParams!=null ? (String)processingParams.get("policy") : null,
                 metadata.getName()!=null ? metadata.getName() : (String)processingParams.get("name"),
                 storage.readFile(metadata, null)
@@ -35,12 +36,12 @@ public class DataManager implements PostUpload {
     }
 
 
-    private void transferFile(String policyId, String fileName, InputStream dataStream) throws Exception {
+    private void transferFile(String source, String policyId, String fileName, InputStream dataStream) throws Exception {
         //Main Properties file
         SftpPropertiesValues properties = new SftpPropertiesValues();
         Properties prop = properties.getPropValues('m');
         //Transfer file
-        new SftpUpload().connect(prop, null, null, null, dataStream, fileName, policyId);
+        new SftpUpload().connect(prop, null, null, null, dataStream, fileName, source, policyId);
     }
     
 }

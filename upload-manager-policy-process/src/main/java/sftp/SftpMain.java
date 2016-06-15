@@ -28,7 +28,7 @@ public class SftpMain {
             System.out.println("Before connect...");
             File f = new File(SFTPCLIENTDIR + "/" + FILENAME);
             String policyId = "10";
-            sftpUpload.connect(prop, session, channel, channelSftp, f, policyId);
+            sftpUpload.connect(prop, session, channel, channelSftp, f, "test", policyId);
             //sftpDownload.connect(prop, session, channel, channelSftp);
             //sftpRemove.connect(prop, session, channel, channelSftp, "01_sdmx_cog_annex_1_cdc_2009.pdf", policyId);
 

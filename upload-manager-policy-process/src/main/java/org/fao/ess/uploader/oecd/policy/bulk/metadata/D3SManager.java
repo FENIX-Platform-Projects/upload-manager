@@ -24,7 +24,7 @@ import java.io.InputStream;
 import java.util.*;
 
 @ProcessInfo(context = "policy.metadata.bulk", name = "PolicyMetadataBulk", priority = 1)
-public class MetadataManager implements PostUpload {
+public class D3SManager implements PostUpload {
     @Inject private XLStoCSV csvConverter;
     @Inject private MetadataCreator metadataFactory;
     @Inject private UploaderConfig config;
@@ -76,8 +76,10 @@ public class MetadataManager implements PostUpload {
         String baseUrl = config.get("d3s.url");
         baseUrl = baseUrl + (baseUrl.charAt(baseUrl.length() - 1) != '/' ? "/" : "");
 
-        //Load existing metadata and create metadata groups
+        //Load existing metadata
         Collection<MeIdentification<DSDDataset>> destination = d3SClient.retrieveMetadata(baseUrl);
+
+        //Create metadata groups
         MetadataGroups updateGroups = groupMetadata(source, destination);
 
         //Update metadata
@@ -85,8 +87,22 @@ public class MetadataManager implements PostUpload {
             d3SClient.updateMetadata(baseUrl, updateGroups.update);
         if (updateGroups.insert.size()>0)
             d3SClient.insertMetadata(baseUrl, updateGroups.insert);
-        if (updateGroups.delete.size()>0)
-            d3SClient.deleteMetadata(baseUrl, updateGroups.delete);
+    }
+
+    public void deleteLegacyMetadata (Collection<String> destinationUid) throws Exception {
+        String baseUrl = config.get("d3s.url");
+        baseUrl = baseUrl + (baseUrl.charAt(baseUrl.length() - 1) != '/' ? "/" : "");
+
+        if (destinationUid.size()>0) {
+            Collection<MeIdentification<DSDDataset>> destination = new LinkedList<>();
+            for (String uid : destinationUid) {
+                MeIdentification<DSDDataset> metadata = new MeIdentification<>();
+                metadata.setUid(uid);
+                destination.add(metadata);
+            }
+            d3SClient.deleteMetadata(baseUrl, destination);
+        }
+
     }
 
     public void sendLastUpdateDateUpdate (String context) throws Exception {
@@ -127,13 +143,13 @@ public class MetadataManager implements PostUpload {
     public static void main(String[] args) {
         try {
             FileInputStream excelFileInput = new FileInputStream("test/Metadatafile_22Apr2016.xlsx");
-            MetadataManager logic = new MetadataManager();
+            D3SManager logic = new D3SManager();
             logic.csvConverter = new XLStoCSV();
             logic.metadataFactory = new MetadataCreator();
             logic.metadataFactory.fileUtils = new FileUtils();
             logic.d3SClient = new D3SClient();
             logic.config = new UploaderConfig();
-            logic.config.add("d3s.url", "http://localhost:7777/v2/");
+            logic.config.add("d3s.url", "http://fenix.fao.org/d3s_dev/");
 
             Collection<MeIdentification<DSDDataset>> metadataList = logic.createMetadata(excelFileInput, "dsdDefault");
             logic.sendMetadata(metadataList);

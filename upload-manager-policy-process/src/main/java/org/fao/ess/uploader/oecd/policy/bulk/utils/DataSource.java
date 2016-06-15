@@ -31,9 +31,9 @@ public class DataSource {
     public Connection getConnection() throws SQLException {
         if (url==null)
             init(
-                    config.get("db.url"),
-                    config.get("db.usr"),
-                    config.get("db.psw")
+                    config.get("policy.db.url"),
+                    config.get("policy.db.usr"),
+                    config.get("policy.db.psw")
             );
         Connection connection = DriverManager.getConnection(url, usr, psw);
         connection.setAutoCommit(false);

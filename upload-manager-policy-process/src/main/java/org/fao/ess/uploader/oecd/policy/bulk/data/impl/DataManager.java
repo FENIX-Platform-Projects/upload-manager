@@ -25,6 +25,23 @@ public class DataManager {
         return dataSource.getConnection();
     }
 
+    public Collection<String> getLegacyMetadataIds(String source, Connection connection) throws Exception {
+        Collection<String> metadataIds = new LinkedList<>();
+        PreparedStatement statement = connection.prepareStatement(
+                "select metadata_id from\n" +
+                        "(\n" +
+                        "  select distinct source, metadata_id from \n" +
+                        "    (select distinct cpl_id, source from policysource) ps \n" +
+                        "    join (select distinct cpl_id, metadata_id from metadata_id_linked_to_cpl_id) ms\n" +
+                        "    on (ms.cpl_id = ps.cpl_id)\n" +
+                        ") sm\n" +
+                        "group by metadata_id having count(*) = 1 and first (source) = ?"
+        );
+        statement.setString(1,source);
+        for (ResultSet data = statement.executeQuery(); data.next(); metadataIds.add(data.getString(1)));
+        return metadataIds;
+    }
+
     public String createBackupTable(String source, Connection connection) throws Exception {
         String tableName = BACKUP_SCHEMA_NAME+'.'+source+'_'+getTimeSuffix();
         connection.createStatement().executeUpdate(
@@ -96,7 +113,7 @@ public class DataManager {
     }
 
     public void uploadCSV(InputStream sourceData, String backupTableName, Connection connection) throws Exception {
-        StringBuilder query = new StringBuilder("COPY ").append(backupTableName).append(" FROM STDIN WITH CSV DELIMITER '").append(CSV_SEPARATOR).append("' QUOTE '\"' ENCODING 'UTF8'");
+        StringBuilder query = new StringBuilder("COPY ").append(backupTableName).append(" FROM STDIN WITH CSV HEADER DELIMITER '").append(CSV_SEPARATOR).append("' QUOTE '\"' ENCODING 'UTF8'");
         CopyIn copier = ((PGConnection)connection).getCopyAPI().copyIn(query.toString());
         byte[] data = fileUtils.readTextFile(sourceData).getBytes();
         copier.writeToCopy(data,0,data.length);
@@ -138,7 +155,7 @@ public class DataManager {
     }
 
     public Collection<String> createMetadataId (String backupTableName, Connection connection) throws Exception {
-        Collection<String> metadataIdList = new TreeSet<>();
+        Collection<String> metadataIdList = new LinkedList<>();
         String indexSequenceName = backupTableName+"_seq";
         String step1TableName = backupTableName+"_step_1";
         //Create sequence for the row index column
@@ -191,14 +208,14 @@ public class DataManager {
     public Integer[] createPolicyId(String backupTableName, Connection connection) throws Exception {
         String policySequenceName = "flow_policy_id";
         String step1TableName = backupTableName+"_step_1";
-        String step2TableName = backupTableName+"_step_1";
+        String step2TableName = backupTableName+"_step_2";
         try {
             //init policy id sequence
-            connection.createStatement().executeUpdate("select setval ('" + policySequenceName + "', max(policy_id)) from policytable");
+            connection.createStatement().executeQuery("select setval ('" + policySequenceName + "', max(policy_id)) from policytable");
             //create step 2 table with existing cpl id and null policy id
             connection.createStatement().executeUpdate(
                     "create table "+step2TableName+" as\n" +
-                    "    select s.index, s.metadata_id, o.cpl_id, cast (null as integer) as policy_id, cast (null as varchar) as link_pdf, s.Commodity_ID, s.Country_Code, s.Country_Name, s.Subnational_Code, s.Subnational_Name, s.CommodityDomain_Code, s.CommodityDomain_Name, s.PolicyDomain_Code, s.PolicyDomain_Name, s.PolicyType_Code, s.PolicyType_Name, s.PolicyMeasure_Code, s.PolicyMeasure_Name, s.CommodityClass_Code, s.CommodityClass_Name, s.Condition_Code, s.Condition, s.IndividualPolicy_Code, s.IndividualPolicy_Name, s.Start_Date, s.End_Date, s.Element_Code, s.Policy_Element, s.HS_Code, s.HS_Version, s.HS_Suffix, s.Description, s.Short_Description, s.Shared_Group_Code, s.Second_Generation_Specific, s.Imposed_End_Date, s.Units, s.Value, s.Value_Text, s.Value_Type, s.Exemptions, s.Notes, s.Measure_Description, s.Link, s.Source, s.Date_Of_Publication, s.Title_Of_Notice, s.Legal_Basis_Name, s.Benchmark_Tax, s.Benchmark_Product, s.Tax_Rate_Biofuel, s.Tax_Rate_Benchmark, s.Start_Date_Tax, s.Benchmark_Link, s.Benchmark_Link_pdf, s.Product_Original_HS, s.Product_Original_Name, s.Type_Of_Change_Code, s.Type_Of_Change_Name, s.Original_Dataset, s.Condition_Exists, s.MinAVTariffValue, s.MaxAVTariffValue, s.CountAVTariff, s.CountNAVTariff\n" +
+                    "    select s.index, s.metadata_id, o.cpl_id, nextval ('"+policySequenceName+"') as policy_id, cast (null as varchar) as link_pdf, s.Commodity_ID, s.Country_Code, s.Country_Name, s.Subnational_Code, s.Subnational_Name, s.CommodityDomain_Code, s.CommodityDomain_Name, s.PolicyDomain_Code, s.PolicyDomain_Name, s.PolicyType_Code, s.PolicyType_Name, s.PolicyMeasure_Code, s.PolicyMeasure_Name, s.CommodityClass_Code, s.CommodityClass_Name, s.Condition_Code, s.Condition, s.IndividualPolicy_Code, s.IndividualPolicy_Name, s.Start_Date, s.End_Date, s.Element_Code, s.Policy_Element, s.HS_Code, s.HS_Version, s.HS_Suffix, s.Description, s.Short_Description, s.Shared_Group_Code, s.Second_Generation_Specific, s.Imposed_End_Date, s.Units, s.Value, s.Value_Text, s.Value_Type, s.Exemptions, s.Notes, s.Measure_Description, s.Link, s.Source, s.Date_Of_Publication, s.Title_Of_Notice, s.Legal_Basis_Name, s.Benchmark_Tax, s.Benchmark_Product, s.Tax_Rate_Biofuel, s.Tax_Rate_Benchmark, s.Start_Date_Tax, s.Benchmark_Link, s.Benchmark_Link_pdf, s.Product_Original_HS, s.Product_Original_Name, s.Type_Of_Change_Code, s.Type_Of_Change_Name, s.Original_Dataset, s.Condition_Exists, s.MinAVTariffValue, s.MaxAVTariffValue, s.CountAVTariff, s.CountNAVTariff\n" +
                     "    from   "+step1TableName+" s\n" +
                     "           left outer join\n" +
                     "           (select a.cpl_id, Commodity_ID, Country_Code, Country_Name, b.Subnational_Code, Subnational_Name, CommodityDomain_Code, CommodityDomain_Name, PolicyDomain_Code, PolicyDomain_Name, PolicyType_Code, PolicyType_Name, PolicyMeasure_Code, PolicyMeasure_Name, CommodityClass_Code, CommodityClass_Name, Condition_Code, Condition, IndividualPolicy_Code, IndividualPolicy_Name from mastertable a join mastertableb b on (a.cpl_id = b.cpl_id)) o\n" +
@@ -208,60 +225,48 @@ public class DataManager {
             //remove step 1 table
             connection.createStatement().executeUpdate("drop table " + step1TableName);
         }
-        try {
-            //update step 2 table with new policy id
-            connection.createStatement().executeUpdate("update "+step2TableName+" set policy_id = nextval ('"+policySequenceName+"')");
-            //Return policy id ordered by row index
-            Collection<Integer> policyIdList = new LinkedList<>();
-            ResultSet data = connection.createStatement().executeQuery("SELECT policy_id from "+step2TableName+" ORDER BY index");
-            while (data.next())
-                policyIdList.add(data.getInt(1));
-            return policyIdList.toArray(new Integer[policyIdList.size()]);
-        } catch (Exception ex) {
-            //remove step 2 table in case error occur
-            connection.createStatement().executeUpdate("drop table " + step2TableName);
-            throw ex;
-        }
+
+        //Return policy id ordered by row index
+        Collection<Integer> policyIdList = new LinkedList<>();
+        ResultSet data = connection.createStatement().executeQuery("SELECT policy_id from "+step2TableName+" ORDER BY index");
+        while (data.next())
+            policyIdList.add(data.getInt(1));
+        return policyIdList.toArray(new Integer[policyIdList.size()]);
     }
 
 
     public void updateAttachmentsData(Collection<AttachmentProperties> attachments, String backupTableName, Connection connection) throws Exception {
         if (attachments!=null && attachments.size()>0) {
-            String step2TableName = backupTableName + "_step_1";
-            try {
-                Map<Integer, StringBuilder> attachmentsNameMap = new HashMap<>();
-                PreparedStatement statement = connection.prepareStatement("INSERT INTO pdfuploadinfo (policy_id, file_name, file_md5) VALUES (?,?,?)");
-                for (AttachmentProperties attachmentProperties : attachments) {
-                    //update pdfuploadinfo table
-                    statement.setInt(1, attachmentProperties.getPolicyId());
-                    statement.setString(2, attachmentProperties.getFileName());
-                    statement.setString(3, attachmentProperties.getMd5());
-                    statement.addBatch();
-                    //collect attachments name
-                    StringBuilder attachmentsName = attachmentsNameMap.get(attachmentProperties.getPolicyId());
-                    if (attachmentsName == null)
-                        attachmentsNameMap.put(attachmentProperties.getPolicyId(), attachmentsName = new StringBuilder());
-                    attachmentsName.append(attachmentProperties.getFileName()).append(';');
-                }
-                statement.executeBatch();
-                //Update step 2 table link_pdf column
-                for (Map.Entry<Integer, StringBuilder> attachmentsNameMapEntry : attachmentsNameMap.entrySet()) {
-                    statement = connection.prepareStatement("UPDATE "+step2TableName+" SET link_pdf = ? WHERE policy_id = ?");
-                    statement.setString(1, attachmentsNameMapEntry.getValue().substring(0, attachmentsNameMapEntry.getValue().length()-1));
-                    statement.setInt(2, attachmentsNameMapEntry.getKey());
-                    statement.executeUpdate();
-                }
-            } catch (Exception ex) {
-                //remove step 2 table in case error occur
-                connection.createStatement().executeUpdate("drop table " + step2TableName);
-                throw ex;
+            String step2TableName = backupTableName + "_step_2";
+
+            Map<Integer, StringBuilder> attachmentsNameMap = new HashMap<>();
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO pdfuploadinfo (policy_id, file_name, file_md5) VALUES (?,?,?)");
+            for (AttachmentProperties attachmentProperties : attachments) {
+                //update pdfuploadinfo table
+                statement.setInt(1, attachmentProperties.getPolicyId());
+                statement.setString(2, attachmentProperties.getFileName());
+                statement.setString(3, attachmentProperties.getMd5());
+                statement.addBatch();
+                //collect attachments name
+                StringBuilder attachmentsName = attachmentsNameMap.get(attachmentProperties.getPolicyId());
+                if (attachmentsName == null)
+                    attachmentsNameMap.put(attachmentProperties.getPolicyId(), attachmentsName = new StringBuilder());
+                attachmentsName.append(attachmentProperties.getFileName()).append(';');
+            }
+            statement.executeBatch();
+            //Update step 2 table link_pdf column
+            for (Map.Entry<Integer, StringBuilder> attachmentsNameMapEntry : attachmentsNameMap.entrySet()) {
+                statement = connection.prepareStatement("UPDATE "+step2TableName+" SET link_pdf = ? WHERE policy_id = ?");
+                statement.setString(1, attachmentsNameMapEntry.getValue().substring(0, attachmentsNameMapEntry.getValue().length()-1));
+                statement.setInt(2, attachmentsNameMapEntry.getKey());
+                statement.executeUpdate();
             }
         }
     }
 
     public void finishDataPublication (String source, String backupTableName, Connection connection) throws Exception {
         String cplSequenceName = "flow_cpl_id";
-        String step2TableName = backupTableName + "_step_1";
+        String step2TableName = backupTableName + "_step_2";
         try {
             //Update policysource table with already existing cpl
             PreparedStatement statement = connection.prepareStatement("insert into policysource select cpl_id, policy_id, ? from "+step2TableName+" where cpl_id is not null");
@@ -271,7 +276,7 @@ public class DataManager {
             connection.createStatement().executeUpdate("insert into policytable select metadata_id, policy_id, cpl_id, commodity_id, policy_element, start_date, end_date, units, value, value_text, value_type, exemptions, minavtariffvalue, notes, link, source, title_of_notice, legal_basis_name, date_of_publication, imposed_end_date, second_generation_specific, benchmark_tax, benchmark_product, tax_rate_biofuel, tax_rate_benchmark, start_date_tax, benchmark_link, original_dataset, type_of_change_code, type_of_change_name, measure_description, product_original_hs, product_original_name, link_pdf, benchmark_link_pdf, element_code, maxavtariffvalue, countavtariff, countnavtariff from "+step2TableName+" where cpl_id is not null");
             //Remove existing cpl from step 2 table and assign new cpl id to remaining rows
             connection.createStatement().executeUpdate("delete from "+step2TableName+" where cpl_id is not null");
-            connection.createStatement().executeUpdate("select setval ('"+cplSequenceName+"', max(cpl_id)) from mastertable");
+            connection.createStatement().executeQuery("select setval ('"+cplSequenceName+"', max(cpl_id)) from mastertable");
             connection.createStatement().executeUpdate("update "+step2TableName+" set cpl_id = nextval ('"+cplSequenceName+"')");
             //finish policysource table update
             statement = connection.prepareStatement("insert into policysource select cpl_id, policy_id, ? from "+step2TableName);
@@ -299,9 +304,10 @@ public class DataManager {
 
 
     //Utils
-    SimpleDateFormat timeSuffixFormat = new SimpleDateFormat("yyyyMMddhhmmss");
+    SimpleDateFormat timeSuffixFormat = new SimpleDateFormat("yyyyMMddHHmmss");
     private String getTimeSuffix(Date... date) {
         return timeSuffixFormat.format(date!=null && date.length>0 ? date[0] : new Date());
     }
+
 
 }
