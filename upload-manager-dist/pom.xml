@@ -84,6 +84,11 @@
 			<artifactId>upload-manager-policy-process</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>upload-manager-gift-process</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 
 		<!-- Jackson custom configuration support -->
 		<dependency>
