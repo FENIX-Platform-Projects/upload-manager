@@ -13,6 +13,7 @@ import org.fao.ess.uploader.gift.bulk.dto.Files;
 import org.fao.ess.uploader.gift.bulk.impl.MetadataManager;
 
 import javax.inject.Inject;
+import javax.ws.rs.BadRequestException;
 import javax.ws.rs.NotAcceptableException;
 import java.io.File;
 import java.io.InputStream;
@@ -34,10 +35,13 @@ public class GiftBulk implements PostUpload {
 
     @Override
     public void fileUploaded(FileMetadata metadata, MetadataStorage metadataStorage, BinaryStorage storage, Map<String, Object> processingParams) throws Exception {
-        mainLogic(storage.readFile(metadata, null));
+        String survey = (String)processingParams.get("source");
+        if (survey==null)
+            throw new BadRequestException("Source is undefined");
+        mainLogic(survey, storage.readFile(metadata, null));
     }
 
-    public void mainLogic(InputStream zipFileInput) throws Exception {
+    public void mainLogic(String surveyCode, InputStream zipFileInput) throws Exception {
         //Retrieve database connection
         Connection connection = dataManager.getConnection();
         //Create temporary folder with zip file content
@@ -55,12 +59,14 @@ public class GiftBulk implements PostUpload {
             //Upload data into database stage area
             dataManager.uploadCSV(recognizedFilesMap.get(Files.subject), "SUBJECT_RAW", connection);
             dataManager.uploadCSV(recognizedFilesMap.get(Files.consumption), "CONSUMPTION_RAW", connection);
-            //Validate uploaded temporary data and retrieve survey code
-            String surveyCode = dataManager.validateSurveyData(connection);
+            //Validate uploaded temporary data
+            dataManager.validateSurveyData(connection);
             //Publish temporary data
             dataManager.publishData(connection, surveyCode);
             //Update metadata
+            metadataManager.updateSurveyMetadata(surveyCode);
             metadataManager.updateProcessingDatasetsMetadata(surveyCode);
+            //Commit database changes
             connection.commit();
         } catch (Exception ex) {
             connection.rollback();

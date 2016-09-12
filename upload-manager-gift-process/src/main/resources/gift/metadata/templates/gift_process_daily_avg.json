@@ -1,0 +1,83 @@
+{
+  "uid" : "gift_process_daily_avg",
+  "title" : {
+    "EN" : "Auto generated dataset for WHO-FAO GIFT processing purposes"
+  },
+  "meContent" : {
+    "resourceRepresentationType": "dataset"
+  },
+  "contacts": [
+    {
+      "organization": {
+        "EN": "WHO-FAO"
+      },
+      "organizationUnit": {
+        "EN" : "Institut de Recherche pour le Développement"
+      },
+      "name": "Pauline Allemand",
+      "position": null,
+      "role": "distributor",
+      "contactInfo": {
+        "phone ": "+390657053879",
+        "address": null,
+        "emailAddress": "pauline.allemand@gmail.com",
+        "hoursOfService": null,
+        "contactIntruction": null
+      }
+    }
+  ],
+
+  "dsd" : {
+    "contextSystem" : "gift_process",
+    "datasources" : ["gift_process"],
+    "cache":{ "storage":"postgres" },
+    "columns" : [
+      {
+        "id" : "subject",
+        "title" : { "EN" : "ID Subject" },
+        "dataType" : "text",
+        "key" : true
+      },
+      {
+        "id" : "survey_day",
+        "title" : { "EN" : "Recall number" },
+        "dataType" : "number",
+        "key" : true
+      },
+      {
+        "id" : "group_code",
+        "title" : { "EN" : "Food group" },
+        "dataType" : "code",
+        "domain" : { "codes" : [ { "idCodeList" : "GIFT_FoodGroups" } ] },
+        "key" : true
+      },
+      {
+        "id" : "subgroup_code",
+        "title" : { "EN" : "Food sub-group" },
+        "dataType" : "code",
+        "domain" : { "codes" : [ { "idCodeList" : "GIFT_FoodGroups" } ] },
+        "key" : true
+      },
+      {
+        "id" : "foodex2_code",
+        "title" : { "EN" : "FoodEx2" },
+        "dataType" : "code",
+        "domain" : { "codes" : [ { "idCodeList" : "GIFT_Foods" } ] },
+        "key" : true
+      },
+      {
+        "id" : "value",
+        "subject" : "value",
+        "title" : { "EN" : "Value" },
+        "dataType" : "number"
+      },
+      {
+        "id" : "um",
+        "subject" : "um",
+        "title" : { "EN" : "Unit of measure" },
+        "dataType" : "code",
+        "domain" : { "codes" : [ { "idCodeList" : "GIFT_UM" } ] }
+      }
+    ]
+  }
+}

@@ -38,23 +38,12 @@ public class DataManager {
         copier.endCopy();
     }
 
-    public String validateSurveyData(Connection connection) throws Exception {
-        //verify only one survey exists
-        Collection<String> surveys = new LinkedList<>();
-        for (ResultSet resultSet = connection.createStatement().executeQuery(Queries.getSurveyList.getQuery()); resultSet.next(); surveys.add(resultSet.getString(1)));
-        if (surveys.size()!=1) {
-            StringBuilder error = new StringBuilder("Uploaded data contains multiple surveys:");
-            for (String surveyCode : surveys)
-                error.append('\n').append(surveyCode);
-            throw new UnsupportedOperationException(error.toString());
-        }
+    public void validateSurveyData(Connection connection) throws Exception {
         //Verify data food codes are assigned to a group
         StringBuilder error = new StringBuilder();
         for (ResultSet resultSet = connection.createStatement().executeQuery(Queries.getUnexistingFoodGroup.getQuery()); resultSet.next(); error.append('\n').append(resultSet.getString(1)));
         if (error.length()>0)
             throw new NotAcceptableException("Data have food codes with no group assigned: "+error.toString());
-        //Return survey code
-        return surveys.iterator().next();
     }
 
     public void cleanTmpData(Connection connection) throws Exception {
@@ -64,17 +53,12 @@ public class DataManager {
     }
 
     public void publishData(Connection connection, String surveyCode) throws Exception {
-        //Remove existing survey data
-        PreparedStatement statement = connection.prepareStatement(Queries.removeSurveySubject.getQuery());
-        statement.setString(1, surveyCode);
-        statement.executeUpdate();
-        statement = connection.prepareStatement(Queries.removeSurveyConsumption.getQuery());
-        statement.setString(1, surveyCode);
-        statement.executeUpdate();
-        //Add new survey data
+        //Update survey data with raw tables content
         CallableStatement callStatement = connection.prepareCall(Queries.updateSubject.getQuery());
+        callStatement.setString(1, surveyCode);
         callStatement.execute();
         callStatement = connection.prepareCall(Queries.updateConsumption.getQuery());
+        callStatement.setString(1, surveyCode);
         callStatement.execute();
     }
 
@@ -91,3 +75,15 @@ public class DataManager {
         return timeSuffixFormat.format(date!=null && date.length>0 ? date[0] : new Date());
     }
 */
+
+//verify only one survey exists
+/*        Collection<String> surveys = new LinkedList<>();
+        for (ResultSet resultSet = connection.createStatement().executeQuery(Queries.getSurveyList.getQuery()); resultSet.next(); surveys.add(resultSet.getString(1)));
+        if (surveys.size()!=1) {
+            StringBuilder error = new StringBuilder("Uploaded data contains multiple surveys:");
+            for (String surveyCode : surveys)
+                error.append('\n').append(surveyCode);
+            throw new UnsupportedOperationException(error.toString());
+        }*/
+//Return survey code
+//        return surveys.iterator().next();

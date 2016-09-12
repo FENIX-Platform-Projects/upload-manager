@@ -13,15 +13,11 @@ public enum Queries {
     getSurveyList("SELECT DISTINCT SURVEY_CODE FROM (SELECT DISTINCT SURVEY_CODE FROM CONSUMPTION_RAW UNION ALL SELECT DISTINCT SURVEY_CODE FROM SUBJECT_RAW) SURVEYS"),
 
     //PUBLISH
-    updateSubject("{ call refresh_subject() }"),
-    updateConsumption("{ call refresh_consumption() }"),
+    updateSubject("{ call refresh_subject(?) }"),
+    updateConsumption("{ call refresh_consumption(?) }"),
 //    updateMaster(""),
 //    updateMasterAvg(""),
 
-    removeSurveySubject("DELETE FROM SUBJECT WHERE SURVEY_CODE = ?"),
-    removeSurveyConsumption("DELETE FROM CONSUMPTION WHERE SURVEY_CODE = ?"),
-//    removeSurveyMaster("DELETE FROM MASTER WHERE SURVEY_CODE = ?"),
-//    removeSurveyMasterAvg("DELETE FROM MASTER_AVG WHERE SURVEY_CODE = ?"),
     ;
 
     private String query;
