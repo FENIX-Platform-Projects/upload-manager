@@ -48,4 +48,17 @@ public class FileManager {
     }
 
 
+    public File saveFile(File tmpFolder, String surveyCode, InputStream zipFileInput) throws IOException {
+        File destinationFile = new File(tmpFolder, "survey_"+surveyCode+".zip");
+        OutputStream out = new FileOutputStream(destinationFile);
+
+        byte[] buffer = new byte[1024];
+        try {
+            for (int c = zipFileInput.read(buffer); c > 0; c = zipFileInput.read(buffer))
+                out.write(buffer, 0, c);
+        } finally {
+            out.close();
+        }
+        return destinationFile;
+    }
 }

@@ -2,7 +2,7 @@ package org.fao.ess.uploader.gift.bulk.impl;
 
 import org.fao.ess.uploader.core.init.UploaderConfig;
 import org.fao.ess.uploader.gift.bulk.dto.Items;
-import org.fao.ess.uploader.gift.bulk.dto.MetadataTemplatesByItemBySurvey;
+import org.fao.ess.uploader.gift.bulk.dto.MetadataTemplates;
 import org.fao.ess.uploader.gift.bulk.utils.D3SClient;
 import org.fao.fenix.commons.msd.dto.full.DSDDataset;
 import org.fao.fenix.commons.msd.dto.full.MeIdentification;
@@ -11,8 +11,6 @@ import org.fao.fenix.commons.utils.Groups;
 import org.fao.fenix.commons.utils.JSONUtils;
 
 import javax.inject.Inject;
-import javax.ws.rs.NotFoundException;
-import javax.ws.rs.core.NoContentException;
 import java.io.InputStream;
 import java.util.Collection;
 import java.util.LinkedList;
@@ -27,7 +25,7 @@ public class MetadataManager {
     public void updateSurveyMetadata(String surveyCode) throws Exception {
         String d3sBaseURL = config.get("gift.d3s.url");
         d3sBaseURL = d3sBaseURL + (d3sBaseURL.charAt(d3sBaseURL.length() - 1) != '/' ? "/" : "");
-        d3SClient.updateDatasetMetadataUpdateDate(d3sBaseURL, surveyCode, null);
+        d3SClient.updateDatasetMetadataUpdateDate(d3sBaseURL, "gift_"+surveyCode, null);
     }
 
     public void updateProcessingDatasetsMetadata (String survey) throws Exception {
@@ -44,14 +42,21 @@ public class MetadataManager {
 
     private Collection<MeIdentification<DSDDataset>> createMetadata (String survey) throws Exception {
         Collection<MeIdentification<DSDDataset>> metadataInstances = new LinkedList<>();
-        for (Items item : Items.values())
-            for (MetadataTemplatesByItemBySurvey template : MetadataTemplatesByItemBySurvey.values()) {
-                MeIdentification<DSDDataset> metadata = loadMetadataTemplate(template);
-                if (metadata!=null) {
-                    metadata.setUid(metadata.getUid() + item + '_' + survey);
+        for (MetadataTemplates template : MetadataTemplates.values()) {
+            MeIdentification<DSDDataset> metadata = loadMetadataTemplate(template);
+            String uid = metadata.getUid();
+            if (template.bySurvey)
+                uid += '_' + survey;
+            if (template.byItem)
+                for (Items item : Items.values()) {
+                    metadata.setUid(uid + '_' + item);
                     metadataInstances.add(metadata);
                 }
+            else {
+                metadata.setUid(uid);
+                metadataInstances.add(metadata);
             }
+        }
         return metadataInstances;
     }
 
@@ -61,7 +66,7 @@ public class MetadataManager {
 
     //Utils
     private static final String templatePath = "/gift/metadata/templates/";
-    private MeIdentification<DSDDataset> loadMetadataTemplate(MetadataTemplatesByItemBySurvey template) throws Exception {
+    private MeIdentification<DSDDataset> loadMetadataTemplate(MetadataTemplates template) throws Exception {
         InputStream templateStream = this.getClass().getResourceAsStream(templatePath+template.toString()+".json");
         if (templateStream==null)
             return null;

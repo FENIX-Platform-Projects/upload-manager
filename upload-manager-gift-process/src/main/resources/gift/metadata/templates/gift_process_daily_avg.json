@@ -39,12 +39,6 @@
         "key" : true
       },
       {
-        "id" : "survey_day",
-        "title" : { "EN" : "Recall number" },
-        "dataType" : "number",
-        "key" : true
-      },
-      {
         "id" : "group_code",
         "title" : { "EN" : "Food group" },
         "dataType" : "code",
@@ -59,10 +53,11 @@
         "key" : true
       },
       {
-        "id" : "foodex2_code",
-        "title" : { "EN" : "FoodEx2" },
+        "id" : "item",
+        "subject" : "item",
+        "title" : { "EN" : "Item" },
         "dataType" : "code",
-        "domain" : { "codes" : [ { "idCodeList" : "GIFT_Foods" } ] },
+        "domain" : { "codes" : [ { "idCodeList" : "GIFT_Items" } ] } ,
         "key" : true
       },
       {

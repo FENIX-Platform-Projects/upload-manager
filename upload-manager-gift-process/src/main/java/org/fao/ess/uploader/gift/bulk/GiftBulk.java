@@ -16,6 +16,7 @@ import javax.inject.Inject;
 import javax.ws.rs.BadRequestException;
 import javax.ws.rs.NotAcceptableException;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.util.*;
@@ -47,8 +48,9 @@ public class GiftBulk implements PostUpload {
         //Create temporary folder with zip file content
         File tmpFolder = tmpFileManager.createTmpFolder();
         try {
+            File file = tmpFileManager.saveFile(tmpFolder, surveyCode, zipFileInput);
             //Unzip file into newly created folder
-            Map<Files, File> recognizedFilesMap = tmpFileManager.unzip(tmpFolder, zipFileInput);
+            Map<Files, File> recognizedFilesMap = tmpFileManager.unzip(tmpFolder, new FileInputStream(file));
             //Check all needed files are present
             if (recognizedFilesMap.size()!=Files.values().length)
                 throw new NotAcceptableException("Some CSV file is missing");
@@ -63,6 +65,8 @@ public class GiftBulk implements PostUpload {
             dataManager.validateSurveyData(connection);
             //Publish temporary data
             dataManager.publishData(connection, surveyCode);
+            //Transfer source file for bulk download
+            //TODO
             //Update metadata
             metadataManager.updateSurveyMetadata(surveyCode);
             metadataManager.updateProcessingDatasetsMetadata(surveyCode);
