@@ -164,21 +164,11 @@ public class D3SClient {
         }
     }
 
-    public void updateDatasetMetadataUpdateDate (String baseUrl, String uid, String version) throws Exception {
-        //Create metadata
-        MeIdentification<DSDDataset> metadata = new MeIdentification<>();
-        metadata.setUid(uid);
-        metadata.setVersion(version);
-        MeMaintenance meMaintenance = new MeMaintenance();
-        metadata.setMeMaintenance(meMaintenance);
-        SeUpdate seUpdate = new SeUpdate();
-        seUpdate.setUpdateDate(new Date());
-        meMaintenance.setSeUpdate(seUpdate);
-
+    public void appendDatasetMetadata (String baseUrl, MeIdentification<DSDDataset> metadata) throws Exception {
         //Send request
         Response response = sendRequest(baseUrl+"msd/resources/metadata", metadata, "patch");
         if (response.getStatus() == 204)
-            throw new NoContentException("Metadata not found: "+uid+(version!=null ? "-"+version : ""));
+            throw new NoContentException("Metadata not found: "+metadata.getUid()+(metadata.getVersion()!=null ? "-"+metadata.getVersion() : ""));
         if (response.getStatus() != 200 && response.getStatus() != 201)
             throw new Exception("Error from D3S updating dataset metadata last update date");
     }

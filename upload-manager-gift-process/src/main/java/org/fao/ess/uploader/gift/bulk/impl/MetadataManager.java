@@ -6,6 +6,8 @@ import org.fao.ess.uploader.gift.bulk.dto.MetadataTemplates;
 import org.fao.ess.uploader.gift.bulk.utils.D3SClient;
 import org.fao.fenix.commons.msd.dto.full.DSDDataset;
 import org.fao.fenix.commons.msd.dto.full.MeIdentification;
+import org.fao.fenix.commons.msd.dto.full.MeMaintenance;
+import org.fao.fenix.commons.msd.dto.full.SeUpdate;
 import org.fao.fenix.commons.utils.FileUtils;
 import org.fao.fenix.commons.utils.Groups;
 import org.fao.fenix.commons.utils.JSONUtils;
@@ -13,6 +15,7 @@ import org.fao.fenix.commons.utils.JSONUtils;
 import javax.inject.Inject;
 import java.io.InputStream;
 import java.util.Collection;
+import java.util.Date;
 import java.util.LinkedList;
 
 public class MetadataManager {
@@ -25,7 +28,17 @@ public class MetadataManager {
     public void updateSurveyMetadata(String surveyCode) throws Exception {
         String d3sBaseURL = config.get("gift.d3s.url");
         d3sBaseURL = d3sBaseURL + (d3sBaseURL.charAt(d3sBaseURL.length() - 1) != '/' ? "/" : "");
-        d3SClient.updateDatasetMetadataUpdateDate(d3sBaseURL, "gift_"+surveyCode, null);
+
+        //Create metadata bean
+        MeIdentification<DSDDataset> metadata = new MeIdentification<>();
+        metadata.setUid("gift_"+surveyCode);
+        MeMaintenance meMaintenance = new MeMaintenance();
+        metadata.setMeMaintenance(meMaintenance);
+        SeUpdate seUpdate = new SeUpdate();
+        seUpdate.setUpdateDate(new Date());
+        meMaintenance.setSeUpdate(seUpdate);
+
+        d3SClient.appendDatasetMetadata(d3sBaseURL, metadata);
     }
 
     public void updateProcessingDatasetsMetadata (String survey) throws Exception {

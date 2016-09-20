@@ -1,4 +1,4 @@
-package org.fao.ess.uploader.gift.bulk.attachments.dto;
+package org.fao.ess.uploader.gift.bulk.dto;
 
 public class HostProperties {
     private String protocol;

@@ -23,7 +23,7 @@ import java.util.*;
 
 @ProcessInfo(context = "gift.bulk", name = "GiftBulk", priority = 1)
 public class GiftBulk implements PostUpload {
-    @Inject private FileManager tmpFileManager;
+    @Inject private FileManager fileManager;
     @Inject private DataManager dataManager;
     @Inject private FoodGroups foodGroups;
     @Inject private MetadataManager metadataManager;
@@ -46,11 +46,11 @@ public class GiftBulk implements PostUpload {
         //Retrieve database connection
         Connection connection = dataManager.getConnection();
         //Create temporary folder with zip file content
-        File tmpFolder = tmpFileManager.createTmpFolder();
+        File tmpFolder = fileManager.createTmpFolder();
         try {
-            File file = tmpFileManager.saveFile(tmpFolder, surveyCode, zipFileInput);
+            File file = fileManager.saveFile(tmpFolder, surveyCode, zipFileInput);
             //Unzip file into newly created folder
-            Map<Files, File> recognizedFilesMap = tmpFileManager.unzip(tmpFolder, new FileInputStream(file));
+            Map<Files, File> recognizedFilesMap = fileManager.unzip(tmpFolder, new FileInputStream(file));
             //Check all needed files are present
             if (recognizedFilesMap.size()!=Files.values().length)
                 throw new NotAcceptableException("Some CSV file is missing");
@@ -66,7 +66,7 @@ public class GiftBulk implements PostUpload {
             //Publish temporary data
             dataManager.publishData(connection, surveyCode);
             //Transfer source file for bulk download
-            //TODO
+            fileManager.publishSurveyFile(file, surveyCode);
             //Update metadata
             metadataManager.updateSurveyMetadata(surveyCode);
             metadataManager.updateProcessingDatasetsMetadata(surveyCode);
@@ -76,7 +76,7 @@ public class GiftBulk implements PostUpload {
             connection.rollback();
             throw ex;
         } finally {
-            tmpFileManager.removeTmpFolder(tmpFolder);
+            fileManager.removeTmpFolder(tmpFolder);
             connection.close();
         }
     }
