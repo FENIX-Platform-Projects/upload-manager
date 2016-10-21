@@ -85,7 +85,7 @@ public class FoodGroups {
                 subgroupsCollisions.add(existingSubgroup+ " and "+currentSubGroup+" on code "+food.getCode());
         }
         //Add children
-        if (food.getChildren()!=null && (food.getSupplemental()==null || food.getSupplemental().size()!=1 || !food.getSupplemental().values().iterator().next().equalsIgnoreCase("alone")))
+        if (food.getChildren()!=null && (food.getSupplemental()==null || food.getSupplemental().size()!=1 || !food.getSupplemental().values().iterator().next().equalsIgnoreCase("N")))
             for (Code child : food.getChildren())
                 completeFoodToSubgroupMap(child,currentSubGroup, originalFoodToSubgroupMap, foodToSubgroupMap, subgroupsCollisions);
     }
