@@ -18,14 +18,18 @@
             <artifactId>upload-manager-core</artifactId>
             <version>${project.version}</version>
         </dependency>
-
+        <!-- SSH -->
+        <dependency>
+            <groupId>com.jcraft</groupId>
+            <artifactId>jsch</artifactId>
+            <version>0.1.51</version>
+        </dependency>
         <!-- JDBC Client -->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>9.4-1201-jdbc41</version>
         </dependency>
-
         <!-- D3S commons & utils -->
         <dependency>
             <groupId>org.fao.fenix</groupId>
@@ -53,6 +57,12 @@
             <artifactId>resteasy-jackson-provider</artifactId>
             <version>${resteasy.version}</version>
         </dependency>
+        <!-- Excel -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-examples</artifactId>
+            <version>3.14</version>
+        </dependency>
         <!-- CSV parser -->
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -75,6 +85,22 @@
             <artifactId>jackson-databind</artifactId>
             <version>${jackson.version}</version>
         </dependency>
+
+        <!-- Tests -->
+        <dependency>
+            <groupId>org.jboss.weld.se</groupId>
+            <artifactId>weld-se</artifactId>
+            <version>2.3.5.Final</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
 

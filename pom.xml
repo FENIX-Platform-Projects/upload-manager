@@ -18,9 +18,9 @@
         <module>upload-manager-RLM-process</module>
         <module>upload-manager-policy-process</module>
         <module>upload-manager-gift-process</module>
+        <module>upload-manager-adam-process</module>
 
         <module>upload-manager-dist</module>
-        <module>upload-manager-adam-process</module>
     </modules>
 
     <properties>

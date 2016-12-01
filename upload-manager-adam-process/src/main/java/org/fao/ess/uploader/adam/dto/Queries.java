@@ -3,26 +3,36 @@ package org.fao.ess.uploader.adam.dto;
 
 public enum Queries {
 
-
     //CLEAN
     cleanDonorsGNI("TRUNCATE TABLE donors_gni"),
     cleanAdamCountryIndicator("TRUNCATE TABLE country_indicators"),
-    cleanCPFPriorities("TRUNCATE TABLE fao_cpf_priorities"),
-    cleanRecipientUndafPriorities("TRUNCATE TABLE recipient_undaf_priorities"),
 
-    insertFoodGroups("INSERT INTO FOOD_GROUP(GROUP_CODE,SUBGROUP_CODE,FOODEX2_CODE) VALUES (?,?,?)"),
+    //CREATE TMP TABLES
+    createCPFPriorites("CREATE TEMP TABLE fao_cpf_priorities\n" +
+            "(\n" +
+            "  recipientcode text,\n" +
+            "  recipientname text,\n" +
+            "  from_year text,\n" +
+            "  to_year text,\n" +
+            "  stated_priority text,\n" +
+            "  purposecode text,\n" +
+            "  purposename text\n" +
+            ")"),
 
-    //VALIDATE
-    getUnexistingFoodGroup("SELECT DISTINCT CONSUMPTION_RAW.FOODEX2_CODE FROM CONSUMPTION_RAW LEFT JOIN FOOD_GROUP ON (CONSUMPTION_RAW.FOODEX2_CODE = FOOD_GROUP.FOODEX2_CODE) WHERE SUBGROUP_CODE IS NULL"),
-    getSurveyList("SELECT DISTINCT SURVEY_CODE FROM (SELECT DISTINCT SURVEY_CODE FROM CONSUMPTION_RAW UNION ALL SELECT DISTINCT SURVEY_CODE FROM SUBJECT_RAW) SURVEYS"),
+    createUndafPriorites("CREATE TEMP TABLE recipient_undaf_priorities\n" +
+            "(\n" +
+            "  recipientcode text,\n" +
+            "  recipientname text,\n" +
+            "  from_year text,\n" +
+            "  to_year text,\n" +
+            "  stated_priority text,\n" +
+            "  purposecode text,\n" +
+            "  purposename text\n" +
+            ")"),
 
-    //PUBLISH
-    updateSubject("{ call refresh_subject(?) }"),
-    updateConsumption("{ call refresh_consumption(?) }"),
-//    updateMaster(""),
-//    updateMasterAvg(""),
-
-    ;
+    //FUNCTIONS
+    callFunctionCPFUndaf("{ call create_cpf_undaf_priorities_table() }"),
+    callFunctionPrioritiesTable("{ call create_priorities_table() }");
 
     private String query;
 
