@@ -1,4 +1,4 @@
-package org.fao.ess.uploader.adam.utils.data;
+package org.fao.ess.uploader.adam.impl;
 
 import org.fao.ess.uploader.adam.dto.Files;
 import org.fao.ess.uploader.core.init.UploaderConfig;

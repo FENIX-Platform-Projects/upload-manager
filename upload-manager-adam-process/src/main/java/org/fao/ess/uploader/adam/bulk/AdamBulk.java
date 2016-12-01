@@ -1,8 +1,9 @@
 package org.fao.ess.uploader.adam.bulk;
 
 import org.fao.ess.uploader.adam.dto.Files;
-import org.fao.ess.uploader.adam.utils.data.DataManager;
-import org.fao.ess.uploader.adam.utils.data.FileManager;
+import org.fao.ess.uploader.adam.impl.DataManager;
+import org.fao.ess.uploader.adam.impl.FileManager;
+import org.fao.ess.uploader.adam.impl.MetadataManager;
 import org.fao.ess.uploader.core.dto.ChunkMetadata;
 import org.fao.ess.uploader.core.dto.FileMetadata;
 import org.fao.ess.uploader.core.metadata.MetadataStorage;
@@ -11,7 +12,6 @@ import org.fao.ess.uploader.core.process.ProcessInfo;
 import org.fao.ess.uploader.core.storage.BinaryStorage;
 
 import javax.inject.Inject;
-import javax.ws.rs.BadRequestException;
 import javax.ws.rs.NotAcceptableException;
 import java.io.File;
 import java.io.FileInputStream;
@@ -23,14 +23,15 @@ import java.util.Map;
 public class AdamBulk implements PostUpload {
 
     private static final String PRIORITIES = "priorities";
+    private static final String UID = "adam_combined_priorities_table";
     @Inject private DataManager dataManager;
     @Inject private FileManager fileManager;
+    @Inject private MetadataManager metadataManager;
 
-
-
+    
     @Override
     public void chunkUploaded(ChunkMetadata metadata, MetadataStorage metadataStorage, BinaryStorage storage) throws Exception {
-
+        //nothing to do
     }
 
     @Override
@@ -62,9 +63,9 @@ public class AdamBulk implements PostUpload {
             //TODO: ask if validation
             dataManager.createFinalTable(connection);
 
-            /*//Update metadata
-            metadataManager.updateSurveyMetadata(surveyCode);
-            metadataManager.updateProcessingDatasetsMetadata(surveyCode);*/
+            //Update metadata
+            metadataManager.updateMetadata(UID);
+            metadataManager.updateCache(UID);
             //Commit database changes
             connection.commit();
         } catch (Exception ex) {

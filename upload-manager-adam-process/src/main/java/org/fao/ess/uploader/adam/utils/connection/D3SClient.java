@@ -1,5 +1,6 @@
 package org.fao.ess.uploader.adam.utils.connection;
 
+import org.fao.ess.uploader.adam.dto.D3SResponse;
 import org.fao.fenix.commons.find.dto.filter.FieldFilter;
 import org.fao.fenix.commons.find.dto.filter.IdFilter;
 import org.fao.fenix.commons.find.dto.filter.StandardFilter;
@@ -26,14 +27,21 @@ import java.util.*;
 public class D3SClient {
     @Inject JSONUtils jsonUtils;
 
+    public D3SResponse getDataset(String baseUrl, String uid, Language language, Integer perPage, Integer page) throws Exception {
+        String responseBody = getResource(baseUrl, uid, null, language, perPage, page);
+        return JSONUtils.decode(responseBody, D3SResponse.class);
+    }
+
     public Resource<DSDDataset, Object[]> getDataset(String baseUrl, String uid, String version, Language language, Integer perPage, Integer page) throws Exception {
         String responseBody = getResource(baseUrl, uid, version, language, perPage, page);
         return JSONUtils.decode(responseBody,Resource.class, DSDDataset.class, Object[].class);
     }
+
     public Resource<DSDCodelist, Code> getCodelist(String baseUrl, String uid, String version) throws Exception {
         String responseBody = getResource(baseUrl, uid, version, null, null, null);
         return JSONUtils.decode(responseBody,Resource.class, DSDCodelist.class, Code.class);
     }
+
     private String getResource(String baseUrl, String uid, String version, Language language, Integer perPage, Integer page) throws Exception {
         //Create URL
         StringBuilder url = new StringBuilder(baseUrl).append("msd/resources/");
@@ -55,7 +63,7 @@ public class D3SClient {
         }
         //Send request
         Response response = sendRequest(addQueryParameters(url.toString(),parameters), null, "get");
-        if (response.getStatus() != 200)
+        if (response.getStatus() != 200 && response.getStatus() != 201)
             throw new Exception("Error from D3S loading resource");
         //Parse responseObjectMapper
         return response.readEntity(String.class);
@@ -170,6 +178,7 @@ public class D3SClient {
         if (response.getStatus() != 200 && response.getStatus() != 201)
             throw new Exception("Error from D3S updating dataset metadata last update date");
     }
+
     public void updateDatasetMetadataUpdateDate (String baseUrl, String contextSystem) throws Exception {
         if (contextSystem==null)
             return;
@@ -248,17 +257,3 @@ public class D3SClient {
 
 
 }
-
-
-
-
-
-
-/*
-    public static void main(String[] args) throws Exception {
-        D3SClient client = new D3SClient();
-        Collection<MeIdentification<DSDDataset>> metadata = client.retrieveMetadata("http://localhost:7777/v2/");
-        System.out.println(metadata.size());
-//        client.deleteMetadata("http://localhost:7777/v2/",metadata);
-    }
-*/

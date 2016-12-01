@@ -1,4 +1,4 @@
-package org.fao.ess.uploader.adam.utils.data;
+package org.fao.ess.uploader.adam.impl;
 
 import org.fao.ess.uploader.adam.dto.Queries;
 import org.fao.ess.uploader.adam.utils.connection.DataSource;
