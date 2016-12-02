@@ -47,13 +47,22 @@ public class FileManager {
         return recognizedFilesMap;
     }
 
+    public Map<Files, File> mapFiles(File file) throws Exception {
+        Map<Files, File> recognizedFilesMap = new HashMap<>();
+            Files recognizedFile = file.isFile() ? Files.get(file.getName()) : null;
+            if (recognizedFile!=null)
+                recognizedFilesMap.put(recognizedFile, file);
+
+        return recognizedFilesMap;
+    }
+
     public void removeTmpFolder(File folder) throws Exception {
         fileUtils.delete(folder);
     }
 
 
-    public File saveFile(File tmpFolder, InputStream zipFileInput, String fileName) throws IOException {
-        File destinationFile = new File(tmpFolder, fileName+"_"+ new SimpleDateFormat(DEFAULT_DATE_FORMAT).toString()+".zip");
+    public File saveFile(File tmpFolder, InputStream zipFileInput, String fileName, String extension) throws IOException {
+        File destinationFile = new File(tmpFolder, fileName+"."+extension);
         OutputStream out = new FileOutputStream(destinationFile);
 
         byte[] buffer = new byte[1024];

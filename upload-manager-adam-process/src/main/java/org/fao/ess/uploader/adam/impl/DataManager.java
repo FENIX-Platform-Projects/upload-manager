@@ -37,18 +37,22 @@ public class DataManager {
         copier.endCopy();
     }
 
-   /* public void validateSurveyData(Connection connection) throws Exception {
-        //Verify data food codes are assigned to a group
-        StringBuilder error = new StringBuilder();
-        for (ResultSet resultSet = connection.createStatement().executeQuery(Queries.getUnexistingFoodGroup.getQuery()); resultSet.next(); error.append('\n').append(resultSet.getString(1)));
-        if (error.length()>0)
-            throw new NotAcceptableException("Data have food codes with no group assigned: "+error.toString());
-    }*/
 
-  /*  public void cleanTmpData(Connection connection) throws Exception {
-        connection.createStatement().executeUpdate(Queries.cleanCPFPriorities.getQuery());
-        connection.createStatement().executeUpdate(Queries.cleanRecipientUndafPriorities.getQuery());
-    }*/
+
+    public void cleanTmpData(Connection connection, String uid) throws Exception {
+        switch (uid){
+            case "donors_gni":
+                connection.createStatement().executeUpdate(Queries.cleanDonorsGNI.getQuery());
+                break;
+
+            case "country_indicators":
+                connection.createStatement().executeUpdate(Queries.cleanAdamCountryIndicator.getQuery());
+                break;
+
+            default:
+                break;
+        }
+    }
 
     public void createTmpTables (Connection connection) throws Exception{
         connection.createStatement().executeUpdate(Queries.createCPFPriorites.getQuery());

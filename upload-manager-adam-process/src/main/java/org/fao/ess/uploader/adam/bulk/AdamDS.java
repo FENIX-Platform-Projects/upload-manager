@@ -19,54 +19,51 @@ import java.io.InputStream;
 import java.sql.Connection;
 import java.util.Map;
 
-@ProcessInfo(context = "adam.bulk", name = "AdamBulk", priority = 1)
-public class AdamBulk implements PostUpload {
+@ProcessInfo(context = "adam.dataset", name = "AdamDS", priority = 1)
+public class AdamDS implements PostUpload {
+    private static final String EXTENSION = "csv";
 
-    private static final String PRIORITIES = "priorities";
-    private static final String EXTENSION = "zip";
-    private static final String UID = "adam_combined_priorities_table";
     @Inject private DataManager dataManager;
     @Inject private FileManager fileManager;
     @Inject private MetadataManager metadataManager;
 
 
+
+
     @Override
     public void chunkUploaded(ChunkMetadata metadata, MetadataStorage metadataStorage, BinaryStorage storage) throws Exception {
-        //nothing to do
+        //Nothing to do
     }
 
     @Override
     public void fileUploaded(FileMetadata metadata, MetadataStorage metadataStorage, BinaryStorage storage, Map<String, Object> processingParams) throws Exception {
+        InputStream csvFileInput = storage.readFile(metadata, null);
 
-        InputStream zipFileInput = storage.readFile(metadata, null);
-        //Start post processing
-        mainLogic(zipFileInput);
+        if(processingParams == null || processingParams.keySet().size() == 0 || processingParams.containsKey("uid") || processingParams.get("uid") == null || processingParams.get("uid").equals(""))
+            throw new Exception("Wrong configuration: uid parameter misses or it is wrong");
+        mainLogic(csvFileInput, processingParams.get("uid").toString());
+
     }
 
-    public void mainLogic(InputStream zipFileInput) throws Exception {
+    public void mainLogic(InputStream csvFile, String uid) throws Exception {
         //Retrieve database connection
         Connection connection = dataManager.getConnection();
         //Create temporary folder with zip file content
         File tmpFolder = fileManager.createTmpFolder();
         try {
-            File file = fileManager.saveFile(tmpFolder, zipFileInput, PRIORITIES,EXTENSION );
-            //Unzip file into newly created folder
-            Map<Files, File> recognizedFilesMap = fileManager.unzip(tmpFolder, new FileInputStream(file));
-            //Check all needed files are present
-            if (recognizedFilesMap.size()!=Files.values().length)
-                throw new NotAcceptableException("Some CSV file is missing");
+            File file = fileManager.saveFile(tmpFolder, csvFile, uid,EXTENSION );
+            //Map the files to check if the name si right
+            Map<Files, File> recognizedFilesMap = fileManager.mapFiles(file);
+            //Check the file is present
+            if (recognizedFilesMap.size()==0)
+                throw new NotAcceptableException("CSV file is missing");
             //Create tmp tables
-            dataManager.createTmpTables(connection);
-            // Upload data into database stage area
-            dataManager.uploadCSV(recognizedFilesMap.get(Files.cpf), "fao_cpf_priorities", connection);
-            dataManager.uploadCSV(recognizedFilesMap.get(Files.undaf), "recipient_undaf_priorities", connection);
-
-            // Creation fo the final table to visualize
-            dataManager.createFinalTable(connection);
-
+            dataManager.cleanTmpData(connection, uid);
+            // Upload data into
+            dataManager.uploadCSV(file, uid, connection);
             //Update metadata and cache
-            metadataManager.updateMetadata(UID);
-            metadataManager.updateCache(UID);
+            metadataManager.updateMetadata("adam_"+uid);
+            metadataManager.updateCache("adam_"+uid);
             //Commit database changes
             connection.commit();
         } catch (Exception ex) {
@@ -77,5 +74,4 @@ public class AdamBulk implements PostUpload {
             connection.close();
         }
     }
-
 }

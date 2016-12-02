@@ -1,0 +1,1439 @@
+country code,indicator code,item code,Period,Value,unit code,source,Note,Link
+625,INCOME.LEVEL,INCOME.LEVEL.L,2016,,,WB,,http://data.worldbank.org/indicator
+625,NY.GNP.ATLS.CD,,2011-2013,20167,usd_million,WB,Average,http://data.worldbank.org/indicator
+625,NY.GNP.PCAP.CD,,2011-2013,673,usd,WB,Average,http://data.worldbank.org/indicator
+625,POP.TOT,,2011-2013,29739490,,FAOStat,Average,http://faostat3.fao.org/
+625,RUR.POP.PERC,,2011-2013,74.8,percentage,WB;FAOStat,Average calculated,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+625,AGRI.LAND.PERC,,2009-2011,58.1,percentage,FAOStat,Average,http://faostat3.fao.org/
+625,NET.ODA.REC,,2011-2013,6136,usd_million,WB,Average calculated ,http://data.worldbank.org/indicator
+625,NET.ODA.REC.PC,,2011-2013,207,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+71,INCOME.LEVEL,INCOME.LEVEL.UM,2016,,,WB,,http://data.worldbank.org/indicator
+71,NY.GNP.ATLS.CD,,2011-2013,12799,usd_million,WB,Average,http://data.worldbank.org/indicator
+71,NY.GNP.PCAP.CD,,2011-2013,4410,usd,WB,Average,http://data.worldbank.org/indicator
+71,POP.TOT,,2011-2013,2883320,,FAOStat,Average,http://faostat3.fao.org/
+71,RUR.POP.PERC,,2011-2013,50.1,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+71,AGRI.LAND.PERC,,2009-2011,43.8,percentage,FAOStat,Average,http://faostat3.fao.org/
+71,NET.ODA.REC,,2011-2013,335,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+71,NET.ODA.REC.PC,,2011-2013,116,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+71,DT.ODA.ODAT.GN.ZS,,2011-2013,2.62,percentage,WB,Average,http://data.worldbank.org/indicator
+71,SI.POV.GINI,,2012,28.96,,WB,Last available year,http://data.worldbank.org/indicator
+130,INCOME.LEVEL,INCOME.LEVEL.UM,2016,,,WB,,http://data.worldbank.org/indicator
+130,NY.GNP.ATLS.CD,,2011-2013,191210,usd_million,WB,Average,http://data.worldbank.org/indicator
+130,NY.GNP.PCAP.CD,,2011-2013,5100,usd,WB,Average,http://data.worldbank.org/indicator
+130,POP.TOT,,2011-2013,37447567,,FAOStat,Average,http://faostat3.fao.org/
+130,RUR.POP.PERC,,2011-2013,32.0,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+130,AGRI.LAND.PERC,,2009-2011,17.4,percentage,FAOStat,Average,http://faostat3.fao.org/
+130,NET.ODA.REC,,2011-2013,170,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+130,NET.ODA.REC.PC,,2011-2013,5,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+130,DT.ODA.ODAT.GN.ZS,,2011-2013,0.09,percentage,WB,Average,http://data.worldbank.org/indicator
+130,SI.POV.GINI,,1995,35.33,,WB,Last available year,http://data.worldbank.org/indicator
+225,INCOME.LEVEL,INCOME.LEVEL.UM,2016,,,WB,,http://data.worldbank.org/indicator
+225,POP.TOT,,2011-2013,22692043,,FAOStat,Average,http://faostat3.fao.org/
+225,RUR.POP.PERC,,2011-2013,53.5,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+225,AGRI.LAND.PERC,,2009-2011,46.8,percentage,FAOStat,Average,http://faostat3.fao.org/
+225,NET.ODA.REC,,2011-2013,241,usd_million,WB,Average,http://data.worldbank.org/indicator
+225,NET.ODA.REC.PC,,2011-2013,11,usd,WB,Average,http://data.worldbank.org/indicator
+225,DT.ODA.ODAT.GN.ZS,,2011-2013,0.21,percentage,WB,Average,http://data.worldbank.org/indicator
+225,SI.POV.GINI,,2008,42.72,,WB,Last available year,http://data.worldbank.org/indicator
+377,INCOME.LEVEL,INCOME.LEVEL.H,2016,,,WB,,http://data.worldbank.org/indicator
+377,NY.GNP.ATLS.CD,,2011-2013,1136,usd_million,WB,Average,http://data.worldbank.org/indicator
+377,NY.GNP.PCAP.CD,,2011-2013,12750,usd,WB,Average,http://data.worldbank.org/indicator
+377,POP.TOT,,2011-2013,89067,,FAOStat,Average,http://faostat3.fao.org/
+377,RUR.POP.PERC,,2011-2013,75.2,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+377,AGRI.LAND.PERC,,2009-2011,20.5,percentage,FAOStat,Average,http://faostat3.fao.org/
+377,NET.ODA.REC,,2011-2013,6,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+377,NET.ODA.REC.PC,,2011-2013,72,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+377,DT.ODA.ODAT.GN.ZS,,2011-2013,0.58,percentage,WB,Average,http://data.worldbank.org/indicator
+425,INCOME.LEVEL,INCOME.LEVEL.H,2016,,,WB,,http://data.worldbank.org/indicator
+425,NY.GNP.ATLS.CD,,2011-2013,547739,usd_million,WB,Average,http://data.worldbank.org/indicator
+425,NY.GNP.PCAP.CD,,2011-2013,13003,usd,WB,Average,http://data.worldbank.org/indicator
+425,POP.TOT,,2011-2013,42096380,,FAOStat,Average,http://faostat3.fao.org/
+425,RUR.POP.PERC,,2011-2013,8.5,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+425,AGRI.LAND.PERC,,2009-2011,53.3,percentage,FAOStat,Average,http://faostat3.fao.org/
+425,NET.ODA.REC,,2011-2013,92,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+425,NET.ODA.REC.PC,,2011-2013,2,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+425,DT.ODA.ODAT.GN.ZS,,2011-2013,0.02,percentage,WB,Average,http://data.worldbank.org/indicator
+610,INCOME.LEVEL,INCOME.LEVEL.LM,2016,,,WB,,http://data.worldbank.org/indicator
+425,SI.POV.GINI,,2013,42.28,,WB,Last available year,http://data.worldbank.org/indicator
+610,NY.GNP.ATLS.CD,,2011-2013,11040,usd_million,WB,Average,http://data.worldbank.org/indicator
+610,NY.GNP.PCAP.CD,,2011-2013,3703,usd,WB,Average,http://data.worldbank.org/indicator
+610,POP.TOT,,2011-2013,2979503,,FAOStat,Average,http://faostat3.fao.org/
+610,RUR.POP.PERC,,2011-2013,36.7,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+610,AGRI.LAND.PERC,,2009-2011,60.8,percentage,FAOStat,Average,http://faostat3.fao.org/
+610,NET.ODA.REC,,2011-2013,320,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+610,NET.ODA.REC.PC,,2011-2013,107,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+610,DT.ODA.ODAT.GN.ZS,,2011-2013,2.93,percentage,WB,Average,http://data.worldbank.org/indicator
+610,SI.POV.GINI,,2013,31.54,,WB,Last available year,http://data.worldbank.org/indicator
+801,INCOME.LEVEL,INCOME.LEVEL.HOM,2016,,,WB,,http://data.worldbank.org/indicator
+801,NY.GNP.ATLS.CD,,2011-2013,1331196,usd_million,WB,Average,http://data.worldbank.org/indicator
+801,NY.GNP.PCAP.CD,,2011-2013,58473,usd,WB,Average,http://data.worldbank.org/indicator
+801,NODA,,2011-2013,4879,usd_million,OECD DAC,Average,http://www.oecd.org/dac/stats/statisticsonresourceflowstodevelopingcountries.htm
+801,ODA.GNI,,2011-2013,0.37,percentage,WB,Average calculated,http://data.worldbank.org/indicator
+1,INCOME.LEVEL,INCOME.LEVEL.HOM,2016,,,WB,,http://data.worldbank.org/indicator
+1,NY.GNP.ATLS.CD,,2011-2013,423770,usd_million,WB,Average,http://data.worldbank.org/indicator
+1,NY.GNP.PCAP.CD,,2011-2013,50247,usd,WB,Average,http://data.worldbank.org/indicator
+1,NODA,,2011-2013,1142,usd_million,OECD DAC,Average,http://www.oecd.org/dac/stats/statisticsonresourceflowstodevelopingcountries.htm
+1,ODA.GNI,,2011-2013,0.27,percentage,WB,Average calculated,http://data.worldbank.org/indicator
+611,INCOME.LEVEL,INCOME.LEVEL.UM,2016,,,WB,,http://data.worldbank.org/indicator
+611,NY.GNP.ATLS.CD,,2011-2013,59443,usd_million,WB,Average,http://data.worldbank.org/indicator
+611,NY.GNP.PCAP.CD,,2011-2013,6390,usd,WB,Average,http://data.worldbank.org/indicator
+611,POP.TOT,,2011-2013,9362163,,FAOStat,Average,http://faostat3.fao.org/
+611,RUR.POP.PERC,,2011-2013,45.9,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+611,AGRI.LAND.PERC,,2009-2011,57.6,percentage,FAOStat,Average,http://faostat3.fao.org/
+611,NET.ODA.REC,,2011-2013,146,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+611,NET.ODA.REC.PC,,2011-2013,16,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+611,DT.ODA.ODAT.GN.ZS,,2011-2013,0.28,percentage,WB,Average,http://data.worldbank.org/indicator
+611,SI.POV.GINI,,2008,16.64,,WB,Last available year,http://data.worldbank.org/indicator
+666,INCOME.LEVEL,INCOME.LEVEL.LM,2016,,,WB,,http://data.worldbank.org/indicator
+666,NY.GNP.ATLS.CD,,2011-2013,146346,usd_million,WB,Average,http://data.worldbank.org/indicator
+666,NY.GNP.PCAP.CD,,2011-2013,943,usd,WB,Average,http://data.worldbank.org/indicator
+666,POP.TOT,,2011-2013,155273463,,FAOStat,Average,http://faostat3.fao.org/
+666,RUR.POP.PERC,,2011-2013,67.8,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+666,AGRI.LAND.PERC,,2009-2011,70.7,percentage,FAOStat,Average,http://faostat3.fao.org/
+666,NET.ODA.REC,,2011-2013,2077,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+666,NET.ODA.REC.PC,,2011-2013,13,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+666,DT.ODA.ODAT.GN.ZS,,2011-2013,1.40,percentage,WB,Average,http://data.worldbank.org/indicator
+666,SI.POV.GINI,,2010,31.98,,WB,Last available year,http://data.worldbank.org/indicator
+86,INCOME.LEVEL,INCOME.LEVEL.UM,2016,,,WB,,http://data.worldbank.org/indicator
+86,NY.GNP.ATLS.CD,,2011-2013,60942,usd_million,WB,Average,http://data.worldbank.org/indicator
+86,NY.GNP.PCAP.CD,,2011-2013,6440,usd,WB,Average,http://data.worldbank.org/indicator
+86,POP.TOT,,2011-2013,9491973,,FAOStat,Average,http://faostat3.fao.org/
+86,RUR.POP.PERC,,2011-2013,24.3,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+86,AGRI.LAND.PERC,,2009-2011,43.9,percentage,FAOStat,Average,http://faostat3.fao.org/
+86,NET.ODA.REC,,2011-2013,107,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+86,NET.ODA.REC.PC,,2011-2013,11,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+86,DT.ODA.ODAT.GN.ZS,,2011-2013,0.18,percentage,WB,Average,http://data.worldbank.org/indicator
+86,SI.POV.GINI,,2012,26.01,,WB,Last available year,http://data.worldbank.org/indicator
+2,INCOME.LEVEL,INCOME.LEVEL.HOM,2016,,,WB,,http://data.worldbank.org/indicator
+2,NY.GNP.ATLS.CD,,2011-2013,523889,usd_million,WB,Average,http://data.worldbank.org/indicator
+2,NY.GNP.PCAP.CD,,2011-2013,47113,usd,WB,Average,http://data.worldbank.org/indicator
+2,NODA,,2011-2013,2501,usd_million,OECD DAC,Average,http://www.oecd.org/dac/stats/statisticsonresourceflowstodevelopingcountries.htm
+2,ODA.GNI,,2011-2013,0.48,percentage,WB,Average calculated,http://data.worldbank.org/indicator
+352,INCOME.LEVEL,INCOME.LEVEL.UM,2016,,,WB,,http://data.worldbank.org/indicator
+352,NY.GNP.ATLS.CD,,2011-2013,1431,usd_million,WB,Average,http://data.worldbank.org/indicator
+352,NY.GNP.PCAP.CD,,2011-2013,4250,usd,WB,Average,http://data.worldbank.org/indicator
+352,POP.TOT,,2011-2013,336697,,FAOStat,Average,http://faostat3.fao.org/
+352,RUR.POP.PERC,,2011-2013,53.5,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+352,AGRI.LAND.PERC,,2009-2011,6.9,percentage,FAOStat,Average,http://faostat3.fao.org/
+352,NET.ODA.REC,,2011-2013,32,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+352,NET.ODA.REC.PC,,2011-2013,95,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+352,DT.ODA.ODAT.GN.ZS,,2011-2013,2.22,percentage,WB,Average,http://data.worldbank.org/indicator
+352,SI.POV.GINI,,1999,53.26,,WB,Last available year,http://data.worldbank.org/indicator
+236,INCOME.LEVEL,INCOME.LEVEL.L,2016,,,WB,,http://data.worldbank.org/indicator
+236,NY.GNP.ATLS.CD,,2011-2013,8116,usd_million,WB,Average,http://data.worldbank.org/indicator
+236,NY.GNP.PCAP.CD,,2011-2013,807,usd,WB,Average,http://data.worldbank.org/indicator
+236,POP.TOT,,2011-2013,10050470,,FAOStat,Average,http://faostat3.fao.org/
+236,RUR.POP.PERC,,2011-2013,57.3,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+236,AGRI.LAND.PERC,,2009-2011,29.9,percentage,FAOStat,Average,http://faostat3.fao.org/
+236,NET.ODA.REC,,2011-2013,605,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+236,NET.ODA.REC.PC,,2011-2013,60,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+236,DT.ODA.ODAT.GN.ZS,,2011-2013,7.49,percentage,WB,Average,http://data.worldbank.org/indicator
+236,SI.POV.GINI,,2011,43.44,,WB,Last available year,http://data.worldbank.org/indicator
+630,INCOME.LEVEL,INCOME.LEVEL.LM,2016,,,WB,,http://data.worldbank.org/indicator
+630,NY.GNP.ATLS.CD,,2011-2013,1694,usd_million,WB,Average,http://data.worldbank.org/indicator
+630,NY.GNP.PCAP.CD,,2011-2013,2277,usd,WB,Average,http://data.worldbank.org/indicator
+630,POP.TOT,,2011-2013,743533,,FAOStat,Average,http://faostat3.fao.org/
+630,RUR.POP.PERC,,2011-2013,63.5,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+630,AGRI.LAND.PERC,,2009-2011,13.5,percentage,FAOStat,Average,http://faostat3.fao.org/
+630,NET.ODA.REC,,2011-2013,147,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+630,NET.ODA.REC.PC,,2011-2013,197,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+630,DT.ODA.ODAT.GN.ZS,,2011-2013,8.65,percentage,WB,Average,http://data.worldbank.org/indicator
+630,SI.POV.GINI,,2012,38.65,,WB,Last available year,http://data.worldbank.org/indicator
+428,INCOME.LEVEL,INCOME.LEVEL.LM,2016,,,WB,,http://data.worldbank.org/indicator
+428,NY.GNP.ATLS.CD,,2011-2013,23614,usd_million,WB,Average,http://data.worldbank.org/indicator
+428,NY.GNP.PCAP.CD,,2011-2013,2303,usd,WB,Average,http://data.worldbank.org/indicator
+428,POP.TOT,,2011-2013,10238977,,FAOStat,Average,http://faostat3.fao.org/
+428,RUR.POP.PERC,,2011-2013,33.5,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+428,AGRI.LAND.PERC,,2009-2011,34.1,percentage,FAOStat,Average,http://faostat3.fao.org/
+428,NET.ODA.REC,,2011-2013,636,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+428,NET.ODA.REC.PC,,2011-2013,62,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+428,DT.ODA.ODAT.GN.ZS,,2011-2013,2.73,percentage,WB,Average,http://data.worldbank.org/indicator
+428,SI.POV.GINI,,2013,48.06,,WB,Last available year,http://data.worldbank.org/indicator
+64,INCOME.LEVEL,INCOME.LEVEL.UM,2016,,,WB,,http://data.worldbank.org/indicator
+64,NY.GNP.ATLS.CD,,2011-2013,17977,usd_million,WB,Average,http://data.worldbank.org/indicator
+64,NY.GNP.PCAP.CD,,2011-2013,4700,usd,WB,Average,http://data.worldbank.org/indicator
+64,POP.TOT,,2011-2013,3828087,,FAOStat,Average,http://faostat3.fao.org/
+64,RUR.POP.PERC,,2011-2013,60.7,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+64,AGRI.LAND.PERC,,2009-2011,42.0,percentage,FAOStat,Average,http://faostat3.fao.org/
+64,NET.ODA.REC,,2011-2013,586,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+64,NET.ODA.REC.PC,,2011-2013,153,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+64,DT.ODA.ODAT.GN.ZS,,2011-2013,3.26,percentage,WB,Average,http://data.worldbank.org/indicator
+64,SI.POV.GINI,,2007,33.04,,WB,Last available year,http://data.worldbank.org/indicator
+227,INCOME.LEVEL,INCOME.LEVEL.UM,2016,,,WB,,http://data.worldbank.org/indicator
+227,NY.GNP.ATLS.CD,,2011-2013,14989,usd_million,WB,Average,http://data.worldbank.org/indicator
+227,NY.GNP.PCAP.CD,,2011-2013,7023,usd,WB,Average,http://data.worldbank.org/indicator
+227,POP.TOT,,2011-2013,2133013,,FAOStat,Average,http://faostat3.fao.org/
+227,RUR.POP.PERC,,2011-2013,40.7,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+227,AGRI.LAND.PERC,,2009-2011,45.7,percentage,FAOStat,Average,http://faostat3.fao.org/
+227,NET.ODA.REC,,2011-2013,100,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+227,NET.ODA.REC.PC,,2011-2013,47,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+227,DT.ODA.ODAT.GN.ZS,,2011-2013,0.67,percentage,WB,Average,http://data.worldbank.org/indicator
+227,SI.POV.GINI,,2009,60.46,,WB,Last available year,http://data.worldbank.org/indicator
+431,INCOME.LEVEL,INCOME.LEVEL.UM,2016,,,WB,,http://data.worldbank.org/indicator
+431,NY.GNP.ATLS.CD,,2011-2013,2394161,usd_million,WB,Average,http://data.worldbank.org/indicator
+431,NY.GNP.PCAP.CD,,2011-2013,11827,usd,WB,Average,http://data.worldbank.org/indicator
+431,POP.TOT,,2011-2013,202392847,,FAOStat,Average,http://faostat3.fao.org/
+431,RUR.POP.PERC,,2011-2013,14.8,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+431,AGRI.LAND.PERC,,2009-2011,32.4,percentage,FAOStat,Average,http://faostat3.fao.org/
+431,NET.ODA.REC,,2011-2013,1086,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+431,NET.ODA.REC.PC,,2011-2013,5,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+431,DT.ODA.ODAT.GN.ZS,,2011-2013,0.04,percentage,WB,Average,http://data.worldbank.org/indicator
+431,SI.POV.GINI,,2013,52.87,,WB,Last available year,http://data.worldbank.org/indicator
+287,INCOME.LEVEL,INCOME.LEVEL.L,2016,,,WB,,http://data.worldbank.org/indicator
+287,NY.GNP.ATLS.CD,,2011-2013,10718,usd_million,WB,Average,http://data.worldbank.org/indicator
+287,NY.GNP.PCAP.CD,,2011-2013,647,usd,WB,Average,http://data.worldbank.org/indicator
+287,POP.TOT,,2011-2013,16594070,,FAOStat,Average,http://faostat3.fao.org/
+287,RUR.POP.PERC,,2011-2013,72.1,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+287,AGRI.LAND.PERC,,2009-2011,43.4,percentage,FAOStat,Average,http://faostat3.fao.org/
+287,NET.ODA.REC,,2011-2013,1036,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+287,NET.ODA.REC.PC,,2011-2013,62,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+287,DT.ODA.ODAT.GN.ZS,,2011-2013,9.70,percentage,WB,Average,http://data.worldbank.org/indicator
+287,SI.POV.GINI,,2009,39.76,,WB,Last available year,http://data.worldbank.org/indicator
+228,INCOME.LEVEL,INCOME.LEVEL.L,2016,,,WB,,http://data.worldbank.org/indicator
+228,NY.GNP.ATLS.CD,,2011-2013,2382,usd_million,WB,Average,http://data.worldbank.org/indicator
+228,NY.GNP.PCAP.CD,,2011-2013,237,usd,WB,Average,http://data.worldbank.org/indicator
+228,POP.TOT,,2011-2013,10126893,,FAOStat,Average,http://faostat3.fao.org/
+228,RUR.POP.PERC,,2011-2013,86.4,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+228,AGRI.LAND.PERC,,2009-2011,86.2,percentage,FAOStat,Average,http://faostat3.fao.org/
+228,NET.ODA.REC,,2011-2013,520,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+228,NET.ODA.REC.PC,,2011-2013,51,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+228,DT.ODA.ODAT.GN.ZS,,2011-2013,21.98,percentage,WB,Average,http://data.worldbank.org/indicator
+228,SI.POV.GINI,,2006,33.36,,WB,Last available year,http://data.worldbank.org/indicator
+230,INCOME.LEVEL,INCOME.LEVEL.LM,2016,,,WB,,http://data.worldbank.org/indicator
+230,NY.GNP.ATLS.CD,,2011-2013,1760,usd_million,WB,Average,http://data.worldbank.org/indicator
+230,NY.GNP.PCAP.CD,,2011-2013,3513,usd,WB,Average,http://data.worldbank.org/indicator
+230,POP.TOT,,2011-2013,501097,,FAOStat,Average,http://faostat3.fao.org/
+230,RUR.POP.PERC,,2011-2013,36.1,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+230,AGRI.LAND.PERC,,2009-2011,18.6,percentage,FAOStat,Average,http://faostat3.fao.org/
+230,NET.ODA.REC,,2011-2013,249,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+230,NET.ODA.REC.PC,,2011-2013,497,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+230,DT.ODA.ODAT.GN.ZS,,2011-2013,14.16,percentage,WB,Average,http://data.worldbank.org/indicator
+230,SI.POV.GINI,,2007,47.19,,WB,Last available year,http://data.worldbank.org/indicator
+728,INCOME.LEVEL,INCOME.LEVEL.L,2016,,,WB,,http://data.worldbank.org/indicator
+728,NY.GNP.ATLS.CD,,2011-2013,13076,usd_million,WB,Average,http://data.worldbank.org/indicator
+728,NY.GNP.PCAP.CD,,2011-2013,883,usd,WB,Average,http://data.worldbank.org/indicator
+728,POP.TOT,,2011-2013,14834637,,FAOStat,Average,http://faostat3.fao.org/
+728,RUR.POP.PERC,,2011-2013,80.0,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+728,AGRI.LAND.PERC,,2009-2011,31.9,percentage,FAOStat,Average,http://faostat3.fao.org/
+728,NET.ODA.REC,,2011-2013,783,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+728,NET.ODA.REC.PC,,2011-2013,53,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+728,DT.ODA.ODAT.GN.ZS,,2011-2013,6.02,percentage,WB,Average,http://data.worldbank.org/indicator
+728,SI.POV.GINI,,2012,30.76,,WB,Last available year,http://data.worldbank.org/indicator
+229,INCOME.LEVEL,INCOME.LEVEL.LM,2016,,,WB,,http://data.worldbank.org/indicator
+229,NY.GNP.ATLS.CD,,2011-2013,26876,usd_million,WB,Average,http://data.worldbank.org/indicator
+229,NY.GNP.PCAP.CD,,2011-2013,1243,usd,WB,Average,http://data.worldbank.org/indicator
+229,POP.TOT,,2011-2013,21663240,,FAOStat,Average,http://faostat3.fao.org/
+229,RUR.POP.PERC,,2011-2013,47.4,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+229,AGRI.LAND.PERC,,2009-2011,20.1,percentage,FAOStat,Average,http://faostat3.fao.org/
+229,NET.ODA.REC,,2011-2013,643,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+229,NET.ODA.REC.PC,,2011-2013,30,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+229,DT.ODA.ODAT.GN.ZS,,2011-2013,2.39,percentage,WB,Average,http://data.worldbank.org/indicator
+229,SI.POV.GINI,,2007,42.82,,WB,Last available year,http://data.worldbank.org/indicator
+301,INCOME.LEVEL,INCOME.LEVEL.HOM,2016,,,WB,,http://data.worldbank.org/indicator
+301,NY.GNP.ATLS.CD,,2011-2013,1746207,usd_million,WB,Average,http://data.worldbank.org/indicator
+301,NY.GNP.PCAP.CD,,2011-2013,50227,usd,WB,Average,http://data.worldbank.org/indicator
+301,NODA,,2011-2013,5298,usd_million,OECD DAC,Average,http://www.oecd.org/dac/stats/statisticsonresourceflowstodevelopingcountries.htm
+301,ODA.GNI,,2011-2013,0.30,percentage,WB,Average calculated,http://data.worldbank.org/indicator
+231,INCOME.LEVEL,INCOME.LEVEL.L,2016,,,WB,,http://data.worldbank.org/indicator
+231,NY.GNP.ATLS.CD,,2011-2013,1957,usd_million,WB,Average,http://data.worldbank.org/indicator
+231,NY.GNP.PCAP.CD,,2011-2013,423,usd,WB,Average,http://data.worldbank.org/indicator
+231,POP.TOT,,2011-2013,4620360,,FAOStat,Average,http://faostat3.fao.org/
+231,RUR.POP.PERC,,2011-2013,59.5,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+231,AGRI.LAND.PERC,,2009-2011,8.2,percentage,FAOStat,Average,http://faostat3.fao.org/
+231,NET.ODA.REC,,2011-2013,226,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+231,NET.ODA.REC.PC,,2011-2013,49,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+231,DT.ODA.ODAT.GN.ZS,,2011-2013,11.62,percentage,WB,Average,http://data.worldbank.org/indicator
+231,SI.POV.GINI,,2008,56.24,,WB,Last available year,http://data.worldbank.org/indicator
+232,INCOME.LEVEL,INCOME.LEVEL.L,2016,,,WB,,http://data.worldbank.org/indicator
+232,NY.GNP.ATLS.CD,,2011-2013,12000,usd_million,WB,Average,http://data.worldbank.org/indicator
+232,NY.GNP.PCAP.CD,,2011-2013,943,usd,WB,Average,http://data.worldbank.org/indicator
+232,POP.TOT,,2011-2013,12719923,,FAOStat,Average,http://faostat3.fao.org/
+232,RUR.POP.PERC,,2011-2013,76.2,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+232,AGRI.LAND.PERC,,2009-2011,39.4,percentage,FAOStat,Average,http://faostat3.fao.org/
+232,NET.ODA.REC,,2011-2013,442,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+232,NET.ODA.REC.PC,,2011-2013,35,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+232,DT.ODA.ODAT.GN.ZS,,2011-2013,3.69,percentage,WB,Average,http://data.worldbank.org/indicator
+232,SI.POV.GINI,,2011,43.32,,WB,Last available year,http://data.worldbank.org/indicator
+434,INCOME.LEVEL,INCOME.LEVEL.HOM,2016,,,WB,,http://data.worldbank.org/indicator
+434,NY.GNP.ATLS.CD,,2011-2013,243396,usd_million,WB,Average,http://data.worldbank.org/indicator
+434,NY.GNP.PCAP.CD,,2011-2013,13990,usd,WB,Average,http://data.worldbank.org/indicator
+434,POP.TOT,,2011-2013,17388527,,FAOStat,Average,http://faostat3.fao.org/
+434,RUR.POP.PERC,,2011-2013,11.1,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+434,AGRI.LAND.PERC,,2009-2011,21.2,percentage,FAOStat,Average,http://faostat3.fao.org/
+434,NET.ODA.REC,,2011-2013,116,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+434,NET.ODA.REC.PC,,2011-2013,7,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+434,DT.ODA.ODAT.GN.ZS,,2011-2013,0.05,percentage,WB,Average,http://data.worldbank.org/indicator
+434,SI.POV.GINI,,2013,50.45,,WB,Last available year,http://data.worldbank.org/indicator
+730,INCOME.LEVEL,INCOME.LEVEL.UM,2016,,,WB,,http://data.worldbank.org/indicator
+730,NY.GNP.ATLS.CD,,2011-2013,7923775,usd_million,WB,Average,http://data.worldbank.org/indicator
+730,NY.GNP.PCAP.CD,,2011-2013,5860,usd,WB,Average,http://data.worldbank.org/indicator
+730,POP.TOT,,2011-2013,1355358563,,FAOStat,Average,http://faostat3.fao.org/
+730,RUR.POP.PERC,,2011-2013,48.9,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+730,NET.ODA.REC,,2011-2013,-483,usd_million,,"When calculating net ODA, loan repayments are recorded as negative and deducted from ODA and loans. In some cases loan repayments are higher than new ODA and net ODA will show as a negative number.",
+730,NET.ODA.REC.PC,,2011-2013,0,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+730,DT.ODA.ODAT.GN.ZS,,2011-2013,-0.01,percentage,WB,Average,http://data.worldbank.org/indicator
+730,SI.POV.GINI,,2010,42.06,,WB,Last available year,http://data.worldbank.org/indicator
+437,INCOME.LEVEL,INCOME.LEVEL.UM,2016,,,WB,,http://data.worldbank.org/indicator
+437,NY.GNP.ATLS.CD,,2011-2013,329820,usd_million,WB,Average,http://data.worldbank.org/indicator
+437,NY.GNP.PCAP.CD,,2011-2013,7030,usd,WB,Average,http://data.worldbank.org/indicator
+437,POP.TOT,,2011-2013,46876610,,FAOStat,Average,http://faostat3.fao.org/
+437,RUR.POP.PERC,,2011-2013,24.8,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+437,AGRI.LAND.PERC,,2009-2011,38.7,percentage,FAOStat,Average,http://faostat3.fao.org/
+437,NET.ODA.REC,,2011-2013,830,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+437,NET.ODA.REC.PC,,2011-2013,18,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+437,DT.ODA.ODAT.GN.ZS,,2011-2013,0.26,percentage,WB,Average,http://data.worldbank.org/indicator
+437,SI.POV.GINI,,2013,53.49,,WB,Last available year,http://data.worldbank.org/indicator
+233,INCOME.LEVEL,INCOME.LEVEL.L,2016,,,WB,,http://data.worldbank.org/indicator
+233,NY.GNP.ATLS.CD,,2011-2013,571,usd_million,WB,Average,http://data.worldbank.org/indicator
+233,NY.GNP.PCAP.CD,,2011-2013,777,usd,WB,Average,http://data.worldbank.org/indicator
+233,POP.TOT,,2011-2013,733777,,FAOStat,Average,http://faostat3.fao.org/
+233,RUR.POP.PERC,,2011-2013,70.3,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+233,AGRI.LAND.PERC,,2009-2011,83.8,percentage,FAOStat,Average,http://faostat3.fao.org/
+233,NET.ODA.REC,,2011-2013,68,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+233,NET.ODA.REC.PC,,2011-2013,92,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+233,DT.ODA.ODAT.GN.ZS,,2011-2013,11.79,percentage,WB,Average,http://data.worldbank.org/indicator
+233,SI.POV.GINI,,2004,55.93,,WB,Last available year,http://data.worldbank.org/indicator
+234,INCOME.LEVEL,INCOME.LEVEL.LM,2016,,,WB,,http://data.worldbank.org/indicator
+234,NY.GNP.ATLS.CD,,2011-2013,10539,usd_million,WB,Average,http://data.worldbank.org/indicator
+234,NY.GNP.PCAP.CD,,2011-2013,2453,usd,WB,Average,http://data.worldbank.org/indicator
+234,POP.TOT,,2011-2013,4285987,,FAOStat,Average,http://faostat3.fao.org/
+234,RUR.POP.PERC,,2011-2013,36.3,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+234,AGRI.LAND.PERC,,2009-2011,30.9,percentage,FAOStat,Average,http://faostat3.fao.org/
+234,NET.ODA.REC,,2011-2013,175,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+234,NET.ODA.REC.PC,,2011-2013,41,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+234,DT.ODA.ODAT.GN.ZS,,2011-2013,1.70,percentage,WB,Average,http://data.worldbank.org/indicator
+234,SI.POV.GINI,,2011,40.16,,WB,Last available year,http://data.worldbank.org/indicator
+336,INCOME.LEVEL,INCOME.LEVEL.UM,2016,,,WB,,http://data.worldbank.org/indicator
+336,NY.GNP.ATLS.CD,,2011-2013,41611,usd_million,WB,Average,http://data.worldbank.org/indicator
+336,NY.GNP.PCAP.CD,,2011-2013,8933,usd,WB,Average,http://data.worldbank.org/indicator
+336,POP.TOT,,2011-2013,4653690,,FAOStat,Average,http://faostat3.fao.org/
+336,RUR.POP.PERC,,2011-2013,26.9,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+336,AGRI.LAND.PERC,,2009-2011,36.6,percentage,FAOStat,Average,http://faostat3.fao.org/
+336,NET.ODA.REC,,2011-2013,35,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+336,NET.ODA.REC.PC,,2011-2013,7,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+336,DT.ODA.ODAT.GN.ZS,,2011-2013,0.08,percentage,WB,Average,http://data.worldbank.org/indicator
+336,SI.POV.GINI,,2013,49.18,,WB,Last available year,http://data.worldbank.org/indicator
+247,INCOME.LEVEL,INCOME.LEVEL.LM,2016,,,WB,,http://data.worldbank.org/indicator
+247,NY.GNP.ATLS.CD,,2011-2013,26555,usd_million,WB,Average,http://data.worldbank.org/indicator
+247,NY.GNP.PCAP.CD,,2011-2013,1257,usd,WB,Average,http://data.worldbank.org/indicator
+247,POP.TOT,,2011-2013,21109767,,FAOStat,Average,http://faostat3.fao.org/
+247,RUR.POP.PERC,,2011-2013,45.1,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+247,AGRI.LAND.PERC,,2009-2011,64.5,percentage,FAOStat,Average,http://faostat3.fao.org/
+247,NET.ODA.REC,,2011-2013,1771,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+247,NET.ODA.REC.PC,,2011-2013,84,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+247,DT.ODA.ODAT.GN.ZS,,2011-2013,6.73,percentage,WB,Average,http://data.worldbank.org/indicator
+247,SI.POV.GINI,,2008,43.18,,WB,Last available year,http://data.worldbank.org/indicator
+338,INCOME.LEVEL,INCOME.LEVEL.UM,2016,,,WB,,http://data.worldbank.org/indicator
+338,NY.GNP.ATLS.CD,,2011-2013,66620,usd_million,WB,Average,http://data.worldbank.org/indicator
+338,NY.GNP.PCAP.CD,,2011-2013,5880,usd,WB,Average,http://data.worldbank.org/indicator
+338,POP.TOT,,2011-2013,11342900,,FAOStat,Average,http://faostat3.fao.org/
+338,RUR.POP.PERC,,2011-2013,23.1,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+338,AGRI.LAND.PERC,,2009-2011,61.7,percentage,FAOStat,Average,http://faostat3.fao.org/
+338,NET.ODA.REC,,2011-2013,28,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+338,NET.ODA.REC.PC,,2011-2013,3,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+338,DT.ODA.ODAT.GN.ZS,,2011-2013,0.13,percentage,WB,Average,http://data.worldbank.org/indicator
+68,INCOME.LEVEL,INCOME.LEVEL.HOM,2016,,,WB,,http://data.worldbank.org/indicator
+68,NY.GNP.ATLS.CD,,2011-2013,202547,usd_million,WB,Average,http://data.worldbank.org/indicator
+68,NY.GNP.PCAP.CD,,2011-2013,19280,usd,WB,Average,http://data.worldbank.org/indicator
+68,NODA,,2011-2013,222,usd_million,OECD DAC,Average,http://www.oecd.org/dac/stats/statisticsonresourceflowstodevelopingcountries.htm
+68,ODA.GNI,,2011-2013,0.11,percentage,WB,Average calculated,http://data.worldbank.org/indicator
+740,POP.TOT,,2011-2013,24763473,,FAOStat,Average,http://faostat3.fao.org/
+740,RUR.POP.PERC,,2011-2013,39.6,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+740,AGRI.LAND.PERC,,2009-2011,21.2,percentage,FAOStat,Average,http://faostat3.fao.org/
+740,NET.ODA.REC,,2011-2013,109,usd_million,WB,Average,http://data.worldbank.org/indicator
+740,NET.ODA.REC.PC,,2011-2013,4,usd,WB,Average,http://data.worldbank.org/indicator
+235,INCOME.LEVEL,INCOME.LEVEL.L,2016,,,WB,,http://data.worldbank.org/indicator
+235,NY.GNP.ATLS.CD,,2011-2013,24064,usd_million,WB,Average,http://data.worldbank.org/indicator
+235,NY.GNP.PCAP.CD,,2011-2013,343,usd,WB,Average,http://data.worldbank.org/indicator
+235,POP.TOT,,2011-2013,70310467,,FAOStat,Average,http://faostat3.fao.org/
+235,RUR.POP.PERC,,2011-2013,55.2,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+235,AGRI.LAND.PERC,,2009-2011,11.4,percentage,FAOStat,Average,http://faostat3.fao.org/
+235,NET.ODA.REC,,2011-2013,3472,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+235,NET.ODA.REC.PC,,2011-2013,50,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+235,DT.ODA.ODAT.GN.ZS,,2011-2013,15.02,percentage,WB,Average,http://data.worldbank.org/indicator
+235,SI.POV.GINI,,2012,42.1,,WB,Last available year,http://data.worldbank.org/indicator
+3,INCOME.LEVEL,INCOME.LEVEL.HOM,2016,,,WB,,http://data.worldbank.org/indicator
+3,NY.GNP.ATLS.CD,,2011-2013,342842,usd_million,WB,Average,http://data.worldbank.org/indicator
+3,NY.GNP.PCAP.CD,,2011-2013,61303,usd,WB,Average,http://data.worldbank.org/indicator
+3,NODA,,2011-2013,2888,usd_million,OECD DAC,Average,http://www.oecd.org/dac/stats/statisticsonresourceflowstodevelopingcountries.htm
+3,ODA.GNI,,2011-2013,0.84,percentage,WB,Average calculated,http://data.worldbank.org/indicator
+274,POP.TOT,,2011-2013,853140,,FAOStat,Average,http://faostat3.fao.org/
+274,RUR.POP.PERC,,2011-2013,23.1,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+274,AGRI.LAND.PERC,,2009-2011,73.4,percentage,FAOStat,Average,http://faostat3.fao.org/
+274,NET.ODA.REC,,2011-2013,147,usd_million,WB,Average,http://data.worldbank.org/indicator
+274,NET.ODA.REC.PC,,2011-2013,172,usd,WB,Average,http://data.worldbank.org/indicator
+274,SI.POV.GINI,,2012,45.13,,WB,Last available year,http://data.worldbank.org/indicator
+378,INCOME.LEVEL,INCOME.LEVEL.UM,2016,,,WB,,http://data.worldbank.org/indicator
+378,NY.GNP.ATLS.CD,,2011-2013,487,usd_million,WB,Average,http://data.worldbank.org/indicator
+378,NY.GNP.PCAP.CD,,2011-2013,6787,usd,WB,Average,http://data.worldbank.org/indicator
+378,POP.TOT,,2011-2013,71697,,FAOStat,Average,http://faostat3.fao.org/
+378,RUR.POP.PERC,,2011-2013,31.2,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+378,AGRI.LAND.PERC,,2009-2011,34.0,percentage,FAOStat,Average,http://faostat3.fao.org/
+378,NET.ODA.REC,,2011-2013,24,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+378,NET.ODA.REC.PC,,2011-2013,328,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+378,DT.ODA.ODAT.GN.ZS,,2011-2013,4.83,percentage,WB,Average,http://data.worldbank.org/indicator
+340,INCOME.LEVEL,INCOME.LEVEL.UM,2016,,,WB,,http://data.worldbank.org/indicator
+340,NY.GNP.ATLS.CD,,2011-2013,57451,usd_million,WB,Average,http://data.worldbank.org/indicator
+340,NY.GNP.PCAP.CD,,2011-2013,5657,usd,WB,Average,http://data.worldbank.org/indicator
+340,POP.TOT,,2011-2013,10154530,,FAOStat,Average,http://faostat3.fao.org/
+340,RUR.POP.PERC,,2011-2013,24.3,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+340,AGRI.LAND.PERC,,2009-2011,50.6,percentage,FAOStat,Average,http://faostat3.fao.org/
+340,NET.ODA.REC,,2011-2013,210,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+340,NET.ODA.REC.PC,,2011-2013,21,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+340,DT.ODA.ODAT.GN.ZS,,2011-2013,0.37,percentage,WB,Average,http://data.worldbank.org/indicator
+340,SI.POV.GINI,,2013,47.07,,WB,Last available year,http://data.worldbank.org/indicator
+440,INCOME.LEVEL,INCOME.LEVEL.UM,2016,,,WB,,http://data.worldbank.org/indicator
+440,NY.GNP.ATLS.CD,,2011-2013,82875,usd_million,WB,Average,http://data.worldbank.org/indicator
+440,NY.GNP.PCAP.CD,,2011-2013,5373,usd,WB,Average,http://data.worldbank.org/indicator
+440,POP.TOT,,2011-2013,15419360,,FAOStat,Average,http://faostat3.fao.org/
+440,RUR.POP.PERC,,2011-2013,37.1,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+440,AGRI.LAND.PERC,,2009-2011,30.0,percentage,FAOStat,Average,http://faostat3.fao.org/
+440,NET.ODA.REC,,2011-2013,146,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+440,NET.ODA.REC.PC,,2011-2013,9,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+440,DT.ODA.ODAT.GN.ZS,,2011-2013,0.18,percentage,WB,Average,http://data.worldbank.org/indicator
+440,SI.POV.GINI,,2013,47.29,,WB,Last available year,http://data.worldbank.org/indicator
+142,INCOME.LEVEL,INCOME.LEVEL.LM,2016,,,WB,,http://data.worldbank.org/indicator
+142,NY.GNP.ATLS.CD,,2011-2013,238144,usd_million,WB,Average,http://data.worldbank.org/indicator
+142,NY.GNP.PCAP.CD,,2011-2013,2780,usd,WB,Average,http://data.worldbank.org/indicator
+142,POP.TOT,,2011-2013,85687480,,FAOStat,Average,http://faostat3.fao.org/
+142,RUR.POP.PERC,,2011-2013,53.7,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+142,AGRI.LAND.PERC,,2009-2011,3.7,percentage,FAOStat,Average,http://faostat3.fao.org/
+142,NET.ODA.REC,,2011-2013,2480,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+142,NET.ODA.REC.PC,,2011-2013,29,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+142,DT.ODA.ODAT.GN.ZS,,2011-2013,0.99,percentage,WB,Average,http://data.worldbank.org/indicator
+142,SI.POV.GINI,,2008,30.75,,WB,Last available year,http://data.worldbank.org/indicator
+342,INCOME.LEVEL,INCOME.LEVEL.LM,2016,,,WB,,http://data.worldbank.org/indicator
+342,NY.GNP.ATLS.CD,,2011-2013,22648,usd_million,WB,Average,http://data.worldbank.org/indicator
+342,NY.GNP.PCAP.CD,,2011-2013,3727,usd,WB,Average,http://data.worldbank.org/indicator
+342,POP.TOT,,2011-2013,6072360,,FAOStat,Average,http://faostat3.fao.org/
+342,RUR.POP.PERC,,2011-2013,36.0,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+342,AGRI.LAND.PERC,,2009-2011,74.1,percentage,FAOStat,Average,http://faostat3.fao.org/
+342,NET.ODA.REC,,2011-2013,226,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+342,NET.ODA.REC.PC,,2011-2013,37,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+342,DT.ODA.ODAT.GN.ZS,,2011-2013,1.00,percentage,WB,Average,http://data.worldbank.org/indicator
+342,SI.POV.GINI,,2013,43.51,,WB,Last available year,http://data.worldbank.org/indicator
+245,INCOME.LEVEL,INCOME.LEVEL.H,2016,,,WB,,http://data.worldbank.org/indicator
+245,NY.GNP.ATLS.CD,,2011-2013,8805,usd_million,WB,Average,http://data.worldbank.org/indicator
+245,NY.GNP.PCAP.CD,,2011-2013,11353,usd,WB,Average,http://data.worldbank.org/indicator
+245,POP.TOT,,2011-2013,773910,,FAOStat,Average,http://faostat3.fao.org/
+245,RUR.POP.PERC,,2011-2013,57.6,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+245,AGRI.LAND.PERC,,2009-2011,10.9,percentage,FAOStat,Average,http://faostat3.fao.org/
+245,NET.ODA.REC,,2011-2013,12,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+245,NET.ODA.REC.PC,,2011-2013,16,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+245,DT.ODA.ODAT.GN.ZS,,2011-2013,0.15,percentage,WB,Average,http://data.worldbank.org/indicator
+271,INCOME.LEVEL,INCOME.LEVEL.L,2016,,,WB,,http://data.worldbank.org/indicator
+271,NY.GNP.ATLS.CD,,2011-2013,2313,usd_million,WB,Average,http://data.worldbank.org/indicator
+271,NY.GNP.PCAP.CD,,2011-2013,480,usd,WB,Average,http://data.worldbank.org/indicator
+271,POP.TOT,,2011-2013,4893540,,FAOStat,Average,http://faostat3.fao.org/
+271,RUR.POP.PERC,,2011-2013,98.5,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+271,AGRI.LAND.PERC,,2009-2011,75.2,percentage,FAOStat,Average,http://faostat3.fao.org/
+271,NET.ODA.REC,,2011-2013,39,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+271,NET.ODA.REC.PC,,2011-2013,8,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+271,DT.ODA.ODAT.GN.ZS,,2011-2013,5.03,percentage,WB,Average,http://data.worldbank.org/indicator
+238,NY.GNP.ATLS.CD,,2011-2013,39318,usd_million,WB,Average,http://data.worldbank.org/indicator
+238,NY.GNP.PCAP.CD,,2011-2013,423,usd,WB,Average,http://data.worldbank.org/indicator
+238,POP.TOT,,2011-2013,92202760,,FAOStat,Average,http://faostat3.fao.org/
+238,RUR.POP.PERC,,2011-2013,81.4,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+238,AGRI.LAND.PERC,,2009-2011,35.1,percentage,FAOStat,Average,http://faostat3.fao.org/
+238,NET.ODA.REC,,2011-2013,3459,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+238,NET.ODA.REC.PC,,2011-2013,38,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+238,DT.ODA.ODAT.GN.ZS,,2011-2013,8.90,percentage,WB,Average,http://data.worldbank.org/indicator
+238,INCOME.LEVEL,INCOME.LEVEL.L,2016,,,WB,,http://data.worldbank.org/indicator
+238,SI.POV.GINI,,2007,33.17,,WB,Last available year,http://data.worldbank.org/indicator
+832,NY.GNP.ATLS.CD,,2011-2013,3583,usd_million,WB,Average,http://data.worldbank.org/indicator
+832,NY.GNP.PCAP.CD,,2011-2013,4097,usd,WB,Average,http://data.worldbank.org/indicator
+832,POP.TOT,,2011-2013,873993,,FAOStat,Average,http://faostat3.fao.org/
+832,RUR.POP.PERC,,2011-2013,47.4,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+832,AGRI.LAND.PERC,,2009-2011,23.4,percentage,FAOStat,Average,http://faostat3.fao.org/
+832,NET.ODA.REC,,2011-2013,86,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+832,NET.ODA.REC.PC,,2011-2013,98,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+832,DT.ODA.ODAT.GN.ZS,,2011-2013,2.39,percentage,WB,Average,http://data.worldbank.org/indicator
+832,SI.POV.GINI,,2008,42.78,,WB,Last available year,http://data.worldbank.org/indicator
+18,INCOME.LEVEL,INCOME.LEVEL.HOM,2016,,,WB,,http://data.worldbank.org/indicator
+18,NY.GNP.ATLS.CD,,2011-2013,266417,usd_million,WB,Average,http://data.worldbank.org/indicator
+18,NY.GNP.PCAP.CD,,2011-2013,49210,usd,WB,Average,http://data.worldbank.org/indicator
+18,NODA,,2011-2013,1414,usd_million,OECD DAC,Average,http://www.oecd.org/dac/stats/statisticsonresourceflowstodevelopingcountries.htm
+18,ODA.GNI,,2011-2013,0.53,percentage,WB,Average calculated,http://data.worldbank.org/indicator
+66,INCOME.LEVEL,INCOME.LEVEL.UM,2016,,,WB,,http://data.worldbank.org/indicator
+66,NY.GNP.ATLS.CD,,2011-2013,10042,usd_million,WB,Average,http://data.worldbank.org/indicator
+66,NY.GNP.PCAP.CD,,2011-2013,4853,usd,WB,Average,http://data.worldbank.org/indicator
+66,POP.TOT,,2011-2013,2069233,,FAOStat,Average,http://faostat3.fao.org/
+66,RUR.POP.PERC,,2011-2013,43.8,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+66,AGRI.LAND.PERC,,2009-2011,43.0,percentage,FAOStat,Average,http://faostat3.fao.org/
+66,NET.ODA.REC,,2011-2013,197,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+66,NET.ODA.REC.PC,,2011-2013,95,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+66,DT.ODA.ODAT.GN.ZS,,2011-2013,1.95,percentage,WB,Average,http://data.worldbank.org/indicator
+66,SI.POV.GINI,,2008,44.05,,WB,Last available year,http://data.worldbank.org/indicator
+4,INCOME.LEVEL,INCOME.LEVEL.HOM,2016,,,WB,,http://data.worldbank.org/indicator
+4,NY.GNP.ATLS.CD,,2011-2013,2861300,usd_million,WB,Average,http://data.worldbank.org/indicator
+4,NY.GNP.PCAP.CD,,2011-2013,43593,usd,WB,Average,http://data.worldbank.org/indicator
+4,NODA,,2011-2013,12176,usd_million,OECD DAC,Average,http://www.oecd.org/dac/stats/statisticsonresourceflowstodevelopingcountries.htm
+4,ODA.GNI,,2011-2013,0.43,percentage,WB,Average calculated,http://data.worldbank.org/indicator
+239,INCOME.LEVEL,INCOME.LEVEL.UM,2016,,,WB,,http://data.worldbank.org/indicator
+239,NY.GNP.ATLS.CD,,2011-2013,15208,usd_million,WB,Average,http://data.worldbank.org/indicator
+239,NY.GNP.PCAP.CD,,2011-2013,9420,usd,WB,Average,http://data.worldbank.org/indicator
+239,POP.TOT,,2011-2013,1613713,,FAOStat,Average,http://faostat3.fao.org/
+239,RUR.POP.PERC,,2011-2013,13.8,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+239,AGRI.LAND.PERC,,2009-2011,20.0,percentage,FAOStat,Average,http://faostat3.fao.org/
+239,NET.ODA.REC,,2011-2013,79,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+239,NET.ODA.REC.PC,,2011-2013,49,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+239,DT.ODA.ODAT.GN.ZS,,2011-2013,0.51,percentage,WB,Average,http://data.worldbank.org/indicator
+239,SI.POV.GINI,,2005,42.18,,WB,Last available year,http://data.worldbank.org/indicator
+240,INCOME.LEVEL,INCOME.LEVEL.L,2016,,,WB,,http://data.worldbank.org/indicator
+240,NY.GNP.ATLS.CD,,2011-2013,927,usd_million,WB,Average,http://data.worldbank.org/indicator
+240,NY.GNP.PCAP.CD,,2011-2013,513,usd,WB,Average,http://data.worldbank.org/indicator
+240,POP.TOT,,2011-2013,1807697,,FAOStat,Average,http://faostat3.fao.org/
+240,RUR.POP.PERC,,2011-2013,41.9,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+240,AGRI.LAND.PERC,,2009-2011,60.4,percentage,FAOStat,Average,http://faostat3.fao.org/
+240,NET.ODA.REC,,2011-2013,134,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+240,NET.ODA.REC.PC,,2011-2013,74,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+240,DT.ODA.ODAT.GN.ZS,,2011-2013,14.43,percentage,WB,Average,http://data.worldbank.org/indicator
+240,SI.POV.GINI,,2003,47.33,,WB,Last available year,http://data.worldbank.org/indicator
+612,INCOME.LEVEL,INCOME.LEVEL.LM,2016,,,WB,,http://data.worldbank.org/indicator
+612,NY.GNP.ATLS.CD,,2011-2013,14513,usd_million,WB,Average,http://data.worldbank.org/indicator
+612,NY.GNP.PCAP.CD,,2011-2013,3233,usd,WB,Average,http://data.worldbank.org/indicator
+612,POP.TOT,,2011-2013,4139350,,FAOStat,Average,http://faostat3.fao.org/
+612,RUR.POP.PERC,,2011-2013,49.3,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+612,AGRI.LAND.PERC,,2009-2011,35.8,percentage,FAOStat,Average,http://faostat3.fao.org/
+612,NET.ODA.REC,,2011-2013,606,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+612,NET.ODA.REC.PC,,2011-2013,146,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+612,DT.ODA.ODAT.GN.ZS,,2011-2013,4.17,percentage,WB,Average,http://data.worldbank.org/indicator
+612,SI.POV.GINI,,2013,40.03,,WB,Last available year,http://data.worldbank.org/indicator
+5,INCOME.LEVEL,INCOME.LEVEL.HOM,2016,,,WB,,http://data.worldbank.org/indicator
+5,NY.GNP.ATLS.CD,,2011-2013,3788563,usd_million,WB,Average,http://data.worldbank.org/indicator
+5,NY.GNP.PCAP.CD,,2011-2013,46800,usd,WB,Average,http://data.worldbank.org/indicator
+5,NODA,,2011-2013,13939,usd_million,OECD DAC,Average,http://www.oecd.org/dac/stats/statisticsonresourceflowstodevelopingcountries.htm
+5,ODA.GNI,,2011-2013,0.37,percentage,WB,Average calculated,http://data.worldbank.org/indicator
+241,INCOME.LEVEL,INCOME.LEVEL.LM,2016,,,WB,,http://data.worldbank.org/indicator
+241,NY.GNP.ATLS.CD,,2011-2013,40277,usd_million,WB,Average,http://data.worldbank.org/indicator
+241,NY.GNP.PCAP.CD,,2011-2013,1573,usd,WB,Average,http://data.worldbank.org/indicator
+241,POP.TOT,,2011-2013,25545830,,FAOStat,Average,http://faostat3.fao.org/
+241,RUR.POP.PERC,,2011-2013,47.6,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+241,AGRI.LAND.PERC,,2009-2011,69.5,percentage,FAOStat,Average,http://faostat3.fao.org/
+241,NET.ODA.REC,,2011-2013,1596,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+241,NET.ODA.REC.PC,,2011-2013,63,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+241,DT.ODA.ODAT.GN.ZS,,2011-2013,4.04,percentage,WB,Average,http://data.worldbank.org/indicator
+241,SI.POV.GINI,,2005,42.77,,WB,Last available year,http://data.worldbank.org/indicator
+40,INCOME.LEVEL,INCOME.LEVEL.HOM,2016,,,WB,,http://data.worldbank.org/indicator
+40,NY.GNP.ATLS.CD,,2011-2013,263837,usd_million,WB,Average,http://data.worldbank.org/indicator
+40,NY.GNP.PCAP.CD,,2011-2013,23807,usd,WB,Average,http://data.worldbank.org/indicator
+40,NODA,,2011-2013,322,usd_million,OECD DAC,Average,http://www.oecd.org/dac/stats/statisticsonresourceflowstodevelopingcountries.htm
+40,ODA.GNI,,2011-2013,0.12,percentage,WB,Average calculated,http://data.worldbank.org/indicator
+381,INCOME.LEVEL,INCOME.LEVEL.UM,2016,,,WB,,http://data.worldbank.org/indicator
+381,NY.GNP.ATLS.CD,,2011-2013,766,usd_million,WB,Average,http://data.worldbank.org/indicator
+381,NY.GNP.PCAP.CD,,2011-2013,7263,usd,WB,Average,http://data.worldbank.org/indicator
+381,POP.TOT,,2011-2013,105483,,FAOStat,Average,http://faostat3.fao.org/
+381,RUR.POP.PERC,,2011-2013,64.5,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+381,AGRI.LAND.PERC,,2009-2011,32.4,percentage,FAOStat,Average,http://faostat3.fao.org/
+381,NET.ODA.REC,,2011-2013,10,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+381,NET.ODA.REC.PC,,2011-2013,94,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+381,DT.ODA.ODAT.GN.ZS,,2011-2013,1.29,percentage,WB,Average,http://data.worldbank.org/indicator
+347,INCOME.LEVEL,INCOME.LEVEL.LM,2016,,,WB,,http://data.worldbank.org/indicator
+347,NY.GNP.ATLS.CD,,2011-2013,47148,usd_million,WB,Average,http://data.worldbank.org/indicator
+347,NY.GNP.PCAP.CD,,2011-2013,3063,usd,WB,Average,http://data.worldbank.org/indicator
+347,POP.TOT,,2011-2013,15369610,,FAOStat,Average,http://faostat3.fao.org/
+347,RUR.POP.PERC,,2011-2013,48.9,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+347,AGRI.LAND.PERC,,2009-2011,41.0,percentage,FAOStat,Average,http://faostat3.fao.org/
+347,NET.ODA.REC,,2011-2013,377,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+347,NET.ODA.REC.PC,,2011-2013,25,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+347,DT.ODA.ODAT.GN.ZS,,2011-2013,0.80,percentage,WB,Average,http://data.worldbank.org/indicator
+347,SI.POV.GINI,,2011,52.35,,WB,Last available year,http://data.worldbank.org/indicator
+243,INCOME.LEVEL,INCOME.LEVEL.L,2016,,,WB,,http://data.worldbank.org/indicator
+243,NY.GNP.ATLS.CD,,2011-2013,5002,usd_million,WB,Average,http://data.worldbank.org/indicator
+243,NY.GNP.PCAP.CD,,2011-2013,427,usd,WB,Average,http://data.worldbank.org/indicator
+243,POP.TOT,,2011-2013,11631283,,FAOStat,Average,http://faostat3.fao.org/
+243,RUR.POP.PERC,,2011-2013,63.3,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+243,AGRI.LAND.PERC,,2009-2011,58.0,percentage,FAOStat,Average,http://faostat3.fao.org/
+243,NET.ODA.REC,,2011-2013,332,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+243,NET.ODA.REC.PC,,2011-2013,28,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+243,DT.ODA.ODAT.GN.ZS,,2011-2013,6.52,percentage,WB,Average,http://data.worldbank.org/indicator
+243,SI.POV.GINI,,2012,33.73,,WB,Last available year,http://data.worldbank.org/indicator
+244,INCOME.LEVEL,INCOME.LEVEL.L,2016,,,WB,,http://data.worldbank.org/indicator
+244,NY.GNP.ATLS.CD,,2011-2013,995,usd_million,WB,Average,http://data.worldbank.org/indicator
+244,NY.GNP.PCAP.CD,,2011-2013,580,usd,WB,Average,http://data.worldbank.org/indicator
+244,POP.TOT,,2011-2013,1715090,,FAOStat,Average,http://faostat3.fao.org/
+244,RUR.POP.PERC,,2011-2013,51.5,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+244,AGRI.LAND.PERC,,2009-2011,57.7,percentage,FAOStat,Average,http://faostat3.fao.org/
+244,NET.ODA.REC,,2011-2013,100,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+244,NET.ODA.REC.PC,,2011-2013,58,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+244,DT.ODA.ODAT.GN.ZS,,2011-2013,10.01,percentage,WB,Average,http://data.worldbank.org/indicator
+244,SI.POV.GINI,,2010,50.66,,WB,Last available year,http://data.worldbank.org/indicator
+446,INCOME.LEVEL,INCOME.LEVEL.LM,2016,,,WB,,http://data.worldbank.org/indicator
+446,NY.GNP.ATLS.CD,,2011-2013,2715,usd_million,WB,Average,http://data.worldbank.org/indicator
+446,NY.GNP.PCAP.CD,,2011-2013,3577,usd,WB,Average,http://data.worldbank.org/indicator
+446,POP.TOT,,2011-2013,758440,,FAOStat,Average,http://faostat3.fao.org/
+446,RUR.POP.PERC,,2011-2013,75.2,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+446,AGRI.LAND.PERC,,2009-2011,8.5,percentage,FAOStat,Average,http://faostat3.fao.org/
+446,NET.ODA.REC,,2011-2013,120,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+446,NET.ODA.REC.PC,,2011-2013,158,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+446,DT.ODA.ODAT.GN.ZS,,2011-2013,4.52,percentage,WB,Average,http://data.worldbank.org/indicator
+446,SI.POV.GINI,,1998,44.55,,WB,Last available year,http://data.worldbank.org/indicator
+349,INCOME.LEVEL,INCOME.LEVEL.L,2016,,,WB,,http://data.worldbank.org/indicator
+349,NY.GNP.ATLS.CD,,2011-2013,7748,usd_million,WB,Average,http://data.worldbank.org/indicator
+349,NY.GNP.PCAP.CD,,2011-2013,750,usd,WB,Average,http://data.worldbank.org/indicator
+349,POP.TOT,,2011-2013,10288323,,FAOStat,Average,http://faostat3.fao.org/
+349,RUR.POP.PERC,,2011-2013,44.7,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+349,AGRI.LAND.PERC,,2009-2011,64.5,percentage,FAOStat,Average,http://faostat3.fao.org/
+349,NET.ODA.REC,,2011-2013,1337,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+349,NET.ODA.REC.PC,,2011-2013,130,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+349,DT.ODA.ODAT.GN.ZS,,2011-2013,17.49,percentage,WB,Average,http://data.worldbank.org/indicator
+349,SI.POV.GINI,,2012,60.79,,WB,Last available year,http://data.worldbank.org/indicator
+351,INCOME.LEVEL,INCOME.LEVEL.LM,2016,,,WB,,http://data.worldbank.org/indicator
+351,NY.GNP.ATLS.CD,,2011-2013,16841,usd_million,WB,Average,http://data.worldbank.org/indicator
+351,NY.GNP.PCAP.CD,,2011-2013,2180,usd,WB,Average,http://data.worldbank.org/indicator
+351,POP.TOT,,2011-2013,7735533,,FAOStat,Average,http://faostat3.fao.org/
+351,RUR.POP.PERC,,2011-2013,48.3,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+351,AGRI.LAND.PERC,,2009-2011,28.7,percentage,FAOStat,Average,http://faostat3.fao.org/
+351,NET.ODA.REC,,2011-2013,599,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+351,NET.ODA.REC.PC,,2011-2013,77,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+351,DT.ODA.ODAT.GN.ZS,,2011-2013,3.56,percentage,WB,Average,http://data.worldbank.org/indicator
+351,SI.POV.GINI,,2013,53.67,,WB,Last available year,http://data.worldbank.org/indicator
+20,INCOME.LEVEL,INCOME.LEVEL.HOM,2016,,,WB,,http://data.worldbank.org/indicator
+20,NY.GNP.ATLS.CD,,2011-2013,13332,usd_million,WB,Average,http://data.worldbank.org/indicator
+20,NY.GNP.PCAP.CD,,2011-2013,41490,usd,WB,Average,http://data.worldbank.org/indicator
+20,NODA,,2011-2013,29,usd_million,OECD DAC,Average,http://www.oecd.org/dac/stats/statisticsonresourceflowstodevelopingcountries.htm
+20,ODA.GNI,,2011-2013,0.22,percentage,WB,Average calculated,http://data.worldbank.org/indicator
+645,INCOME.LEVEL,INCOME.LEVEL.LM,2016,,,WB,,http://data.worldbank.org/indicator
+645,NY.GNP.ATLS.CD,,2011-2013,1867036,usd_million,WB,Average,http://data.worldbank.org/indicator
+645,NY.GNP.PCAP.CD,,2011-2013,1480,usd,WB,Average,http://data.worldbank.org/indicator
+645,POP.TOT,,2011-2013,1263511507,,FAOStat,Average,http://faostat3.fao.org/
+645,RUR.POP.PERC,,2011-2013,66.9,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+645,AGRI.LAND.PERC,,2009-2011,60.5,percentage,FAOStat,Average,http://faostat3.fao.org/
+645,NET.ODA.REC,,2011-2013,2481,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+645,NET.ODA.REC.PC,,2011-2013,2,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+645,DT.ODA.ODAT.GN.ZS,,2011-2013,0.13,percentage,WB,Average,http://data.worldbank.org/indicator
+645,SI.POV.GINI,,2009,33.9,,WB,Last available year,http://data.worldbank.org/indicator
+738,INCOME.LEVEL,INCOME.LEVEL.LM,2016,,,WB,,http://data.worldbank.org/indicator
+738,NY.GNP.ATLS.CD,,2011-2013,854679,usd_million,WB,Average,http://data.worldbank.org/indicator
+738,NY.GNP.PCAP.CD,,2011-2013,3443,usd,WB,Average,http://data.worldbank.org/indicator
+738,POP.TOT,,2011-2013,248038127,,FAOStat,Average,http://faostat3.fao.org/
+738,RUR.POP.PERC,,2011-2013,48.3,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+738,AGRI.LAND.PERC,,2009-2011,29.9,percentage,FAOStat,Average,http://faostat3.fao.org/
+738,NET.ODA.REC,,2011-2013,160,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+738,NET.ODA.REC.PC,,2011-2013,1,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+738,DT.ODA.ODAT.GN.ZS,,2011-2013,0.02,percentage,WB,Average,http://data.worldbank.org/indicator
+738,SI.POV.GINI,,2010,35.57,,WB,Last available year,http://data.worldbank.org/indicator
+540,INCOME.LEVEL,INCOME.LEVEL.UM,2016,,,WB,,http://data.worldbank.org/indicator
+540,NY.GNP.ATLS.CD,,2011-2013,529455,usd_million,WB,Average,http://data.worldbank.org/indicator
+540,NY.GNP.PCAP.CD,,2011-2013,6953,usd,WB,Average,http://data.worldbank.org/indicator
+540,POP.TOT,,2011-2013,76164583,,FAOStat,Average,http://faostat3.fao.org/
+540,RUR.POP.PERC,,2011-2013,28.3,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+540,AGRI.LAND.PERC,,2009-2011,29.9,percentage,FAOStat,Average,http://faostat3.fao.org/
+540,NET.ODA.REC,,2011-2013,121,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+540,NET.ODA.REC.PC,,2011-2013,2,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+540,DT.ODA.ODAT.GN.ZS,,2011-2013,0.02,percentage,WB,Average,http://data.worldbank.org/indicator
+540,SI.POV.GINI,,2013,37.35,,WB,Last available year,http://data.worldbank.org/indicator
+543,NY.GNP.ATLS.CD,,2011-2013,195232,usd_million,WB,Average,http://data.worldbank.org/indicator
+543,NY.GNP.PCAP.CD,,2011-2013,5933,usd,WB,Average,http://data.worldbank.org/indicator
+543,POP.TOT,,2011-2013,32977583,,FAOStat,Average,http://faostat3.fao.org/
+543,RUR.POP.PERC,,2011-2013,30.7,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+543,AGRI.LAND.PERC,,2009-2011,18.6,percentage,FAOStat,Average,http://faostat3.fao.org/
+543,NET.ODA.REC,,2011-2013,1435,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+543,NET.ODA.REC.PC,,2011-2013,44,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+543,DT.ODA.ODAT.GN.ZS,,2011-2013,0.76,percentage,WB,Average,http://data.worldbank.org/indicator
+543,SI.POV.GINI,,2012,29.54,,WB,Last available year,http://data.worldbank.org/indicator
+21,INCOME.LEVEL,INCOME.LEVEL.HOM,2016,,,WB,,http://data.worldbank.org/indicator
+21,NY.GNP.ATLS.CD,,2011-2013,198358,usd_million,WB,Average,http://data.worldbank.org/indicator
+21,NY.GNP.PCAP.CD,,2011-2013,43237,usd,WB,Average,http://data.worldbank.org/indicator
+21,NODA,,2011-2013,861,usd_million,OECD DAC,Average,http://www.oecd.org/dac/stats/statisticsonresourceflowstodevelopingcountries.htm
+21,ODA.GNI,,2011-2013,0.43,percentage,WB,Average calculated,http://data.worldbank.org/indicator
+6,INCOME.LEVEL,INCOME.LEVEL.HOM,2016,,,WB,,http://data.worldbank.org/indicator
+6,NY.GNP.ATLS.CD,,2011-2013,2170767,usd_million,WB,Average,http://data.worldbank.org/indicator
+6,NY.GNP.PCAP.CD,,2011-2013,36353,usd,WB,Average,http://data.worldbank.org/indicator
+6,NODA,,2011-2013,3518,usd_million,OECD DAC,Average,http://www.oecd.org/dac/stats/statisticsonresourceflowstodevelopingcountries.htm
+6,ODA.GNI,,2011-2013,0.16,percentage,WB,Average calculated,http://data.worldbank.org/indicator
+354,INCOME.LEVEL,INCOME.LEVEL.UM,2016,,,WB,,http://data.worldbank.org/indicator
+354,NY.GNP.ATLS.CD,,2011-2013,13747,usd_million,WB,Average,http://data.worldbank.org/indicator
+354,NY.GNP.PCAP.CD,,2011-2013,5080,usd,WB,Average,http://data.worldbank.org/indicator
+354,POP.TOT,,2011-2013,2762850,,FAOStat,Average,http://faostat3.fao.org/
+354,RUR.POP.PERC,,2011-2013,46.0,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+354,AGRI.LAND.PERC,,2009-2011,41.5,percentage,FAOStat,Average,http://faostat3.fao.org/
+354,NET.ODA.REC,,2011-2013,43,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+354,NET.ODA.REC.PC,,2011-2013,16,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+354,DT.ODA.ODAT.GN.ZS,,2011-2013,0.31,percentage,WB,Average,http://data.worldbank.org/indicator
+354,SI.POV.GINI,,2004,45.46,,WB,Last available year,http://data.worldbank.org/indicator
+701,INCOME.LEVEL,INCOME.LEVEL.HOM,2016,,,WB,,http://data.worldbank.org/indicator
+701,NY.GNP.ATLS.CD,,2011-2013,5925706,usd_million,WB,Average,http://data.worldbank.org/indicator
+701,NY.GNP.PCAP.CD,,2011-2013,46450,usd,WB,Average,http://data.worldbank.org/indicator
+701,NODA,,2011-2013,9705,usd_million,OECD DAC,Average,http://www.oecd.org/dac/stats/statisticsonresourceflowstodevelopingcountries.htm
+701,ODA.GNI,,2011-2013,0.16,percentage,WB,Average calculated,http://data.worldbank.org/indicator
+549,INCOME.LEVEL,INCOME.LEVEL.UM,2016,,,WB,,http://data.worldbank.org/indicator
+549,NY.GNP.ATLS.CD,,2011-2013,29447,usd_million,WB,Average,http://data.worldbank.org/indicator
+549,NY.GNP.PCAP.CD,,2011-2013,4657,usd,WB,Average,http://data.worldbank.org/indicator
+549,POP.TOT,,2011-2013,6989883,,FAOStat,Average,http://faostat3.fao.org/
+549,RUR.POP.PERC,,2011-2013,17.1,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+549,AGRI.LAND.PERC,,2009-2011,11.4,percentage,FAOStat,Average,http://faostat3.fao.org/
+549,NET.ODA.REC,,2011-2013,1214,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+549,NET.ODA.REC.PC,,2011-2013,173,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+549,DT.ODA.ODAT.GN.ZS,,2011-2013,4.10,percentage,WB,Average,http://data.worldbank.org/indicator
+549,SI.POV.GINI,,2010,33.66,,WB,Last available year,http://data.worldbank.org/indicator
+613,INCOME.LEVEL,INCOME.LEVEL.UM,2016,,,WB,,http://data.worldbank.org/indicator
+613,NY.GNP.ATLS.CD,,2011-2013,165625,usd_million,WB,Average,http://data.worldbank.org/indicator
+613,NY.GNP.PCAP.CD,,2011-2013,9843,usd,WB,Average,http://data.worldbank.org/indicator
+613,POP.TOT,,2011-2013,16825107,,FAOStat,Average,http://faostat3.fao.org/
+613,RUR.POP.PERC,,2011-2013,45.0,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+613,AGRI.LAND.PERC,,2009-2011,77.3,percentage,FAOStat,Average,http://faostat3.fao.org/
+613,NET.ODA.REC,,2011-2013,130,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+613,NET.ODA.REC.PC,,2011-2013,8,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+613,DT.ODA.ODAT.GN.ZS,,2011-2013,0.08,percentage,WB,Average,http://data.worldbank.org/indicator
+613,SI.POV.GINI,,2013,26.35,,WB,Last available year,http://data.worldbank.org/indicator
+248,INCOME.LEVEL,INCOME.LEVEL.LM,2016,,,WB,,http://data.worldbank.org/indicator
+248,NY.GNP.ATLS.CD,,2011-2013,46974,usd_million,WB,Average,http://data.worldbank.org/indicator
+248,NY.GNP.PCAP.CD,,2011-2013,1103,usd,WB,Average,http://data.worldbank.org/indicator
+248,POP.TOT,,2011-2013,42551937,,FAOStat,Average,http://faostat3.fao.org/
+248,RUR.POP.PERC,,2011-2013,76.8,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+248,AGRI.LAND.PERC,,2009-2011,48.2,percentage,FAOStat,Average,http://faostat3.fao.org/
+248,NET.ODA.REC,,2011-2013,2682,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+248,NET.ODA.REC.PC,,2011-2013,63,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+248,DT.ODA.ODAT.GN.ZS,,2011-2013,5.71,percentage,WB,Average,http://data.worldbank.org/indicator
+248,SI.POV.GINI,,2005,48.51,,WB,Last available year,http://data.worldbank.org/indicator
+836,INCOME.LEVEL,INCOME.LEVEL.LM,2016,,,WB,,http://data.worldbank.org/indicator
+836,NY.GNP.ATLS.CD,,2011-2013,252,usd_million,WB,Average,http://data.worldbank.org/indicator
+836,NY.GNP.PCAP.CD,,2011-2013,2357,usd,WB,Average,http://data.worldbank.org/indicator
+836,POP.TOT,,2011-2013,106607,,FAOStat,Average,http://faostat3.fao.org/
+836,RUR.POP.PERC,,2011-2013,52.8,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+836,AGRI.LAND.PERC,,2009-2011,42.0,percentage,FAOStat,Average,http://faostat3.fao.org/
+836,NET.ODA.REC,,2011-2013,63,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+836,NET.ODA.REC.PC,,2011-2013,588,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+836,DT.ODA.ODAT.GN.ZS,,2011-2013,25.23,percentage,WB,Average,http://data.worldbank.org/indicator
+836,SI.POV.GINI,,2006,37.61,,WB,Last available year,http://data.worldbank.org/indicator
+742,INCOME.LEVEL,INCOME.LEVEL.HOM,2016,,,WB,,http://data.worldbank.org/indicator
+742,NY.GNP.ATLS.CD,,2011-2013,1218969,usd_million,WB,Average,http://data.worldbank.org/indicator
+742,NY.GNP.PCAP.CD,,2011-2013,24377,usd,WB,Average,http://data.worldbank.org/indicator
+742,NODA,,2011-2013,1592,usd_million,OECD DAC,Average,http://www.oecd.org/dac/stats/statisticsonresourceflowstodevelopingcountries.htm
+742,ODA.GNI,,2011-2013,0.13,percentage,WB,Average calculated,http://data.worldbank.org/indicator
+614,INCOME.LEVEL,INCOME.LEVEL.LM,2016,,,WB,,http://data.worldbank.org/indicator
+614,NY.GNP.ATLS.CD,,2011-2013,5875,usd_million,WB,Average,http://data.worldbank.org/indicator
+614,NY.GNP.PCAP.CD,,2011-2013,1047,usd,WB,Average,http://data.worldbank.org/indicator
+614,POP.TOT,,2011-2013,5649253,,FAOStat,Average,http://faostat3.fao.org/
+614,RUR.POP.PERC,,2011-2013,62.6,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+614,AGRI.LAND.PERC,,2009-2011,55.3,percentage,FAOStat,Average,http://faostat3.fao.org/
+614,NET.ODA.REC,,2011-2013,472,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+614,NET.ODA.REC.PC,,2011-2013,84,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+614,DT.ODA.ODAT.GN.ZS,,2011-2013,8.15,percentage,WB,Average,http://data.worldbank.org/indicator
+614,SI.POV.GINI,,2012,27.37,,WB,Last available year,http://data.worldbank.org/indicator
+745,INCOME.LEVEL,INCOME.LEVEL.LM,2016,,,WB,,http://data.worldbank.org/indicator
+745,NY.GNP.ATLS.CD,,2011-2013,8458,usd_million,WB,Average,http://data.worldbank.org/indicator
+745,NY.GNP.PCAP.CD,,2011-2013,1303,usd,WB,Average,http://data.worldbank.org/indicator
+745,POP.TOT,,2011-2013,6473313,,FAOStat,Average,http://faostat3.fao.org/
+745,RUR.POP.PERC,,2011-2013,66.4,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+745,AGRI.LAND.PERC,,2009-2011,10.3,percentage,FAOStat,Average,http://faostat3.fao.org/
+745,NET.ODA.REC,,2011-2013,383,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+745,NET.ODA.REC.PC,,2011-2013,59,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+745,DT.ODA.ODAT.GN.ZS,,2011-2013,4.59,percentage,WB,Average,http://data.worldbank.org/indicator
+745,SI.POV.GINI,,2012,37.89,,WB,Last available year,http://data.worldbank.org/indicator
+555,INCOME.LEVEL,INCOME.LEVEL.UM,2016,,,WB,,http://data.worldbank.org/indicator
+555,NY.GNP.ATLS.CD,,2011-2013,41597,usd_million,WB,Average,http://data.worldbank.org/indicator
+555,NY.GNP.PCAP.CD,,2011-2013,9363,usd,WB,Average,http://data.worldbank.org/indicator
+555,POP.TOT,,2011-2013,4934317,,FAOStat,Average,http://faostat3.fao.org/
+555,RUR.POP.PERC,,2011-2013,11.9,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+555,AGRI.LAND.PERC,,2009-2011,63.2,percentage,FAOStat,Average,http://faostat3.fao.org/
+555,NET.ODA.REC,,2011-2013,590,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+555,NET.ODA.REC.PC,,2011-2013,119,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+555,DT.ODA.ODAT.GN.ZS,,2011-2013,1.41,percentage,WB,Average,http://data.worldbank.org/indicator
+249,INCOME.LEVEL,INCOME.LEVEL.LM,2016,,,WB,,http://data.worldbank.org/indicator
+249,NY.GNP.ATLS.CD,,2011-2013,3000,usd_million,WB,Average,http://data.worldbank.org/indicator
+249,NY.GNP.PCAP.CD,,2011-2013,1460,usd,WB,Average,http://data.worldbank.org/indicator
+249,POP.TOT,,2011-2013,2057780,,FAOStat,Average,http://faostat3.fao.org/
+249,RUR.POP.PERC,,2011-2013,74.0,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+249,AGRI.LAND.PERC,,2009-2011,76.6,percentage,FAOStat,Average,http://faostat3.fao.org/
+249,NET.ODA.REC,,2011-2013,297,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+249,NET.ODA.REC.PC,,2011-2013,144,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+249,DT.ODA.ODAT.GN.ZS,,2011-2013,9.84,percentage,WB,Average,http://data.worldbank.org/indicator
+249,SI.POV.GINI,,2010,54.18,,WB,Last available year,http://data.worldbank.org/indicator
+251,INCOME.LEVEL,INCOME.LEVEL.L,2016,,,WB,,http://data.worldbank.org/indicator
+251,NY.GNP.ATLS.CD,,2011-2013,1444,usd_million,WB,Average,http://data.worldbank.org/indicator
+251,NY.GNP.PCAP.CD,,2011-2013,343,usd,WB,Average,http://data.worldbank.org/indicator
+251,POP.TOT,,2011-2013,4187803,,FAOStat,Average,http://faostat3.fao.org/
+251,RUR.POP.PERC,,2011-2013,51.5,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+251,AGRI.LAND.PERC,,2009-2011,27.2,percentage,FAOStat,Average,http://faostat3.fao.org/
+251,NET.ODA.REC,,2011-2013,592,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+251,NET.ODA.REC.PC,,2011-2013,142,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+251,DT.ODA.ODAT.GN.ZS,,2011-2013,41.69,percentage,WB,Average,http://data.worldbank.org/indicator
+251,SI.POV.GINI,,2007,36.48,,WB,Last available year,http://data.worldbank.org/indicator
+133,INCOME.LEVEL,INCOME.LEVEL.UM,2016,,,WB,,http://data.worldbank.org/indicator
+133,NY.GNP.ATLS.CD,,2011-2013,54506,usd_million,WB,Average,http://data.worldbank.org/indicator
+133,NY.GNP.PCAP.CD,,2011-2013,8680,usd,WB,Average,http://data.worldbank.org/indicator
+133,POP.TOT,,2011-2013,6279347,,FAOStat,Average,http://faostat3.fao.org/
+133,RUR.POP.PERC,,2011-2013,21.6,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+133,AGRI.LAND.PERC,,2009-2011,8.9,percentage,FAOStat,Average,http://faostat3.fao.org/
+133,NET.ODA.REC,,2011-2013,249,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+133,NET.ODA.REC.PC,,2011-2013,40,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+133,DT.ODA.ODAT.GN.ZS,,2011-2013,0.72,percentage,WB,Average,http://data.worldbank.org/indicator
+22,INCOME.LEVEL,INCOME.LEVEL.HOM,2016,,,WB,,http://data.worldbank.org/indicator
+22,NY.GNP.ATLS.CD,,2011-2013,39477,usd_million,WB,Average,http://data.worldbank.org/indicator
+22,NY.GNP.PCAP.CD,,2011-2013,74380,usd,WB,Average,http://data.worldbank.org/indicator
+22,NODA,,2011-2013,419,usd_million,OECD DAC,Average,http://www.oecd.org/dac/stats/statisticsonresourceflowstodevelopingcountries.htm
+22,ODA.GNI,,2011-2013,1.06,percentage,WB,Average calculated,http://data.worldbank.org/indicator
+252,INCOME.LEVEL,INCOME.LEVEL.L,2016,,,WB,,http://data.worldbank.org/indicator
+252,NY.GNP.ATLS.CD,,2011-2013,9602,usd_million,WB,Average,http://data.worldbank.org/indicator
+252,NY.GNP.PCAP.CD,,2011-2013,430,usd,WB,Average,http://data.worldbank.org/indicator
+252,POP.TOT,,2011-2013,22299050,,FAOStat,Average,http://faostat3.fao.org/
+252,RUR.POP.PERC,,2011-2013,66.8,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+252,AGRI.LAND.PERC,,2009-2011,71.2,percentage,FAOStat,Average,http://faostat3.fao.org/
+252,NET.ODA.REC,,2011-2013,428,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+252,NET.ODA.REC.PC,,2011-2013,19,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+252,DT.ODA.ODAT.GN.ZS,,2011-2013,4.45,percentage,WB,Average,http://data.worldbank.org/indicator
+252,SI.POV.GINI,,2010,40.63,,WB,Last available year,http://data.worldbank.org/indicator
+253,INCOME.LEVEL,INCOME.LEVEL.L,2016,,,WB,,http://data.worldbank.org/indicator
+253,NY.GNP.ATLS.CD,,2011-2013,5027,usd_million,WB,Average,http://data.worldbank.org/indicator
+253,NY.GNP.PCAP.CD,,2011-2013,323,usd,WB,Average,http://data.worldbank.org/indicator
+253,POP.TOT,,2011-2013,15705793,,FAOStat,Average,http://faostat3.fao.org/
+253,RUR.POP.PERC,,2011-2013,85.3,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+253,AGRI.LAND.PERC,,2009-2011,58.8,percentage,FAOStat,Average,http://faostat3.fao.org/
+253,NET.ODA.REC,,2011-2013,1201,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+253,NET.ODA.REC.PC,,2011-2013,76,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+253,DT.ODA.ODAT.GN.ZS,,2011-2013,24.46,percentage,WB,Average,http://data.worldbank.org/indicator
+253,SI.POV.GINI,,2010,46.12,,WB,Last available year,http://data.worldbank.org/indicator
+751,INCOME.LEVEL,INCOME.LEVEL.UM,2016,,,WB,,http://data.worldbank.org/indicator
+751,NY.GNP.ATLS.CD,,2011-2013,291639,usd_million,WB,Average,http://data.worldbank.org/indicator
+751,NY.GNP.PCAP.CD,,2011-2013,10043,usd,WB,Average,http://data.worldbank.org/indicator
+751,POP.TOT,,2011-2013,29020093,,FAOStat,Average,http://faostat3.fao.org/
+751,RUR.POP.PERC,,2011-2013,27.7,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+751,AGRI.LAND.PERC,,2009-2011,24.0,percentage,FAOStat,Average,http://faostat3.fao.org/
+751,NET.ODA.REC,,2011-2013,-26,usd_million,,"When calculating net ODA, loan repayments are recorded as negative and deducted from ODA and loans. In some cases loan repayments are higher than new ODA and net ODA will show as a negative number.",
+751,NET.ODA.REC.PC,,2011-2013,-1,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+751,DT.ODA.ODAT.GN.ZS,,2011-2013,-0.01,percentage,WB,Average,http://data.worldbank.org/indicator
+751,SI.POV.GINI,,2009,46.26,,WB,Last available year,http://data.worldbank.org/indicator
+655,INCOME.LEVEL,INCOME.LEVEL.UM,2016,,,WB,,http://data.worldbank.org/indicator
+655,NY.GNP.ATLS.CD,,2011-2013,2280,usd_million,WB,Average,http://data.worldbank.org/indicator
+655,NY.GNP.PCAP.CD,,2011-2013,5920,usd,WB,Average,http://data.worldbank.org/indicator
+655,POP.TOT,,2011-2013,344850,,FAOStat,Average,http://faostat3.fao.org/
+655,RUR.POP.PERC,,2011-2013,56.6,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+655,AGRI.LAND.PERC,,2009-2011,23.3,percentage,FAOStat,Average,http://faostat3.fao.org/
+655,NET.ODA.REC,,2011-2013,43,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+655,NET.ODA.REC.PC,,2011-2013,124,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+655,DT.ODA.ODAT.GN.ZS,,2011-2013,1.88,percentage,WB,Average,http://data.worldbank.org/indicator
+655,SI.POV.GINI,,2009,36.78,,WB,Last available year,http://data.worldbank.org/indicator
+255,INCOME.LEVEL,INCOME.LEVEL.L,2016,,,WB,,http://data.worldbank.org/indicator
+255,NY.GNP.ATLS.CD,,2011-2013,9842,usd_million,WB,Average,http://data.worldbank.org/indicator
+255,NY.GNP.PCAP.CD,,2011-2013,610,usd,WB,Average,http://data.worldbank.org/indicator
+255,POP.TOT,,2011-2013,16114517,,FAOStat,Average,http://faostat3.fao.org/
+255,RUR.POP.PERC,,2011-2013,57.6,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+255,AGRI.LAND.PERC,,2009-2011,33.8,percentage,FAOStat,Average,http://faostat3.fao.org/
+255,NET.ODA.REC,,2011-2013,1197,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+255,NET.ODA.REC.PC,,2011-2013,74,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+255,DT.ODA.ODAT.GN.ZS,,2011-2013,12.14,percentage,WB,Average,http://data.worldbank.org/indicator
+255,SI.POV.GINI,,2009,33.04,,WB,Last available year,http://data.worldbank.org/indicator
+859,INCOME.LEVEL,INCOME.LEVEL.UM,2016,,,WB,,http://data.worldbank.org/indicator
+859,NY.GNP.ATLS.CD,,2011-2013,212,usd_million,WB,Average,http://data.worldbank.org/indicator
+859,NY.GNP.PCAP.CD,,2011-2013,4023,usd,WB,Average,http://data.worldbank.org/indicator
+859,POP.TOT,,2011-2013,52663,,FAOStat,Average,http://faostat3.fao.org/
+859,RUR.POP.PERC,,2011-2013,28.5,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+859,AGRI.LAND.PERC,,2009-2011,72.2,percentage,FAOStat,Average,http://faostat3.fao.org/
+859,NET.ODA.REC,,2011-2013,82,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+859,NET.ODA.REC.PC,,2011-2013,1562,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+859,DT.ODA.ODAT.GN.ZS,,2011-2013,38.74,percentage,WB,Average,http://data.worldbank.org/indicator
+256,INCOME.LEVEL,INCOME.LEVEL.LM,2016,,,WB,,http://data.worldbank.org/indicator
+256,NY.GNP.ATLS.CD,,2011-2013,4813,usd_million,WB,Average,http://data.worldbank.org/indicator
+256,NY.GNP.PCAP.CD,,2011-2013,1273,usd,WB,Average,http://data.worldbank.org/indicator
+256,POP.TOT,,2011-2013,3777657,,FAOStat,Average,http://faostat3.fao.org/
+256,RUR.POP.PERC,,2011-2013,42.2,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+256,AGRI.LAND.PERC,,2009-2011,38.5,percentage,FAOStat,Average,http://faostat3.fao.org/
+256,NET.ODA.REC,,2011-2013,359,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+256,NET.ODA.REC.PC,,2011-2013,95,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+256,DT.ODA.ODAT.GN.ZS,,2011-2013,7.49,percentage,WB,Average,http://data.worldbank.org/indicator
+256,SI.POV.GINI,,2008,37.48,,WB,Last available year,http://data.worldbank.org/indicator
+257,INCOME.LEVEL,INCOME.LEVEL.UM,2016,,,WB,,http://data.worldbank.org/indicator
+257,NY.GNP.ATLS.CD,,2011-2013,11265,usd_million,WB,Average,http://data.worldbank.org/indicator
+257,NY.GNP.PCAP.CD,,2011-2013,8970,usd,WB,Average,http://data.worldbank.org/indicator
+257,POP.TOT,,2011-2013,1258330,,FAOStat,Average,http://faostat3.fao.org/
+257,RUR.POP.PERC,,2011-2013,58.9,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+257,AGRI.LAND.PERC,,2009-2011,44.5,percentage,FAOStat,Average,http://faostat3.fao.org/
+257,NET.ODA.REC,,2011-2013,165,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+257,NET.ODA.REC.PC,,2011-2013,131,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+257,DT.ODA.ODAT.GN.ZS,,2011-2013,1.48,percentage,WB,Average,http://data.worldbank.org/indicator
+257,SI.POV.GINI,,2012,35.84,,WB,Last available year,http://data.worldbank.org/indicator
+358,INCOME.LEVEL,INCOME.LEVEL.UM,2016,,,WB,,http://data.worldbank.org/indicator
+358,NY.GNP.ATLS.CD,,2011-2013,1146077,usd_million,WB,Average,http://data.worldbank.org/indicator
+358,NY.GNP.PCAP.CD,,2011-2013,9383,usd,WB,Average,http://data.worldbank.org/indicator
+358,POP.TOT,,2011-2013,122058780,,FAOStat,Average,http://faostat3.fao.org/
+358,RUR.POP.PERC,,2011-2013,21.4,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+358,AGRI.LAND.PERC,,2009-2011,53.0,percentage,FAOStat,Average,http://faostat3.fao.org/
+358,NET.ODA.REC,,2011-2013,626,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+358,NET.ODA.REC.PC,,2011-2013,5,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+358,DT.ODA.ODAT.GN.ZS,,2011-2013,0.06,percentage,WB,Average,http://data.worldbank.org/indicator
+358,SI.POV.GINI,,2012,48.07,,WB,Last available year,http://data.worldbank.org/indicator
+860,INCOME.LEVEL,INCOME.LEVEL.LM,2016,,,WB,,http://data.worldbank.org/indicator
+860,NY.GNP.ATLS.CD,,2011-2013,329,usd_million,WB,Average,http://data.worldbank.org/indicator
+860,NY.GNP.PCAP.CD,,2011-2013,3183,usd,WB,Average,http://data.worldbank.org/indicator
+860,POP.TOT,,2011-2013,103573,,FAOStat,Average,http://faostat3.fao.org/
+860,RUR.POP.PERC,,2011-2013,77.2,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+860,AGRI.LAND.PERC,,2009-2011,31.4,percentage,FAOStat,Average,http://faostat3.fao.org/
+860,NET.ODA.REC,,2011-2013,128,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+860,NET.ODA.REC.PC,,2011-2013,1240,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+860,DT.ODA.ODAT.GN.ZS,,2011-2013,39.03,percentage,WB,Average,http://data.worldbank.org/indicator
+860,SI.POV.GINI,,2000,61.18,,WB,Last available year,http://data.worldbank.org/indicator
+93,INCOME.LEVEL,INCOME.LEVEL.LM,2016,,,WB,,http://data.worldbank.org/indicator
+93,NY.GNP.ATLS.CD,,2011-2013,7832,usd_million,WB,Average,http://data.worldbank.org/indicator
+93,NY.GNP.PCAP.CD,,2011-2013,2200,usd,WB,Average,http://data.worldbank.org/indicator
+93,POP.TOT,,2011-2013,4075423,,FAOStat,Average,http://faostat3.fao.org/
+93,RUR.POP.PERC,,2011-2013,47.6,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+93,AGRI.LAND.PERC,,2009-2011,75.0,percentage,FAOStat,Average,http://faostat3.fao.org/
+93,NET.ODA.REC,,2011-2013,416,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+93,NET.ODA.REC.PC,,2011-2013,102,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+93,DT.ODA.ODAT.GN.ZS,,2011-2013,5.39,percentage,WB,Average,http://data.worldbank.org/indicator
+93,SI.POV.GINI,,2013,28.53,,WB,Last available year,http://data.worldbank.org/indicator
+753,INCOME.LEVEL,INCOME.LEVEL.UM,2016,,,WB,,http://data.worldbank.org/indicator
+753,NY.GNP.ATLS.CD,,2011-2013,9989,usd_million,WB,Average,http://data.worldbank.org/indicator
+753,NY.GNP.PCAP.CD,,2011-2013,3543,usd,WB,Average,http://data.worldbank.org/indicator
+753,POP.TOT,,2011-2013,2808860,,FAOStat,Average,http://faostat3.fao.org/
+753,RUR.POP.PERC,,2011-2013,30.4,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+753,AGRI.LAND.PERC,,2009-2011,73.1,percentage,FAOStat,Average,http://faostat3.fao.org/
+753,NET.ODA.REC,,2011-2013,374,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+753,NET.ODA.REC.PC,,2011-2013,133,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+753,DT.ODA.ODAT.GN.ZS,,2011-2013,3.75,percentage,WB,Average,http://data.worldbank.org/indicator
+753,SI.POV.GINI,,2012,33.75,,WB,Last available year,http://data.worldbank.org/indicator
+65,INCOME.LEVEL,INCOME.LEVEL.UM,2016,,,WB,,http://data.worldbank.org/indicator
+65,NY.GNP.ATLS.CD,,2011-2013,4460,usd_million,WB,Average,http://data.worldbank.org/indicator
+65,NY.GNP.PCAP.CD,,2011-2013,7190,usd,WB,Average,http://data.worldbank.org/indicator
+65,POP.TOT,,2011-2013,623823,,FAOStat,Average,http://faostat3.fao.org/
+65,RUR.POP.PERC,,2011-2013,36.4,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+65,AGRI.LAND.PERC,,2009-2011,38.1,percentage,FAOStat,Average,http://faostat3.fao.org/
+65,NET.ODA.REC,,2011-2013,119,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+65,NET.ODA.REC.PC,,2011-2013,192,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+65,DT.ODA.ODAT.GN.ZS,,2011-2013,2.68,percentage,WB,Average,http://data.worldbank.org/indicator
+65,SI.POV.GINI,,2013,33.19,,WB,Last available year,http://data.worldbank.org/indicator
+136,INCOME.LEVEL,INCOME.LEVEL.LM,2016,,,WB,,http://data.worldbank.org/indicator
+136,NY.GNP.ATLS.CD,,2011-2013,100776,usd_million,WB,Average,http://data.worldbank.org/indicator
+136,NY.GNP.PCAP.CD,,2011-2013,3007,usd,WB,Average,http://data.worldbank.org/indicator
+136,POP.TOT,,2011-2013,32989613,,FAOStat,Average,http://faostat3.fao.org/
+136,RUR.POP.PERC,,2011-2013,40.7,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+136,AGRI.LAND.PERC,,2009-2011,67.3,percentage,FAOStat,Average,http://faostat3.fao.org/
+136,NET.ODA.REC,,2011-2013,1658,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+136,NET.ODA.REC.PC,,2011-2013,50,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+136,DT.ODA.ODAT.GN.ZS,,2011-2013,1.64,percentage,WB,Average,http://data.worldbank.org/indicator
+136,SI.POV.GINI,,2007,40.72,,WB,Last available year,http://data.worldbank.org/indicator
+259,INCOME.LEVEL,INCOME.LEVEL.L,2016,,,WB,,http://data.worldbank.org/indicator
+259,NY.GNP.ATLS.CD,,2011-2013,13724,usd_million,WB,Average,http://data.worldbank.org/indicator
+259,NY.GNP.PCAP.CD,,2011-2013,530,usd,WB,Average,http://data.worldbank.org/indicator
+259,POP.TOT,,2011-2013,25739010,,FAOStat,Average,http://faostat3.fao.org/
+259,RUR.POP.PERC,,2011-2013,67.2,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+259,AGRI.LAND.PERC,,2009-2011,62.8,percentage,FAOStat,Average,http://faostat3.fao.org/
+259,NET.ODA.REC,,2011-2013,2053,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+259,NET.ODA.REC.PC,,2011-2013,80,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+259,DT.ODA.ODAT.GN.ZS,,2011-2013,15.03,percentage,WB,Average,http://data.worldbank.org/indicator
+259,SI.POV.GINI,,2008,45.58,,WB,Last available year,http://data.worldbank.org/indicator
+635,POP.TOT,,2011-2013,52551027,,FAOStat,Average,http://faostat3.fao.org/
+635,RUR.POP.PERC,,2011-2013,67.9,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+635,AGRI.LAND.PERC,,2009-2011,19.1,percentage,FAOStat,Average,http://faostat3.fao.org/
+635,NET.ODA.REC,,2011-2013,1604,usd_million,WB,Average,http://data.worldbank.org/indicator
+635,NET.ODA.REC.PC,,2011-2013,30,usd,WB,Average,http://data.worldbank.org/indicator
+635,DT.ODA.ODAT.GN.ZS,,2011-2013,3.77,percentage,WB,Average,http://data.worldbank.org/indicator
+275,INCOME.LEVEL,INCOME.LEVEL.UM,2016,,,WB,,http://data.worldbank.org/indicator
+275,NY.GNP.ATLS.CD,,2011-2013,12354,usd_million,WB,Average,http://data.worldbank.org/indicator
+275,NY.GNP.PCAP.CD,,2011-2013,5387,usd,WB,Average,http://data.worldbank.org/indicator
+275,POP.TOT,,2011-2013,2292800,,FAOStat,Average,http://faostat3.fao.org/
+275,RUR.POP.PERC,,2011-2013,55.5,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+275,AGRI.LAND.PERC,,2009-2011,47.1,percentage,FAOStat,Average,http://faostat3.fao.org/
+275,NET.ODA.REC,,2011-2013,270,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+275,NET.ODA.REC.PC,,2011-2013,118,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+275,DT.ODA.ODAT.GN.ZS,,2011-2013,2.20,percentage,WB,Average,http://data.worldbank.org/indicator
+275,SI.POV.GINI,,2009,60.97,,WB,Last available year,http://data.worldbank.org/indicator
+660,INCOME.LEVEL,INCOME.LEVEL.L,2016,,,WB,,http://data.worldbank.org/indicator
+660,NY.GNP.ATLS.CD,,2011-2013,18578,usd_million,WB,Average,http://data.worldbank.org/indicator
+660,NY.GNP.PCAP.CD,,2011-2013,677,usd,WB,Average,http://data.worldbank.org/indicator
+660,POP.TOT,,2011-2013,27504910,,FAOStat,Average,http://faostat3.fao.org/
+660,RUR.POP.PERC,,2011-2013,82.4,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+660,AGRI.LAND.PERC,,2009-2011,29.7,percentage,FAOStat,Average,http://faostat3.fao.org/
+660,NET.ODA.REC,,2011-2013,815,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+660,NET.ODA.REC.PC,,2011-2013,30,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+660,DT.ODA.ODAT.GN.ZS,,2011-2013,4.40,percentage,WB,Average,http://data.worldbank.org/indicator
+660,SI.POV.GINI,,2010,32.75,,WB,Last available year,http://data.worldbank.org/indicator
+7,INCOME.LEVEL,INCOME.LEVEL.HOM,2016,,,WB,,http://data.worldbank.org/indicator
+7,NY.GNP.ATLS.CD,,2011-2013,888228,usd_million,WB,Average,http://data.worldbank.org/indicator
+7,NY.GNP.PCAP.CD,,2011-2013,53030,usd,WB,Average,http://data.worldbank.org/indicator
+7,NODA,,2011-2013,5802,usd_million,OECD DAC,Average,http://www.oecd.org/dac/stats/statisticsonresourceflowstodevelopingcountries.htm
+7,ODA.GNI,,2011-2013,0.65,percentage,WB,Average calculated,http://data.worldbank.org/indicator
+820,INCOME.LEVEL,INCOME.LEVEL.HOM,2016,,,WB,,http://data.worldbank.org/indicator
+820,NY.GNP.ATLS.CD,,2011-2013,139805,usd_million,WB,Average,http://data.worldbank.org/indicator
+820,NY.GNP.PCAP.CD,,2011-2013,31890,usd,WB,Average,http://data.worldbank.org/indicator
+820,NODA,,2011-2013,458,usd_million,OECD DAC,Average,http://www.oecd.org/dac/stats/statisticsonresourceflowstodevelopingcountries.htm
+364,INCOME.LEVEL,INCOME.LEVEL.LM,2016,,,WB,,http://data.worldbank.org/indicator
+364,NY.GNP.ATLS.CD,,2011-2013,9961,usd_million,WB,Average,http://data.worldbank.org/indicator
+364,NY.GNP.PCAP.CD,,2011-2013,1697,usd,WB,Average,http://data.worldbank.org/indicator
+364,POP.TOT,,2011-2013,5876823,,FAOStat,Average,http://faostat3.fao.org/
+364,RUR.POP.PERC,,2011-2013,43.0,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+364,AGRI.LAND.PERC,,2009-2011,42.8,percentage,FAOStat,Average,http://faostat3.fao.org/
+364,NET.ODA.REC,,2011-2013,568,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+364,NET.ODA.REC.PC,,2011-2013,97,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+364,DT.ODA.ODAT.GN.ZS,,2011-2013,5.76,percentage,WB,Average,http://data.worldbank.org/indicator
+364,SI.POV.GINI,,2009,45.73,,WB,Last available year,http://data.worldbank.org/indicator
+260,INCOME.LEVEL,INCOME.LEVEL.L,2016,,,WB,,http://data.worldbank.org/indicator
+260,NY.GNP.ATLS.CD,,2011-2013,6770,usd_million,WB,Average,http://data.worldbank.org/indicator
+260,NY.GNP.PCAP.CD,,2011-2013,383,usd,WB,Average,http://data.worldbank.org/indicator
+260,POP.TOT,,2011-2013,17647043,,FAOStat,Average,http://faostat3.fao.org/
+260,RUR.POP.PERC,,2011-2013,79.8,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+260,AGRI.LAND.PERC,,2009-2011,34.6,percentage,FAOStat,Average,http://faostat3.fao.org/
+260,NET.ODA.REC,,2011-2013,763,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+260,NET.ODA.REC.PC,,2011-2013,43,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+260,DT.ODA.ODAT.GN.ZS,,2011-2013,11.26,percentage,WB,Average,http://data.worldbank.org/indicator
+261,SI.POV.GINI,,2009,42.97,,WB,Last available year,http://data.worldbank.org/indicator
+261,INCOME.LEVEL,INCOME.LEVEL.LM,2016,,,WB,,http://data.worldbank.org/indicator
+261,NY.GNP.ATLS.CD,,2011-2013,387756,usd_million,WB,Average,http://data.worldbank.org/indicator
+261,NY.GNP.PCAP.CD,,2011-2013,2297,usd,WB,Average,http://data.worldbank.org/indicator
+261,POP.TOT,,2011-2013,168275863,,FAOStat,Average,http://faostat3.fao.org/
+261,RUR.POP.PERC,,2011-2013,55.0,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+261,AGRI.LAND.PERC,,2009-2011,82.9,percentage,FAOStat,Average,http://faostat3.fao.org/
+261,NET.ODA.REC,,2011-2013,1830,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+261,NET.ODA.REC.PC,,2011-2013,11,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+261,DT.ODA.ODAT.GN.ZS,,2011-2013,0.47,percentage,WB,Average,http://data.worldbank.org/indicator
+8,INCOME.LEVEL,INCOME.LEVEL.HOM,2016,,,WB,,http://data.worldbank.org/indicator
+8,NY.GNP.ATLS.CD,,2011-2013,490919,usd_million,WB,Average,http://data.worldbank.org/indicator
+8,NY.GNP.PCAP.CD,,2011-2013,97793,usd,WB,Average,http://data.worldbank.org/indicator
+8,NODA,,2011-2013,5070,usd_million,OECD DAC,Average,http://www.oecd.org/dac/stats/statisticsonresourceflowstodevelopingcountries.htm
+8,ODA.GNI,,2011-2013,1.03,percentage,WB,Average calculated,http://data.worldbank.org/indicator
+665,DT.ODA.ODAT.GN.ZS,,2011-2013,1.11,percentage,WB,Average,http://data.worldbank.org/indicator
+665,SI.POV.GINI,,2010,29.59,,WB,Last available year,http://data.worldbank.org/indicator
+665,INCOME.LEVEL,INCOME.LEVEL.LM,2016,,,WB,,http://data.worldbank.org/indicator
+665,NY.GNP.ATLS.CD,,2011-2013,223748,usd_million,WB,Average,http://data.worldbank.org/indicator
+665,NY.GNP.PCAP.CD,,2011-2013,1257,usd,WB,Average,http://data.worldbank.org/indicator
+665,POP.TOT,,2011-2013,177418183,,FAOStat,Average,http://faostat3.fao.org/
+665,RUR.POP.PERC,,2011-2013,63.2,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+665,AGRI.LAND.PERC,,2009-2011,34.3,percentage,FAOStat,Average,http://faostat3.fao.org/
+665,NET.ODA.REC,,2011-2013,2423,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+665,NET.ODA.REC.PC,,2011-2013,14,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+861,DT.ODA.ODAT.GN.ZS,,2011-2013,12.64,percentage,WB,Average,http://data.worldbank.org/indicator
+861,INCOME.LEVEL,INCOME.LEVEL.UM,2016,,,WB,,http://data.worldbank.org/indicator
+861,NY.GNP.ATLS.CD,,2011-2013,204,usd_million,WB,Average,http://data.worldbank.org/indicator
+861,NY.GNP.PCAP.CD,,2011-2013,9817,usd,WB,Average,http://data.worldbank.org/indicator
+861,POP.TOT,,2011-2013,20763,,FAOStat,Average,http://faostat3.fao.org/
+861,RUR.POP.PERC,,2011-2013,14.4,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+861,AGRI.LAND.PERC,,2009-2011,10.9,percentage,FAOStat,Average,http://faostat3.fao.org/
+861,NET.ODA.REC,,2011-2013,26,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+366,NET.ODA.REC.PC,,2011-2013,15,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+366,DT.ODA.ODAT.GN.ZS,,2011-2013,0.17,percentage,WB,Average,http://data.worldbank.org/indicator
+366,SI.POV.GINI,,2013,51.67,,WB,Last available year,http://data.worldbank.org/indicator
+366,INCOME.LEVEL,INCOME.LEVEL.UM,2016,,,WB,,http://data.worldbank.org/indicator
+366,NY.GNP.ATLS.CD,,2011-2013,35335,usd_million,WB,Average,http://data.worldbank.org/indicator
+366,NY.GNP.PCAP.CD,,2011-2013,9423,usd,WB,Average,http://data.worldbank.org/indicator
+366,POP.TOT,,2011-2013,3743807,,FAOStat,Average,http://faostat3.fao.org/
+366,RUR.POP.PERC,,2011-2013,34.8,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+366,AGRI.LAND.PERC,,2009-2011,30.4,percentage,FAOStat,Average,http://faostat3.fao.org/
+366,NET.ODA.REC,,2011-2013,55,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+862,NET.ODA.REC.PC,,2011-2013,83,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+862,DT.ODA.ODAT.GN.ZS,,2011-2013,4.65,percentage,WB,Average,http://data.worldbank.org/indicator
+862,SI.POV.GINI,,2009,43.88,,WB,Last available year,http://data.worldbank.org/indicator
+862,INCOME.LEVEL,INCOME.LEVEL.LM,2016,,,WB,,http://data.worldbank.org/indicator
+862,NY.GNP.ATLS.CD,,2011-2013,12853,usd_million,WB,Average,http://data.worldbank.org/indicator
+862,NY.GNP.PCAP.CD,,2011-2013,1793,usd,WB,Average,http://data.worldbank.org/indicator
+862,POP.TOT,,2011-2013,7154967,,FAOStat,Average,http://faostat3.fao.org/
+862,RUR.POP.PERC,,2011-2013,87.2,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+862,AGRI.LAND.PERC,,2009-2011,2.6,percentage,FAOStat,Average,http://faostat3.fao.org/
+451,NET.ODA.REC,,2011-2013,103,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+451,NET.ODA.REC.PC,,2011-2013,16,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+451,DT.ODA.ODAT.GN.ZS,,2011-2013,0.44,percentage,WB,Average,http://data.worldbank.org/indicator
+451,SI.POV.GINI,,2013,48.3,,WB,Last available year,http://data.worldbank.org/indicator
+451,INCOME.LEVEL,INCOME.LEVEL.UM,2016,,,WB,,http://data.worldbank.org/indicator
+451,NY.GNP.ATLS.CD,,2011-2013,23161,usd_million,WB,Average,http://data.worldbank.org/indicator
+451,NY.GNP.PCAP.CD,,2011-2013,3623,usd,WB,Average,http://data.worldbank.org/indicator
+451,POP.TOT,,2011-2013,6379530,,FAOStat,Average,http://faostat3.fao.org/
+451,RUR.POP.PERC,,2011-2013,43.0,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+451,AGRI.LAND.PERC,,2009-2011,52.8,percentage,FAOStat,Average,http://faostat3.fao.org/
+454,NET.ODA.REC,,2011-2013,432,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+454,NET.ODA.REC.PC,,2011-2013,14,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+454,DT.ODA.ODAT.GN.ZS,,2011-2013,0.27,percentage,WB,Average,http://data.worldbank.org/indicator
+454,SI.POV.GINI,,2013,44.73,,WB,Last available year,http://data.worldbank.org/indicator
+454,INCOME.LEVEL,INCOME.LEVEL.UM,2016,,,WB,,http://data.worldbank.org/indicator
+454,NY.GNP.ATLS.CD,,2011-2013,168574,usd_million,WB,Average,http://data.worldbank.org/indicator
+454,NY.GNP.PCAP.CD,,2011-2013,5583,usd,WB,Average,http://data.worldbank.org/indicator
+454,POP.TOT,,2011-2013,30161373,,FAOStat,Average,http://faostat3.fao.org/
+454,RUR.POP.PERC,,2011-2013,22.3,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+755,AGRI.LAND.PERC,,2009-2011,40.3,percentage,FAOStat,Average,http://faostat3.fao.org/
+755,NET.ODA.REC,,2011-2013,8,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+755,NET.ODA.REC.PC,,2011-2013,0,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+755,DT.ODA.ODAT.GN.ZS,,2011-2013,0,percentage,WB,Average,http://data.worldbank.org/indicator
+755,SI.POV.GINI,,2012,43.04,,WB,Last available year,http://data.worldbank.org/indicator
+755,INCOME.LEVEL,INCOME.LEVEL.LM,2016,,,WB,,http://data.worldbank.org/indicator
+755,NY.GNP.ATLS.CD,,2011-2013,287840,usd_million,WB,Average,http://data.worldbank.org/indicator
+755,NY.GNP.PCAP.CD,,2011-2013,2993,usd,WB,Average,http://data.worldbank.org/indicator
+755,POP.TOT,,2011-2013,96030077,,FAOStat,Average,http://faostat3.fao.org/
+755,RUR.POP.PERC,,2011-2013,55.6,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+76,INCOME.LEVEL,INCOME.LEVEL.HOM,2016,,,WB,,http://data.worldbank.org/indicator
+76,NY.GNP.ATLS.CD,,2011-2013,503903,usd_million,WB,Average,http://data.worldbank.org/indicator
+76,NY.GNP.PCAP.CD,,2011-2013,13240,usd,WB,Average,http://data.worldbank.org/indicator
+76,NODA,,2011-2013,443,usd_million,OECD DAC,Average,http://www.oecd.org/dac/stats/statisticsonresourceflowstodevelopingcountries.htm
+76,ODA.GNI,,2011-2013,0.09,percentage,WB,Average calculated,http://data.worldbank.org/indicator
+9,INCOME.LEVEL,INCOME.LEVEL.HOM,2016,,,WB,,http://data.worldbank.org/indicator
+9,NY.GNP.ATLS.CD,,2011-2013,228257,usd_million,WB,Average,http://data.worldbank.org/indicator
+9,NY.GNP.PCAP.CD,,2011-2013,21717,usd,WB,Average,http://data.worldbank.org/indicator
+9,NODA,,2011-2013,597,usd_million,OECD DAC,Average,http://www.oecd.org/dac/stats/statisticsonresourceflowstodevelopingcountries.htm
+9,ODA.GNI,,2011-2013,0.26,percentage,WB,Average calculated,http://data.worldbank.org/indicator
+266,AGRI.LAND.PERC,,2009-2011,77.7,percentage,FAOStat,Average,http://faostat3.fao.org/
+266,NET.ODA.REC,,2011-2013,1062,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+266,NET.ODA.REC.PC,,2011-2013,98,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+266,DT.ODA.ODAT.GN.ZS,,2011-2013,15.63,percentage,WB,Average,http://data.worldbank.org/indicator
+266,SI.POV.GINI,,2010,51.34,,WB,Last available year,http://data.worldbank.org/indicator
+266,INCOME.LEVEL,INCOME.LEVEL.L,2016,,,WB,,http://data.worldbank.org/indicator
+266,NY.GNP.ATLS.CD,,2011-2013,6869,usd_million,WB,Average,http://data.worldbank.org/indicator
+266,NY.GNP.PCAP.CD,,2011-2013,633,usd,WB,Average,http://data.worldbank.org/indicator
+266,POP.TOT,,2011-2013,10817290,,FAOStat,Average,http://faostat3.fao.org/
+384,POP.TOT,,2011-2013,109333,,FAOStat,Average,http://faostat3.fao.org/
+384,RUR.POP.PERC,,2011-2013,50.6,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+384,AGRI.LAND.PERC,,2009-2011,25.6,percentage,FAOStat,Average,http://faostat3.fao.org/
+384,NET.ODA.REC,,2011-2013,11,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+384,NET.ODA.REC.PC,,2011-2013,104,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+384,DT.ODA.ODAT.GN.ZS,,2011-2013,1.66,percentage,WB,Average,http://data.worldbank.org/indicator
+384,INCOME.LEVEL,INCOME.LEVEL.UM,2016,,,WB,,http://data.worldbank.org/indicator
+384,NY.GNP.ATLS.CD,,2011-2013,691,usd_million,WB,Average,http://data.worldbank.org/indicator
+384,NY.GNP.PCAP.CD,,2011-2013,6320,usd,WB,Average,http://data.worldbank.org/indicator
+880,POP.TOT,,2011-2013,188907,,FAOStat,Average,http://faostat3.fao.org/
+880,RUR.POP.PERC,,2011-2013,80.3,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+880,AGRI.LAND.PERC,,2009-2011,12.4,percentage,FAOStat,Average,http://faostat3.fao.org/
+880,NET.ODA.REC,,2011-2013,107,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+880,NET.ODA.REC.PC,,2011-2013,566,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+880,DT.ODA.ODAT.GN.ZS,,2011-2013,14.84,percentage,WB,Average,http://data.worldbank.org/indicator
+880,INCOME.LEVEL,INCOME.LEVEL.LM,2016,,,WB,,http://data.worldbank.org/indicator
+880,NY.GNP.ATLS.CD,,2011-2013,718,usd_million,WB,Average,http://data.worldbank.org/indicator
+268,NY.GNP.PCAP.CD,,2011-2013,1387,usd,WB,Average,http://data.worldbank.org/indicator
+268,POP.TOT,,2011-2013,178507,,FAOStat,Average,http://faostat3.fao.org/
+268,RUR.POP.PERC,,2011-2013,38.8,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+268,AGRI.LAND.PERC,,2009-2011,50.8,percentage,FAOStat,Average,http://faostat3.fao.org/
+268,NET.ODA.REC,,2011-2013,53,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+268,NET.ODA.REC.PC,,2011-2013,299,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+268,DT.ODA.ODAT.GN.ZS,,2011-2013,21.94,percentage,WB,Average,http://data.worldbank.org/indicator
+268,SI.POV.GINI,,2010,30.82,,WB,Last available year,http://data.worldbank.org/indicator
+268,INCOME.LEVEL,INCOME.LEVEL.LM,2016,,,WB,,http://data.worldbank.org/indicator
+268,NY.GNP.ATLS.CD,,2011-2013,248,usd_million,WB,Average,http://data.worldbank.org/indicator
+269,NY.GNP.PCAP.CD,,2011-2013,1037,usd,WB,Average,http://data.worldbank.org/indicator
+269,POP.TOT,,2011-2013,13786050,,FAOStat,Average,http://faostat3.fao.org/
+269,RUR.POP.PERC,,2011-2013,57.0,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+269,AGRI.LAND.PERC,,2009-2011,49.4,percentage,FAOStat,Average,http://faostat3.fao.org/
+269,NET.ODA.REC,,2011-2013,1043,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+269,NET.ODA.REC.PC,,2011-2013,76,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+269,DT.ODA.ODAT.GN.ZS,,2011-2013,7.32,percentage,WB,Average,http://data.worldbank.org/indicator
+269,SI.POV.GINI,,2011,40.28,,WB,Last available year,http://data.worldbank.org/indicator
+63,INCOME.LEVEL,INCOME.LEVEL.UM,2016,,,WB,,http://data.worldbank.org/indicator
+63,NY.GNP.ATLS.CD,,2011-2013,42358,usd_million,WB,Average,http://data.worldbank.org/indicator
+63,NY.GNP.PCAP.CD,,2011-2013,5887,usd,WB,Average,http://data.worldbank.org/indicator
+63,POP.TOT,,2011-2013,8981353,,FAOStat,Average,http://faostat3.fao.org/
+63,RUR.POP.PERC,,2011-2013,47.5,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+63,AGRI.LAND.PERC,,2009-2011,57.8,percentage,FAOStat,Average,http://faostat3.fao.org/
+63,NET.ODA.REC,,2011-2013,1071,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+63,NET.ODA.REC.PC,,2011-2013,119,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+63,DT.ODA.ODAT.GN.ZS,,2011-2013,2.53,percentage,WB,Average,http://data.worldbank.org/indicator
+63,SI.POV.GINI,,2010,29.65,,WB,Last available year,http://data.worldbank.org/indicator
+270,INCOME.LEVEL,INCOME.LEVEL.H,2016,,,WB,,http://data.worldbank.org/indicator
+270,NY.GNP.ATLS.CD,,2011-2013,1087,usd_million,WB,Average,http://data.worldbank.org/indicator
+270,NY.GNP.PCAP.CD,,2011-2013,12267,usd,WB,Average,http://data.worldbank.org/indicator
+270,POP.TOT,,2011-2013,94517,,FAOStat,Average,http://faostat3.fao.org/
+270,RUR.POP.PERC,,2011-2013,45.9,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+270,AGRI.LAND.PERC,,2009-2011,6.5,percentage,FAOStat,Average,http://faostat3.fao.org/
+270,NET.ODA.REC,,2011-2013,27,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+270,NET.ODA.REC.PC,,2011-2013,283,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+270,DT.ODA.ODAT.GN.ZS,,2011-2013,2.48,percentage,WB,Average,http://data.worldbank.org/indicator
+272,SI.POV.GINI,,2011,33.99,,WB,Last available year,http://data.worldbank.org/indicator
+272,INCOME.LEVEL,INCOME.LEVEL.L,2016,,,WB,,http://data.worldbank.org/indicator
+272,NY.GNP.ATLS.CD,,2011-2013,3426,usd_million,WB,Average,http://data.worldbank.org/indicator
+272,NY.GNP.PCAP.CD,,2011-2013,567,usd,WB,Average,http://data.worldbank.org/indicator
+272,POP.TOT,,2011-2013,6043643,,FAOStat,Average,http://faostat3.fao.org/
+272,RUR.POP.PERC,,2011-2013,60.5,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+272,AGRI.LAND.PERC,,2009-2011,47.9,percentage,FAOStat,Average,http://faostat3.fao.org/
+272,NET.ODA.REC,,2011-2013,409,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+272,NET.ODA.REC.PC,,2011-2013,68,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+272,DT.ODA.ODAT.GN.ZS,,2011-2013,12.23,percentage,WB,Average,http://data.worldbank.org/indicator
+69,INCOME.LEVEL,INCOME.LEVEL.HOM,2016,,,WB,,http://data.worldbank.org/indicator
+69,NY.GNP.ATLS.CD,,2011-2013,94725,usd_million,WB,Average,http://data.worldbank.org/indicator
+69,NY.GNP.PCAP.CD,,2011-2013,17523,usd,WB,Average,http://data.worldbank.org/indicator
+69,NODA,,2011-2013,84,usd_million,OECD DAC,Average,http://www.oecd.org/dac/stats/statisticsonresourceflowstodevelopingcountries.htm
+69,ODA.GNI,,2011-2013,0.09,percentage,WB,Average calculated,http://data.worldbank.org/indicator
+61,INCOME.LEVEL,INCOME.LEVEL.HOM,2016,,,WB,,http://data.worldbank.org/indicator
+61,NY.GNP.ATLS.CD,,2011-2013,48732,usd_million,WB,Average,http://data.worldbank.org/indicator
+61,NY.GNP.PCAP.CD,,2011-2013,23693,usd,WB,Average,http://data.worldbank.org/indicator
+61,NODA,,2011-2013,61,usd_million,OECD DAC,Average,http://www.oecd.org/dac/stats/statisticsonresourceflowstodevelopingcountries.htm
+61,ODA.GNI,,2011-2013,0.13,percentage,WB,Average calculated,http://data.worldbank.org/indicator
+866,INCOME.LEVEL,INCOME.LEVEL.LM,2016,,,WB,,http://data.worldbank.org/indicator
+866,NY.GNP.ATLS.CD,,2011-2013,820,usd_million,WB,Average,http://data.worldbank.org/indicator
+866,NY.GNP.PCAP.CD,,2011-2013,1490,usd,WB,Average,http://data.worldbank.org/indicator
+866,POP.TOT,,2011-2013,549163,,FAOStat,Average,http://faostat3.fao.org/
+866,RUR.POP.PERC,,2011-2013,79.1,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+866,AGRI.LAND.PERC,,2009-2011,3.3,percentage,FAOStat,Average,http://faostat3.fao.org/
+866,NET.ODA.REC,,2011-2013,284,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+866,NET.ODA.REC.PC,,2011-2013,518,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+273,DT.ODA.ODAT.GN.ZS,,2011-2013,20.13,percentage,WB,Average,http://data.worldbank.org/indicator
+273,SI.POV.GINI,,2005,46.1,,WB,Last available year,http://data.worldbank.org/indicator
+273,POP.TOT,,2011-2013,10036153,,FAOStat,Average,http://faostat3.fao.org/
+273,RUR.POP.PERC,,2011-2013,62.8,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+273,AGRI.LAND.PERC,,2009-2011,70.3,percentage,FAOStat,Average,http://faostat3.fao.org/
+273,NET.ODA.REC,,2011-2013,1029,usd_million,WB,Average,http://data.worldbank.org/indicator
+273,NET.ODA.REC.PC,,2011-2013,103,usd,WB,Average,http://data.worldbank.org/indicator
+218,DT.ODA.ODAT.GN.ZS,,2011-2013,0.33,percentage,WB,Average,http://data.worldbank.org/indicator
+218,INCOME.LEVEL,INCOME.LEVEL.UM,2016,,,WB,,http://data.worldbank.org/indicator
+218,NY.GNP.ATLS.CD,,2011-2013,385762,usd_million,WB,Average,http://data.worldbank.org/indicator
+218,NY.GNP.PCAP.CD,,2011-2013,7367,usd,WB,Average,http://data.worldbank.org/indicator
+218,POP.TOT,,2011-2013,52830383,,FAOStat,Average,http://faostat3.fao.org/
+218,RUR.POP.PERC,,2011-2013,36.4,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+218,AGRI.LAND.PERC,,2009-2011,79.8,percentage,FAOStat,Average,http://faostat3.fao.org/
+218,NET.ODA.REC,,2011-2013,1263,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+218,NET.ODA.REC.PC,,2011-2013,24,usd,WB,Average,http://data.worldbank.org/indicator
+279,NET.ODA.REC,,2011-2013,1217,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+279,NET.ODA.REC.PC,,2011-2013,110,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+279,DT.ODA.ODAT.GN.ZS,,2011-2013,12.40,percentage,WB,Average,http://data.worldbank.org/indicator
+279,SI.POV.GINI,,2011,63.38,,WB,Last available year,http://data.worldbank.org/indicator
+279,INCOME.LEVEL,INCOME.LEVEL.L,2016,,,WB,,http://data.worldbank.org/indicator
+279,NY.GNP.ATLS.CD,,2011-2013,9889,usd_million,WB,Average,http://data.worldbank.org/indicator
+279,NY.GNP.PCAP.CD,,2011-2013,900,usd,WB,Average,http://data.worldbank.org/indicator
+279,POP.TOT,,2011-2013,10981517,,FAOStat,Average,http://faostat3.fao.org/
+279,RUR.POP.PERC,,2011-2013,80.7,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+50,INCOME.LEVEL,INCOME.LEVEL.HOM,2016,,,WB,,http://data.worldbank.org/indicator
+50,NY.GNP.ATLS.CD,,2011-2013,1409636,usd_million,WB,Average,http://data.worldbank.org/indicator
+50,NY.GNP.PCAP.CD,,2011-2013,30177,usd,WB,Average,http://data.worldbank.org/indicator
+50,NODA,,2011-2013,2829,usd_million,OECD DAC,Average,http://www.oecd.org/dac/stats/statisticsonresourceflowstodevelopingcountries.htm
+50,ODA.GNI,,2011-2013,0.20,percentage,WB,Average calculated,http://data.worldbank.org/indicator
+640,AGRI.LAND.PERC,,2009-2011,41.2,percentage,FAOStat,Average,http://faostat3.fao.org/
+640,NET.ODA.REC,,2011-2013,487,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+640,NET.ODA.REC.PC,,2011-2013,24,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+640,DT.ODA.ODAT.GN.ZS,,2011-2013,0.84,percentage,WB,Average,http://data.worldbank.org/indicator
+640,SI.POV.GINI,,2012,35.89,,WB,Last available year,http://data.worldbank.org/indicator
+640,INCOME.LEVEL,INCOME.LEVEL.LM,2016,,,WB,,http://data.worldbank.org/indicator
+640,NY.GNP.ATLS.CD,,2011-2013,58922,usd_million,WB,Average,http://data.worldbank.org/indicator
+640,NY.GNP.PCAP.CD,,2011-2013,2870,usd,WB,Average,http://data.worldbank.org/indicator
+640,POP.TOT,,2011-2013,20419830,,FAOStat,Average,http://faostat3.fao.org/
+640,RUR.POP.PERC,,2011-2013,84.4,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+278,NET.ODA.REC,,2011-2013,1064,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+278,NET.ODA.REC.PC,,2011-2013,28,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+278,DT.ODA.ODAT.GN.ZS,,2011-2013,1.72,percentage,WB,Average,http://data.worldbank.org/indicator
+278,INCOME.LEVEL,INCOME.LEVEL.LM,2016,,,WB,,http://data.worldbank.org/indicator
+278,NY.GNP.ATLS.CD,,2011-2013,61995,usd_million,WB,Average,http://data.worldbank.org/indicator
+278,NY.GNP.PCAP.CD,,2011-2013,1577,usd,WB,Average,http://data.worldbank.org/indicator
+278,POP.TOT,,2011-2013,37715237,,FAOStat,Average,http://faostat3.fao.org/
+457,RUR.POP.PERC,,2011-2013,34.2,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+457,AGRI.LAND.PERC,,2009-2011,0.5,percentage,FAOStat,Average,http://faostat3.fao.org/
+457,NET.ODA.REC,,2011-2013,53,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+457,NET.ODA.REC.PC,,2011-2013,101,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+457,DT.ODA.ODAT.GN.ZS,,2011-2013,1.15,percentage,WB,Average,http://data.worldbank.org/indicator
+457,SI.POV.GINI,,2009,35.39,,WB,Last available year,http://data.worldbank.org/indicator
+457,INCOME.LEVEL,INCOME.LEVEL.UM,2016,,,WB,,http://data.worldbank.org/indicator
+457,NY.GNP.ATLS.CD,,2011-2013,4783,usd_million,WB,Average,http://data.worldbank.org/indicator
+457,NY.GNP.PCAP.CD,,2011-2013,9050,usd,WB,Average,http://data.worldbank.org/indicator
+457,POP.TOT,,2011-2013,528473,,FAOStat,Average,http://faostat3.fao.org/
+280,RUR.POP.PERC,,2011-2013,78.6,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+280,AGRI.LAND.PERC,,2009-2011,71.1,percentage,FAOStat,Average,http://faostat3.fao.org/
+280,NET.ODA.REC,,2011-2013,102,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+280,NET.ODA.REC.PC,,2011-2013,83,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+280,DT.ODA.ODAT.GN.ZS,,2011-2013,2.44,percentage,WB,Average,http://data.worldbank.org/indicator
+280,INCOME.LEVEL,INCOME.LEVEL.LM,2016,,,WB,,http://data.worldbank.org/indicator
+280,NY.GNP.ATLS.CD,,2011-2013,4171,usd_million,WB,Average,http://data.worldbank.org/indicator
+280,NY.GNP.PCAP.CD,,2011-2013,3383,usd,WB,Average,http://data.worldbank.org/indicator
+10,INCOME.LEVEL,INCOME.LEVEL.HOM,2016,,,WB,,http://data.worldbank.org/indicator
+10,NY.GNP.ATLS.CD,,2011-2013,559162,usd_million,WB,Average,http://data.worldbank.org/indicator
+10,NY.GNP.PCAP.CD,,2011-2013,58703,usd,WB,Average,http://data.worldbank.org/indicator
+10,NODA,,2011-2013,5675,usd_million,OECD DAC,Average,http://www.oecd.org/dac/stats/statisticsonresourceflowstodevelopingcountries.htm
+10,ODA.GNI,,2011-2013,1.02,percentage,WB,Average calculated,http://data.worldbank.org/indicator
+11,INCOME.LEVEL,INCOME.LEVEL.HOM,2016,,,WB,,http://data.worldbank.org/indicator
+11,NY.GNP.ATLS.CD,,2011-2013,672213,usd_million,WB,Average,http://data.worldbank.org/indicator
+11,NY.GNP.PCAP.CD,,2011-2013,84000,usd,WB,Average,http://data.worldbank.org/indicator
+11,NODA,,2011-2013,3064,usd_million,OECD DAC,Average,http://www.oecd.org/dac/stats/statisticsonresourceflowstodevelopingcountries.htm
+11,ODA.GNI,,2011-2013,0.46,percentage,WB,Average calculated,http://data.worldbank.org/indicator
+573,POP.TOT,,2011-2013,19934173,,FAOStat,Average,http://faostat3.fao.org/
+573,RUR.POP.PERC,,2011-2013,47.8,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+573,AGRI.LAND.PERC,,2009-2011,75.7,percentage,FAOStat,Average,http://faostat3.fao.org/
+573,NET.ODA.REC,,2011-2013,1878,usd_million,WB,Average,http://data.worldbank.org/indicator
+573,NET.ODA.REC.PC,,2011-2013,87,usd,WB,Average,http://data.worldbank.org/indicator
+573,SI.POV.GINI,,2012,31.64,,WB,Last available year,http://data.worldbank.org/indicator
+615,POP.TOT,,2011-2013,7932250,,FAOStat,Average,http://faostat3.fao.org/
+615,RUR.POP.PERC,,2011-2013,74.1,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+615,AGRI.LAND.PERC,,2009-2011,34.4,percentage,FAOStat,Average,http://faostat3.fao.org/
+615,NET.ODA.REC,,2011-2013,354,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+615,NET.ODA.REC.PC,,2011-2013,45,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+615,DT.ODA.ODAT.GN.ZS,,2011-2013,5.03,percentage,WB,Average,http://data.worldbank.org/indicator
+615,SI.POV.GINI,,2004,35.77,,WB,Last available year,http://data.worldbank.org/indicator
+615,INCOME.LEVEL,INCOME.LEVEL.LM,2016,,,WB,,http://data.worldbank.org/indicator
+615,NY.GNP.ATLS.CD,,2011-2013,7096,usd_million,WB,Average,http://data.worldbank.org/indicator
+282,NY.GNP.PCAP.CD,,2011-2013,790,usd,WB,Average,http://data.worldbank.org/indicator
+282,POP.TOT,,2011-2013,48660723,,FAOStat,Average,http://faostat3.fao.org/
+282,RUR.POP.PERC,,2011-2013,69.3,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+282,AGRI.LAND.PERC,,2009-2011,42.1,percentage,FAOStat,Average,http://faostat3.fao.org/
+282,NET.ODA.REC,,2011-2013,2792,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+282,NET.ODA.REC.PC,,2011-2013,57,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+282,DT.ODA.ODAT.GN.ZS,,2011-2013,7.48,percentage,WB,Average,http://data.worldbank.org/indicator
+282,SI.POV.GINI,,2009,30.77,,WB,Last available year,http://data.worldbank.org/indicator
+282,INCOME.LEVEL,INCOME.LEVEL.L,2016,,,WB,,http://data.worldbank.org/indicator
+282,NY.GNP.ATLS.CD,,2011-2013,37253,usd_million,WB,Average,http://data.worldbank.org/indicator
+764,NY.GNP.PCAP.CD,,2011-2013,5483,usd,WB,Average,http://data.worldbank.org/indicator
+764,POP.TOT,,2011-2013,67172837,,FAOStat,Average,http://faostat3.fao.org/
+764,RUR.POP.PERC,,2011-2013,53.0,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+764,AGRI.LAND.PERC,,2009-2011,41.1,percentage,FAOStat,Average,http://faostat3.fao.org/
+764,NET.ODA.REC,,2011-2013,-100,usd_million,,"When calculating net ODA, loan repayments are recorded as negative and deducted from ODA and loans. In some cases loan repayments are higher than new ODA and net ODA will show as a negative number.",
+764,NET.ODA.REC.PC,,2011-2013,-1,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+764,DT.ODA.ODAT.GN.ZS,,2011-2013,-0.03,percentage,WB,Average,http://data.worldbank.org/indicator
+764,SI.POV.GINI,,2011,37.78,,WB,Last available year,http://data.worldbank.org/indicator
+765,INCOME.LEVEL,INCOME.LEVEL.LM,2016,,,WB,,http://data.worldbank.org/indicator
+765,NY.GNP.ATLS.CD,,2011-2013,4312,usd_million,WB,Average,http://data.worldbank.org/indicator
+765,NY.GNP.PCAP.CD,,2011-2013,3750,usd,WB,Average,http://data.worldbank.org/indicator
+765,POP.TOT,,2011-2013,1103000,,FAOStat,Average,http://faostat3.fao.org/
+765,RUR.POP.PERC,,2011-2013,69.9,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+765,AGRI.LAND.PERC,,2009-2011,24.7,percentage,FAOStat,Average,http://faostat3.fao.org/
+765,NET.ODA.REC,,2011-2013,260,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+765,NET.ODA.REC.PC,,2011-2013,236,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+765,DT.ODA.ODAT.GN.ZS,,2011-2013,6.04,percentage,WB,Average,http://data.worldbank.org/indicator
+765,SI.POV.GINI,,2012,39.26,,WB,Last available year,http://data.worldbank.org/indicator
+283,INCOME.LEVEL,INCOME.LEVEL.L,2016,,,WB,,http://data.worldbank.org/indicator
+283,NY.GNP.ATLS.CD,,2011-2013,3306,usd_million,WB,Average,http://data.worldbank.org/indicator
+283,NY.GNP.PCAP.CD,,2011-2013,490,usd,WB,Average,http://data.worldbank.org/indicator
+283,POP.TOT,,2011-2013,6746827,,FAOStat,Average,http://faostat3.fao.org/
+283,RUR.POP.PERC,,2011-2013,60.6,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+283,AGRI.LAND.PERC,,2009-2011,67.7,percentage,FAOStat,Average,http://faostat3.fao.org/
+283,NET.ODA.REC,,2011-2013,322,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+283,NET.ODA.REC.PC,,2011-2013,48,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+283,DT.ODA.ODAT.GN.ZS,,2011-2013,10.06,percentage,WB,Average,http://data.worldbank.org/indicator
+870,SI.POV.GINI,,2011,46.02,,WB,Last available year,http://data.worldbank.org/indicator
+870,INCOME.LEVEL,INCOME.LEVEL.UM,2016,,,WB,,http://data.worldbank.org/indicator
+870,NY.GNP.ATLS.CD,,2011-2013,431,usd_million,WB,Average,http://data.worldbank.org/indicator
+870,NY.GNP.PCAP.CD,,2011-2013,4113,usd,WB,Average,http://data.worldbank.org/indicator
+870,POP.TOT,,2011-2013,104767,,FAOStat,Average,http://faostat3.fao.org/
+870,RUR.POP.PERC,,2011-2013,76.7,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+870,AGRI.LAND.PERC,,2009-2011,43.1,percentage,FAOStat,Average,http://faostat3.fao.org/
+870,NET.ODA.REC,,2011-2013,79,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+870,NET.ODA.REC.PC,,2011-2013,757,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+139,DT.ODA.ODAT.GN.ZS,,2011-2013,2.02,percentage,WB,Average,http://data.worldbank.org/indicator
+139,SI.POV.GINI,,1992,40.27,,WB,Last available year,http://data.worldbank.org/indicator
+139,INCOME.LEVEL,INCOME.LEVEL.UM,2016,,,WB,,http://data.worldbank.org/indicator
+139,NY.GNP.ATLS.CD,,2011-2013,44263,usd_million,WB,Average,http://data.worldbank.org/indicator
+139,NY.GNP.PCAP.CD,,2011-2013,4107,usd,WB,Average,http://data.worldbank.org/indicator
+139,POP.TOT,,2011-2013,10882010,,FAOStat,Average,http://faostat3.fao.org/
+139,RUR.POP.PERC,,2011-2013,33.7,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+139,AGRI.LAND.PERC,,2009-2011,64.2,percentage,FAOStat,Average,http://faostat3.fao.org/
+139,NET.ODA.REC,,2011-2013,893,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+139,NET.ODA.REC.PC,,2011-2013,82,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+55,DT.ODA.ODAT.GN.ZS,,2011-2013,0.38,percentage,WB,Average,http://data.worldbank.org/indicator
+55,SI.POV.GINI,,2010,35.81,,WB,Last available year,http://data.worldbank.org/indicator
+55,INCOME.LEVEL,INCOME.LEVEL.UM,2016,,,WB,,http://data.worldbank.org/indicator
+55,NY.GNP.ATLS.CD,,2011-2013,796911,usd_million,WB,Average,http://data.worldbank.org/indicator
+55,NY.GNP.PCAP.CD,,2011-2013,10753,usd,WB,Average,http://data.worldbank.org/indicator
+55,POP.TOT,,2011-2013,74863277,,FAOStat,Average,http://faostat3.fao.org/
+55,RUR.POP.PERC,,2011-2013,27.8,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+55,AGRI.LAND.PERC,,2009-2011,50.3,percentage,FAOStat,Average,http://faostat3.fao.org/
+55,NET.ODA.REC,,2011-2013,3022,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+616,NET.ODA.REC.PC,,2011-2013,7,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+616,DT.ODA.ODAT.GN.ZS,,2011-2013,0.12,percentage,WB,Average,http://data.worldbank.org/indicator
+616,SI.POV.GINI,,2012,40.17,,WB,Last available year,http://data.worldbank.org/indicator
+616,INCOME.LEVEL,INCOME.LEVEL.UM,2016,,,WB,,http://data.worldbank.org/indicator
+616,NY.GNP.ATLS.CD,,2011-2013,29284,usd_million,WB,Average,http://data.worldbank.org/indicator
+616,NY.GNP.PCAP.CD,,2011-2013,5650,usd,WB,Average,http://data.worldbank.org/indicator
+616,POP.TOT,,2011-2013,5173233,,FAOStat,Average,http://faostat3.fao.org/
+616,RUR.POP.PERC,,2011-2013,51.0,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+616,AGRI.LAND.PERC,,2009-2011,69.5,percentage,FAOStat,Average,http://faostat3.fao.org/
+616,NET.ODA.REC,,2011-2013,35,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+872,NET.ODA.REC.PC,,2011-2013,2871,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+872,DT.ODA.ODAT.GN.ZS,,2011-2013,52.57,percentage,WB,Average,http://data.worldbank.org/indicator
+872,INCOME.LEVEL,INCOME.LEVEL.UM,2016,,,WB,,http://data.worldbank.org/indicator
+872,NY.GNP.ATLS.CD,,2011-2013,54,usd_million,WB,Average,http://data.worldbank.org/indicator
+872,NY.GNP.PCAP.CD,,2011-2013,5523,usd,WB,Average,http://data.worldbank.org/indicator
+872,POP.TOT,,2011-2013,9860,,FAOStat,Average,http://faostat3.fao.org/
+872,RUR.POP.PERC,,2011-2013,40.6,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+872,AGRI.LAND.PERC,,2009-2011,60.0,percentage,FAOStat,Average,http://faostat3.fao.org/
+285,NET.ODA.REC,,2011-2013,1634,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+285,NET.ODA.REC.PC,,2011-2013,46,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+285,DT.ODA.ODAT.GN.ZS,,2011-2013,7.40,percentage,WB,Average,http://data.worldbank.org/indicator
+285,SI.POV.GINI,,2012,42.37,,WB,Last available year,http://data.worldbank.org/indicator
+285,INCOME.LEVEL,INCOME.LEVEL.L,2016,,,WB,,http://data.worldbank.org/indicator
+285,NY.GNP.ATLS.CD,,2011-2013,22125,usd_million,WB,Average,http://data.worldbank.org/indicator
+285,NY.GNP.PCAP.CD,,2011-2013,623,usd,WB,Average,http://data.worldbank.org/indicator
+285,POP.TOT,,2011-2013,35411450,,FAOStat,Average,http://faostat3.fao.org/
+285,RUR.POP.PERC,,2011-2013,87.1,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+285,AGRI.LAND.PERC,,2009-2011,70.1,percentage,FAOStat,Average,http://faostat3.fao.org/
+85,NET.ODA.REC,,2011-2013,732,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+85,NET.ODA.REC.PC,,2011-2013,16,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+85,DT.ODA.ODAT.GN.ZS,,2011-2013,0.47,percentage,WB,Average,http://data.worldbank.org/indicator
+85,SI.POV.GINI,,2013,24.55,,WB,Last available year,http://data.worldbank.org/indicator
+85,INCOME.LEVEL,INCOME.LEVEL.LM,2016,,,WB,,http://data.worldbank.org/indicator
+85,NY.GNP.ATLS.CD,,2011-2013,157511,usd_million,WB,Average,http://data.worldbank.org/indicator
+85,NY.GNP.PCAP.CD,,2011-2013,3457,usd,WB,Average,http://data.worldbank.org/indicator
+85,POP.TOT,,2011-2013,45320950,,FAOStat,Average,http://faostat3.fao.org/
+85,RUR.POP.PERC,,2011-2013,31.1,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+12,INCOME.LEVEL,INCOME.LEVEL.HOM,2016,,,WB,,http://data.worldbank.org/indicator
+12,NY.GNP.ATLS.CD,,2011-2013,2617031,usd_million,WB,Average,http://data.worldbank.org/indicator
+12,NY.GNP.PCAP.CD,,2011-2013,41083,usd,WB,Average,http://data.worldbank.org/indicator
+12,NODA,,2011-2013,15252,usd_million,OECD DAC,Average,http://www.oecd.org/dac/stats/statisticsonresourceflowstodevelopingcountries.htm
+12,ODA.GNI,,2011-2013,0.58,percentage,WB,Average calculated,http://data.worldbank.org/indicator
+302,INCOME.LEVEL,INCOME.LEVEL.HOM,2016,,,WB,,http://data.worldbank.org/indicator
+302,NY.GNP.ATLS.CD,,2011-2013,16409866,usd_million,WB,Average,http://data.worldbank.org/indicator
+302,NY.GNP.PCAP.CD,,2011-2013,52233,usd,WB,Average,http://data.worldbank.org/indicator
+302,NODA,,2011-2013,31447,usd_million,OECD DAC,Average,http://www.oecd.org/dac/stats/statisticsonresourceflowstodevelopingcountries.htm
+302,ODA.GNI,,2011-2013,0.19,percentage,WB,Average calculated,http://data.worldbank.org/indicator
+460,AGRI.LAND.PERC,,2009-2011,82.6,percentage,FAOStat,Average,http://faostat3.fao.org/
+460,NET.ODA.REC,,2011-2013,23,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+460,NET.ODA.REC.PC,,2011-2013,7,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+460,DT.ODA.ODAT.GN.ZS,,2011-2013,0.05,percentage,WB,Average,http://data.worldbank.org/indicator
+460,SI.POV.GINI,,2013,41.87,,WB,Last available year,http://data.worldbank.org/indicator
+460,INCOME.LEVEL,INCOME.LEVEL.H,2016,,,WB,,http://data.worldbank.org/indicator
+460,NY.GNP.ATLS.CD,,2011-2013,47057,usd_million,WB,Average,http://data.worldbank.org/indicator
+460,NY.GNP.PCAP.CD,,2011-2013,13853,usd,WB,Average,http://data.worldbank.org/indicator
+460,POP.TOT,,2011-2013,3396777,,FAOStat,Average,http://faostat3.fao.org/
+460,RUR.POP.PERC,,2011-2013,5.2,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+617,AGRI.LAND.PERC,,2009-2011,62.7,percentage,FAOStat,Average,http://faostat3.fao.org/
+617,NET.ODA.REC,,2011-2013,241,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+617,NET.ODA.REC.PC,,2011-2013,8,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+617,DT.ODA.ODAT.GN.ZS,,2011-2013,0.47,percentage,WB,Average,http://data.worldbank.org/indicator
+617,SI.POV.GINI,,2003,35.27,,WB,Last available year,http://data.worldbank.org/indicator
+617,INCOME.LEVEL,INCOME.LEVEL.LM,2016,,,WB,,http://data.worldbank.org/indicator
+617,NY.GNP.ATLS.CD,,2011-2013,51488,usd_million,WB,Average,http://data.worldbank.org/indicator
+617,NY.GNP.PCAP.CD,,2011-2013,1727,usd,WB,Average,http://data.worldbank.org/indicator
+617,POP.TOT,,2011-2013,28594737,,FAOStat,Average,http://faostat3.fao.org/
+854,RUR.POP.PERC,,2011-2013,74.8,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+854,AGRI.LAND.PERC,,2009-2011,15.3,percentage,FAOStat,Average,http://faostat3.fao.org/
+854,NET.ODA.REC,,2011-2013,92,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+854,NET.ODA.REC.PC,,2011-2013,372,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+854,DT.ODA.ODAT.GN.ZS,,2011-2013,12.39,percentage,WB,Average,http://data.worldbank.org/indicator
+854,SI.POV.GINI,,2010,37.18,,WB,Last available year,http://data.worldbank.org/indicator
+854,INCOME.LEVEL,INCOME.LEVEL.LM,2016,,,WB,,http://data.worldbank.org/indicator
+854,NY.GNP.ATLS.CD,,2011-2013,744,usd_million,WB,Average,http://data.worldbank.org/indicator
+854,NY.GNP.PCAP.CD,,2011-2013,3003,usd,WB,Average,http://data.worldbank.org/indicator
+854,POP.TOT,,2011-2013,247513,,FAOStat,Average,http://faostat3.fao.org/
+463,RUR.POP.PERC,,2011-2013,11.2,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+463,AGRI.LAND.PERC,,2009-2011,24.1,percentage,FAOStat,Average,http://faostat3.fao.org/
+463,NET.ODA.REC,,2011-2013,33,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+463,NET.ODA.REC.PC,,2011-2013,1,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+463,DT.ODA.ODAT.GN.ZS,,2011-2013,0.01,percentage,WB,Average,http://data.worldbank.org/indicator
+463,SI.POV.GINI,,2006,46.94,,WB,Last available year,http://data.worldbank.org/indicator
+463,INCOME.LEVEL,INCOME.LEVEL.H,2016,,,WB,,http://data.worldbank.org/indicator
+463,NY.GNP.ATLS.CD,,2011-2013,360140,usd_million,WB,Average,http://data.worldbank.org/indicator
+463,NY.GNP.PCAP.CD,,2011-2013,12145,usd,WB,Average,http://data.worldbank.org/indicator
+769,POP.TOT,,2011-2013,90345400,,FAOStat,Average,http://faostat3.fao.org/
+769,RUR.POP.PERC,,2011-2013,68.7,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+769,AGRI.LAND.PERC,,2009-2011,34.3,percentage,FAOStat,Average,http://faostat3.fao.org/
+769,NET.ODA.REC,,2011-2013,3693,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+769,NET.ODA.REC.PC,,2011-2013,41,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+769,DT.ODA.ODAT.GN.ZS,,2011-2013,2.67,percentage,WB,Average,http://data.worldbank.org/indicator
+769,SI.POV.GINI,,2012,38.7,,WB,Last available year,http://data.worldbank.org/indicator
+769,INCOME.LEVEL,INCOME.LEVEL.LM,2016,,,WB,,http://data.worldbank.org/indicator
+769,NY.GNP.ATLS.CD,,2011-2013,138839,usd_million,WB,Average,http://data.worldbank.org/indicator
+769,NY.GNP.PCAP.CD,,2011-2013,1563,usd,WB,Average,http://data.worldbank.org/indicator
+550,NY.GNP.PCAP.CD,,2011-2013,2897,usd,WB,Average,http://data.worldbank.org/indicator
+550,POP.TOT,,2011-2013,4299103,,FAOStat,Average,http://faostat3.fao.org/
+550,RUR.POP.PERC,,2011-2013,25.0,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+550,AGRI.LAND.PERC,,2009-2011,44.8,percentage,FAOStat,Average,http://faostat3.fao.org/
+550,NET.ODA.REC,,2011-2013,2230,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+550,NET.ODA.REC.PC,,2011-2013,519,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+550,DT.ODA.ODAT.GN.ZS,,2011-2013,19.17,percentage,WB,Average,http://data.worldbank.org/indicator
+550,SI.POV.GINI,,2009,34.46,,WB,Last available year,http://data.worldbank.org/indicator
+550,INCOME.LEVEL,INCOME.LEVEL.LM,2016,,,WB,,http://data.worldbank.org/indicator
+550,NY.GNP.ATLS.CD,,2011-2013,11740,usd_million,WB,Average,http://data.worldbank.org/indicator
+580,NY.GNP.PCAP.CD,,2011-2013,1180,usd,WB,Average,http://data.worldbank.org/indicator
+580,POP.TOT,,2011-2013,24883650,,FAOStat,Average,http://faostat3.fao.org/
+580,RUR.POP.PERC,,2011-2013,64.4,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+580,AGRI.LAND.PERC,,2009-2011,44.5,percentage,FAOStat,Average,http://faostat3.fao.org/
+580,NET.ODA.REC,,2011-2013,687,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+580,NET.ODA.REC.PC,,2011-2013,27,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+580,DT.ODA.ODAT.GN.ZS,,2011-2013,2.28,percentage,WB,Average,http://data.worldbank.org/indicator
+580,SI.POV.GINI,,2005,35.89,,WB,Last available year,http://data.worldbank.org/indicator
+288,INCOME.LEVEL,INCOME.LEVEL.LM,2016,,,WB,,http://data.worldbank.org/indicator
+288,NY.GNP.ATLS.CD,,2011-2013,23462,usd_million,WB,Average,http://data.worldbank.org/indicator
+288,NY.GNP.PCAP.CD,,2011-2013,1583,usd,WB,Average,http://data.worldbank.org/indicator
+288,POP.TOT,,2011-2013,14792067,,FAOStat,Average,http://faostat3.fao.org/
+288,RUR.POP.PERC,,2011-2013,57.5,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+288,AGRI.LAND.PERC,,2009-2011,31.6,percentage,FAOStat,Average,http://faostat3.fao.org/
+288,NET.ODA.REC,,2011-2013,1008,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+288,NET.ODA.REC.PC,,2011-2013,68,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+288,DT.ODA.ODAT.GN.ZS,,2011-2013,4.31,percentage,WB,Average,http://data.worldbank.org/indicator
+288,SI.POV.GINI,,2010,55.62,,WB,Last available year,http://data.worldbank.org/indicator
+265,INCOME.LEVEL,INCOME.LEVEL.L,2016,,,WB,,http://data.worldbank.org/indicator
+265,NY.GNP.ATLS.CD,,2011-2013,11073,usd_million,WB,Average,http://data.worldbank.org/indicator
+265,NY.GNP.PCAP.CD,,2011-2013,760,usd,WB,Average,http://data.worldbank.org/indicator
+265,POP.TOT,,2011-2013,14573053,,FAOStat,Average,http://faostat3.fao.org/
+265,RUR.POP.PERC,,2011-2013,63.3,percentage,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+265,AGRI.LAND.PERC,,2009-2011,42.2,percentage,FAOStat,Average,http://faostat3.fao.org/
+265,NET.ODA.REC,,2011-2013,825,usd_million,WB,Average calculated,http://data.worldbank.org/indicator
+265,NET.ODA.REC.PC,,2011-2013,57,usd,WB;FAOStat,Average calculated ,http://data.worldbank.org/indicator;http://faostat3.fao.org/
+265,DT.ODA.ODAT.GN.ZS,,2011-2013,7.46,percentage,WB,Average,http://data.worldbank.org/indicator

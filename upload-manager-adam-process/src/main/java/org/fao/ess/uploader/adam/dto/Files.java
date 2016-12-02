@@ -2,7 +2,8 @@ package org.fao.ess.uploader.adam.dto;
 
 public enum Files {
 
-    cpf("cpf_priorities.csv"), undaf("undaf_priorities.csv");
+    cpf("cpf_priorities.csv"), undaf("undaf_priorities.csv"), country_indicators("country_indicators.csv"), donors_gni("donors_gni.csv") ;
+
     private String fileName;
 
     Files(String fileName) {
