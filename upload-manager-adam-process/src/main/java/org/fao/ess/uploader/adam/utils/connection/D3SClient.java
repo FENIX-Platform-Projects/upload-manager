@@ -61,6 +61,7 @@ public class D3SClient {
             if (page!=null)
                 parameters.put("page",page.toString());
         }
+
         //Send request
         Response response = sendRequest(addQueryParameters(url.toString(),parameters), null, "get");
         if (response.getStatus() != 200 && response.getStatus() != 201)

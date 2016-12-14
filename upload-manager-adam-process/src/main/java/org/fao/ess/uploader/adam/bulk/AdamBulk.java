@@ -53,7 +53,7 @@ public class AdamBulk implements PostUpload {
             //Unzip file into newly created folder
             Map<Files, File> recognizedFilesMap = fileManager.unzip(tmpFolder, new FileInputStream(file));
             //Check all needed files are present
-            if (recognizedFilesMap.size()!=Files.values().length)
+            if (recognizedFilesMap.size()!=2)
                 throw new NotAcceptableException("Some CSV file is missing");
             //Create tmp tables
             dataManager.createTmpTables(connection);
