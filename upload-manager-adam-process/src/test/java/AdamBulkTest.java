@@ -16,7 +16,7 @@ public class AdamBulkTest  {
     public void setUp() throws Exception {
         CDISupport.getInstance(UploaderConfig.class).init(this.getClass().getResourceAsStream("/mainConfig.properties"));
         adamBulkManager = CDISupport.getInstance(AdamBulk.class);
-       // adamBulkManager = CDISupport.getInstance(AdamDS.class);
+        //adamBulkManager = CDISupport.getInstance(AdamDS.class);
     }
 
     @Test
@@ -25,7 +25,7 @@ public class AdamBulkTest  {
         System.out.println("here");
         adamBulkManager.mainLogic(this.getClass().getResourceAsStream(RESOURCE_TEST));
 
-        // adamBulkManager.mainLogic(this.getClass().getResourceAsStream(RESOURCE_TEST),"country_indicators");
+        //adamBulkManager.mainLogic(this.getClass().getResourceAsStream(RESOURCE_TEST),"country_indicators");
         //adamBulkManager.mainLogic(this.getClass().getResourceAsStream(RESOURCE_TEST),"donors_gni");
 
     }
