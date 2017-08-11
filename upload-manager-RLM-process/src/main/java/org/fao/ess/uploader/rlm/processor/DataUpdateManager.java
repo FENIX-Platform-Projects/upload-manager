@@ -6,9 +6,11 @@ import org.fao.ess.uploader.core.metadata.MetadataStorage;
 import org.fao.ess.uploader.core.process.PostUpload;
 import org.fao.ess.uploader.core.process.ProcessInfo;
 import org.fao.ess.uploader.core.storage.BinaryStorage;
+import org.fao.fenix.commons.utils.StringUtils;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.print.attribute.standard.NumberUp;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -67,7 +69,13 @@ public class DataUpdateManager implements PostUpload {
             connection.createStatement().executeUpdate("INSERT INTO codes_indicators (indicator_code, indicator_label) SELECT topic_code, topic_label FROM codes_topics");
             //Commit changes
             connection.commit();
-        } finally {
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
+
+        finally {
             connection.setAutoCommit(autoCommit);
             connection.close();
         }

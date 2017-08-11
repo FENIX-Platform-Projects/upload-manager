@@ -11,13 +11,12 @@
 
 
     <dependencies>
-        <!-- RestEasy multipart support
+        <!-- RestEasy multipart support -->
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-multipart-provider</artifactId>
             <version>${resteasy.version}</version>
-            <scope>provided</scope>
-        </dependency-->
+        </dependency>
 
         <!-- Utils -->
         <dependency>
