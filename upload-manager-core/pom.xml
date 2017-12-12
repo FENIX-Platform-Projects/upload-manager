@@ -11,12 +11,7 @@
 
 
     <dependencies>
-        <!-- RestEasy multipart support -->
-        <dependency>
-            <groupId>org.jboss.resteasy</groupId>
-            <artifactId>resteasy-multipart-provider</artifactId>
-            <version>${resteasy.version}</version>
-        </dependency>
+
 
         <!-- Utils -->
         <dependency>
